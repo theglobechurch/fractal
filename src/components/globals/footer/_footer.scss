@@ -1,5 +1,10 @@
 .c-footer {
   color: siteColor(tgc-white);
+  padding: siteSpacing(sl);
+
+  @include bpMinExtraSmall() {
+    padding: 0;
+  }
 
   &__meganav {
     @include bpMinExtraSmall() {

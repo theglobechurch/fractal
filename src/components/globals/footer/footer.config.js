@@ -3,7 +3,7 @@ module.exports = {
   label: 'Footer',
   status: 'wip',
   context: {
-    copyline: '© Copyright 2017 The Globe Church London',
+    copyline: '© Copyright 2017 The Globe Church, London',
     charityline: 'Registered Charity 1160195',
     meganav: [
       {
