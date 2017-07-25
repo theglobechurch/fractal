@@ -1,0 +1,9 @@
+<div class="c-social-gems">
+  {% for gem in services %}
+    <a href="{{ gem.href }}" class="c-social-gems__stone c-social-gems__stone--{{ gem.service }}" target="_blank">
+      <svg role="img" class="c-social-gems__stone__icon">
+        <use xlink:href="/assets/svg/svg-symbols.svg#{{ gem.service }}"></use>
+      </svg>
+    </a>
+  {% endfor %}
+</div>

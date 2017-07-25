@@ -1,0 +1,41 @@
+$social: (
+  facebook: #34599d,
+  twitter: #00a2f9,
+  instagram: #501f6c
+);
+
+.c-social-gems {
+  &__stone {
+    border: 1px solid;
+    border-radius: 55px;
+    display: inline-block;
+    height: 44px;
+    margin-right: siteSpacing(s);
+    transition: box-shadow .2s;
+    width: 44px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @each $service in map-keys($social) {
+      &--#{$service} {
+        background-color: map-get($social, $service);
+        border-color: darken(map-get($social, $service), 10);
+        box-shadow: 0 0 0 0 lighten(map-get($social, $service), 40);
+
+        &:hover {
+          box-shadow: 0 0 20px 0 lighten(map-get($social, $service), 40);
+          color: siteColor(tgc-white);
+        }
+      }
+    }
+  }
+
+  &__stone__icon {
+    height: 22px;
+    margin: 10px;
+    width: 22px;
+  }
+
+}
