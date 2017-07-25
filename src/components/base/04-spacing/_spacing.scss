@@ -1,0 +1,11 @@
+$site-spacing: (
+  xs: 5px,
+  s: 10px,
+  m: 20px,
+  l: 40px,
+  xl: 55px
+);
+
+@function siteSpacing($s) {
+  @return map-get($site-spacing, $s);
+}

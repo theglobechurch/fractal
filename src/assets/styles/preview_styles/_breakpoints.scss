@@ -1,0 +1,45 @@
+.fr-breakpoint {
+  @include typeSetting(3, regular);
+  background-color: siteColor(sockeye);
+  padding: 1rem;
+
+  &:after {
+    content: '(default)';
+  }
+
+  @include bpMinXSmall {
+    background-color: siteColor(petrel);
+
+    &:after {
+      content: '(x-small)';
+    }
+  }
+
+  @include bpMinSmall {
+    @include typeSetting(4, regular);
+    background-color: siteColor(gold-braid);
+
+    &:after {
+      content: '(small)';
+    }
+  }
+
+  @include bpMinMedium {
+    @include typeSetting(5, regular);
+    background-color: siteColor(lark-green);
+
+    &:after {
+      content: '(medium)';
+    }
+  }
+
+  @include bpMinLarge {
+    @include typeSetting(6, regular);
+    background-color: siteColor(sockeye);
+
+    &:after {
+      content: '(large)';
+    }
+  }
+
+}

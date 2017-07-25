@@ -1,0 +1,44 @@
+// sass-lint:disable class-name-format
+
+@import '../../components/base/01-typography/typography';
+@import '../../components/base/03-site-color/site-color';
+
+
+html, body {
+  @include typeSetting(3);
+  font-family: fontFamily(text);
+}
+
+.Header {
+  background-color: siteColor(petrel);
+  justify-content: space-between;
+
+  &-title {
+    @include typeSetting(4, bold, uppercase);
+
+    &:hover {
+      color: siteColor(sockeye);
+    }
+  }
+}
+
+.Header-navToggle svg {
+  fill: siteColor(tgc-white);
+}
+
+.Prose {
+
+  & h1 {
+    @include typeSetting(6, bold, uppercase);
+  }
+  & h2 {
+    @include typeSetting(5, bold, uppercase);
+  }
+  & h3 {
+    @include typeSetting(4, bold, uppercase);
+  }
+}
+
+// code, pre {
+//   font-family: fontFamily(code);
+// }

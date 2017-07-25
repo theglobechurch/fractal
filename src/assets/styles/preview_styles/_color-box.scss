@@ -1,0 +1,43 @@
+.fr-color-box-group {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  margin: 10px;
+}
+
+.fr-color-box {
+  border: 1px solid;
+  border-radius: 4px;
+  text-align: center;
+
+  @each $color in map-keys($site-colors) {
+    &.theme-#{$color} {
+      border-color: map-get($site-colors, $color);
+    }
+  }
+
+  &__color {
+    border-radius: 4px 4px 0 0;
+    height: 0;
+    padding-bottom: 50%;
+    width: 100%;
+
+    // This is only needed for showing $site-colors in Fractal
+    @each $color in map-keys($site-colors) {
+      .theme-#{$color} & {
+        background-color: map-get($site-colors, $color);
+      }
+    }
+  }
+
+  &__color-code {
+    font-family: fontFamily(code);
+    margin-bottom: 0;
+    padding: 0 5px;
+  }
+
+  &__color-name {
+    @include typeSetting(1, bold, uppercase);
+    padding: 0 5px;
+  }
+}

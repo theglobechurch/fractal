@@ -1,0 +1,19 @@
+// Helper classes to preview things like the color swatches
+// Not part of the code vam-style.scss
+
+// Mixins
+@import '../../components/mixins/**/*.scss';
+
+
+@import '../../components/base/**/*.scss';
+
+// Modules
+@import 'preview_styles/**/*.scss';
+
+.fr-visually-hidden {
+  @include visuallyHidden;
+}
+
+.fr-unstyled-list {
+  @include unstyledList;
+}

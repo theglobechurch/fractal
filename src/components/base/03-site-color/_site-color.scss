@@ -1,0 +1,12 @@
+$site-colors: (
+  tgc-black: #000,
+  tgc-white: #fff,
+  sockeye: #d06348,
+  petrel: #282938,
+  gold-braid: #c6ae40,
+  lark-green: #83c3a5
+);
+
+@function siteColor($c) {
+  @return map-get($site-colors, $c);
+}
