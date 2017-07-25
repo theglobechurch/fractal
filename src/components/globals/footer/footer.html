@@ -1,0 +1,25 @@
+<footer class="c-footer">
+
+  <nav class="c-footer__meganav">
+    {% for navitem in meganav %}
+      {%- render "@footer-nav-list", navitem -%}
+    {% endfor %}
+  </nav>
+
+  <div class="c-footer__extra">
+    <div class="c-footer__copyright">
+      <span>{{ copyline }}</span>
+      <span>{{ charityline }}</span>
+    </div>
+
+    <div class="c-footer__affiliation">
+      <svg role="img" class="c-footer__affiliation__comisson">
+        <use xlink:href="/assets/svg/svg-symbols.svg#comission-themed"></use>
+      </svg>
+      <svg role="img" class="c-footer__affiliation__fiec">
+        <use xlink:href="/assets/svg/svg-symbols.svg#fiec-themed"></use>
+      </svg>
+    </div>
+  </div>
+
+</footer>

@@ -1,0 +1,16 @@
+<div class="c-footer-nav-list">
+  <h2 class="c-footer-nav-list__title">
+    <a href="{{ href }}">
+      {{ title }}
+    </a>
+  </h2>
+
+  <ul class="c-footer-nav-list__items">
+    {% for i in items %}
+      <li class="c-footer-nav-list__item">
+        <a href="{{ i.href }}">
+          {{ i.name }}
+        </a>
+      </li>
+    {% endfor %}
+</div>

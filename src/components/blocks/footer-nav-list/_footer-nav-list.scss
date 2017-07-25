@@ -1,0 +1,34 @@
+.c-footer-nav-list {
+  margin: 0 siteSpacing(l) siteSpacing(m) 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &__title {
+    @include typeSetting(2, bold, uppercase);
+
+    @include bpMinExtraSmall() {
+      @include typeSetting(4, bold, uppercase);
+    }
+  }
+
+  &__items {
+    @include typeSetting(1);
+    @include unstyledList;
+    margin-left: siteSpacing(s);
+
+    @include bpMinExtraSmall() {
+      @include typeSetting(2);
+    }
+  }
+
+  &__item a {
+    display: inline-block;
+    transition: padding .2s;
+
+    &:hover {
+      padding-left: siteSpacing(xs);
+    }
+  }
+}

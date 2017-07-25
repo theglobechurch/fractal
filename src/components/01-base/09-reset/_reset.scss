@@ -24,8 +24,8 @@ section {
 }
 
 body {
-  background-color: siteColor(tgc-white);
-  color: siteColor(tgc-black);
+  background-color: siteColor(petrel);
+  color: siteColor(tgc-white);
   font-family: fontFamily(text);
   font-smoothing: antialiased;
   line-height: 1.7;
@@ -93,6 +93,11 @@ p:last-child {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color .2s;
+
+  &:hover {
+    color: siteColor(sockeye);
+  }
 }
 
 hr {

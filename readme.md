@@ -1,5 +1,9 @@
 # Globe Fractal
 
+## View it
+
+[tgc-fractal.surge.sh](https://tgc-fractal.surge.sh/)
+
 ## Developing on it
 
 `npm run dev`

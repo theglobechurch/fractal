@@ -9,7 +9,7 @@ $breakpoints: (
   @return map-get($breakpoints, $size);
 }
 
-@mixin bpMinXSmall {
+@mixin bpMinExtraSmall {
   @media (min-width: bp(x-small)) {
     @content;
   }

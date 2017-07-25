@@ -7,7 +7,7 @@
     content: '(default)';
   }
 
-  @include bpMinXSmall {
+  @include bpMinExtraSmall {
     background-color: siteColor(petrel);
 
     &:after {
