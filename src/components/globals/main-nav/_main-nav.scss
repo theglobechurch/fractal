@@ -1,0 +1,51 @@
+.c-main-nav {
+  background-color: rgba(siteColor(petrel), .95);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  padding-top: 50px;
+  position: fixed;
+  top: -100%;
+  text-align: center;
+  transition: top .2s ease-in-out;
+  width: 100%;
+  z-index: 2;
+
+  .nav-open & {
+    top: 0;
+  }
+
+  @include bpMinExtraSmall() {
+    padding-top: 75px;
+  }
+
+  &__list {
+    @include unstyledList();
+    @include typeSetting(3, bold, uppercase);
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    justify-content: space-around;
+
+    @include bpMinMedium() {
+      @include typeSetting(5, bold, uppercase);
+    }
+  }
+
+  &__list__item {
+    a {
+      display: block;
+      padding: siteSpacing(m);
+      transition: padding-left .2s ease-in-out;
+
+      &:hover {
+        padding-left: siteSpacing(l);
+      }
+    }
+  }
+}
+
+.nav-open {
+  overflow: hidden;
+}

@@ -11,9 +11,13 @@
 
     <link rel="stylesheet" href="{{ '/assets/styles/globe_styles.css' | path }}" />
     <link rel="stylesheet" href="{{ '/assets/styles/preview.css' | path }}" />
+
+    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=Element.prototype.classList,es6,HTMLPictureElement,Element.prototype.dataset"></script>
   </head>
 
   <body>
     {{ yield }}
+
+    <script src="{{ '/assets/js/bundle.js' | path }}" async></script>
   </body>
 </html>

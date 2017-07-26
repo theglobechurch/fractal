@@ -3,12 +3,16 @@ const fractal       = require('./fractal.js');
 const logger        = fractal.cli.console;
 
 // Gulp
-const gulp          = require('gulp');
 const autoprefixer  = require('gulp-autoprefixer');
+const babelify      = require('babelify');
+const browserify    = require('browserify');
+
 const buffer        = require('vinyl-buffer');
 const concat        = require('gulp-concat');
 const del           = require('del');
+const gutil         = require('gulp-util');
 const glob          = require('glob');
+const gulp          = require('gulp');
 const rename        = require('gulp-rename');
 const sass          = require('gulp-sass');
 const sassGlob      = require('gulp-sass-glob');
@@ -35,7 +39,7 @@ const surgeURL = 'https://tgc-fractal.surge.sh';
 //---
 // Empty temp folders
 function clean() {
-  return del([`${paths.dest}`, `${paths.build}`]);
+  return del([paths.dest, paths.build]);
 }
 
 
@@ -74,6 +78,12 @@ function deploy() {
   });
 }
 
+//---
+// Nom nom errors
+function swallowError (error) {
+  console.log(error.toString())
+  this.emit('end')
+}
 
 //---
 // Style
@@ -90,13 +100,6 @@ function styles() {
     .pipe(gulp.dest(`${paths.dest}/assets/styles`));
 }
 
-
-function swallowError (error) {
-  console.log(error.toString())
-  this.emit('end')
-}
-
-
 //---
 // SVG Icons
 function svg() {
@@ -111,16 +114,37 @@ function svg() {
 }
 
 //---
+// Scripts
+function scripts() {
+  var appBundler = browserify({
+    entries: `${paths.src}/assets/scripts/application.js`,
+    debug: true
+  });
+
+  return appBundler
+    .transform("babelify", {presets: ["es2015"]})
+    .bundle()
+    .on('error', gutil.log)
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest(`${paths.dest}/assets/js`));
+}
+
+//---
 // Prepare for release
 function releaseSVG() {
   return gulp.src(`${paths.dest}/assets/svg/*.svg`)
-    .pipe(rename('vamicons.svg'))
+    .pipe(rename('icons.svg'))
     .pipe(gulp.dest(`${paths.dist}/svg`));
 }
 
 function releaseCSS() {
-  return gulp.src(`${paths.dest}/assets/styles/vam-style.css`)
+  return gulp.src(`${paths.dest}/assets/styles/style.css`)
     .pipe(gulp.dest(`${paths.dist}/css`));
+}
+
+function releaseJS() {
+  return gulp.src(`${paths.dest}/assets/styles/bundle.js`)
+    .pipe(gulp.dest(`${paths.dist}/js`));
 }
 
 //---
@@ -137,11 +161,12 @@ function sassLinter() {
 function watch() {
   serve();
   gulp.watch([`${paths.src}/assets/**/*.scss`, `${paths.src}/components/**/*.scss`], styles);
+  gulp.watch([`${paths.src}/assets/scripts/application.js`, `${paths.src}/components/**/*.js`], scripts);
   gulp.watch(`${paths.src}/assets/svg/*.svg`, svg);
 }
 
-const compile = gulp.series(clean, gulp.parallel(svg, styles));
-const buildDistAssets = gulp.parallel(releaseSVG, releaseCSS);
+const compile = gulp.series(clean, gulp.parallel(svg, styles, scripts));
+const buildDistAssets = gulp.parallel(releaseSVG, releaseCSS, releaseJS);
 const linter = gulp.series(sassLinter);
 
 gulp.task('dev', gulp.series(compile, watch));

@@ -1,0 +1,13 @@
+<div class="{{ className }}">
+  <ul class="{{ className }}__list">
+    {% for item in nav %}
+      <li class="{{ className }}__list__item">
+        <a href="{{ item.href }}">
+          {{ item.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {%- render "@social-gems" -%}
+</div>
