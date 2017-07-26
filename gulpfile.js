@@ -6,10 +6,10 @@ const logger        = fractal.cli.console;
 const autoprefixer  = require('gulp-autoprefixer');
 const babelify      = require('babelify');
 const browserify    = require('browserify');
-
 const buffer        = require('vinyl-buffer');
 const concat        = require('gulp-concat');
 const del           = require('del');
+const esLint        = require('gulp-eslint');
 const gutil         = require('gulp-util');
 const glob          = require('glob');
 const gulp          = require('gulp');
@@ -156,6 +156,12 @@ function sassLinter() {
     .pipe(sassLint.failOnError());
 }
 
+function jsLinter() {
+  return gulp.src(`${paths.src}/**/*.js`)
+    .pipe(esLint())
+    .pipe(esLint.format())
+}
+
 //---
 // Watch
 function watch() {
@@ -167,7 +173,7 @@ function watch() {
 
 const compile = gulp.series(clean, gulp.parallel(svg, styles, scripts));
 const buildDistAssets = gulp.parallel(releaseSVG, releaseCSS, releaseJS);
-const linter = gulp.series(sassLinter);
+const linter = gulp.series(sassLinter, jsLinter);
 
 gulp.task('dev', gulp.series(compile, watch));
 gulp.task('deploy', gulp.series(linter, compile, staticBuild, deploy));
