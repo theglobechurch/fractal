@@ -10,10 +10,11 @@ const buffer        = require('vinyl-buffer');
 const concat        = require('gulp-concat');
 const del           = require('del');
 const esLint        = require('gulp-eslint');
-const gutil         = require('gulp-util');
 const glob          = require('glob');
 const gulp          = require('gulp');
+const gutil         = require('gulp-util');
 const rename        = require('gulp-rename');
+const responsive    = require('gulp-responsive-images');
 const sass          = require('gulp-sass');
 const sassGlob      = require('gulp-sass-glob');
 const sassLint      = require('gulp-sass-lint');
@@ -114,6 +115,60 @@ function svg() {
 }
 
 //---
+// Images
+function images() {
+  return gulp.src(`${paths.src}/assets/img/**/*.{gif,jpg,jpeg,png}`)
+    .pipe(responsive({
+        '**/*': [{
+            width: 400,
+            height: 400,
+            crop: 'center',
+            rename: { suffix: '-square' }
+        }, {
+            width: 2560,
+            height: 1440,
+            crop: 'center',
+            rename: { suffix: '-2560' }
+        }, {
+            width: 1920,
+            height: 1080,
+            crop: 'center',
+            rename: { suffix: '-1920' }
+        }, {
+            width: 1280,
+            height: 720,
+            crop: 'center',
+            rename: { suffix: '-1280' }
+        }, {
+            width: 960,
+            height: 540,
+            crop: 'center',
+            rename: { suffix: '-960' }
+        }, {
+            width: 640,
+            height: 360,
+            crop: 'center',
+            rename: { suffix: '-640' }
+        }, {
+            width: 320,
+            height: 180,
+            crop: 'center',
+            rename: { suffix: '-320' }
+        }],
+    }, {
+        quality: 70,
+        progressive: true,
+        withMetadata: false,
+        overwrite: false,
+        skipOnEnlargement: false,
+        errorOnUnusedConfig: false,
+        errorOnUnusedImage: false,
+        errorOnEnlargement: false
+    }))
+    .pipe(gulp.dest(`${paths.dest}/assets/img`));
+}
+
+//---
 // Scripts
 function scripts() {
   var appBundler = browserify({
@@ -169,9 +224,10 @@ function watch() {
   gulp.watch([`${paths.src}/assets/**/*.scss`, `${paths.src}/components/**/*.scss`], styles);
   gulp.watch([`${paths.src}/assets/scripts/application.js`, `${paths.src}/components/**/*.js`], scripts);
   gulp.watch(`${paths.src}/assets/svg/*.svg`, svg);
+  gulp.watch(`${paths.src}/assets/img/**/*`, images);
 }
 
-const compile = gulp.series(clean, gulp.parallel(svg, styles, scripts));
+const compile = gulp.series(clean, gulp.parallel(svg, styles, scripts, images));
 const buildDistAssets = gulp.parallel(releaseSVG, releaseCSS, releaseJS);
 const linter = gulp.series(sassLinter, jsLinter);
 

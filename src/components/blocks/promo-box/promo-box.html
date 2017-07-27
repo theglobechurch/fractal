@@ -1,0 +1,19 @@
+<section class="{{ className }}">
+  <img src="{{ img[960] }}" srcset="{% for k,v in img %}{{ v }} {{ k }}w,{% endfor %}" alt="{{ title }}" class="{{ className }}__img" />
+  <a href="{{ href }}" class="{{ className }}__content">
+
+    {% if pretitle %}
+    <p class="{{ className }}__pretitle">{{ pretitle }}</p>
+    {% endif %}
+
+    <h1 class="{{ className }}__title">{{ title }}</h1>
+
+    {% if body %}
+    <p class="{{ className }}__body">{{ body }}</p>
+    {% endif %}
+
+    <span class="{{ className }}__btn u-btn u-btn--arrowed">
+      {{ cta }}
+    </span>
+  </a>
+</section>

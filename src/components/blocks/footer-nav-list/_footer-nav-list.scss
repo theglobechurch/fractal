@@ -6,21 +6,14 @@
   }
 
   &__title {
-    @include typeSetting(2, bold, uppercase);
-
-    @include bpMinExtraSmall() {
-      @include typeSetting(4, bold, uppercase);
-    }
+    @include type(smallerTitle);
   }
 
   &__items {
-    @include typeSetting(1);
+    @include type(reg-2);
     @include unstyledList;
     margin-left: siteSpacing(s);
 
-    @include bpMinExtraSmall() {
-      @include typeSetting(2);
-    }
   }
 
   &__item a {

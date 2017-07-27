@@ -8,7 +8,13 @@
   padding: siteSpacing(xs);
   position: relative;
   transition: height .2s;
+  width: 100%;
   z-index: 3;
+
+  .nav-open & {
+    position: fixed;
+    top: 0;
+  }
 
   @include bpMinExtraSmall() {
     height: 75px;
@@ -89,7 +95,7 @@
         opacity: 1;
         position: absolute;
         transform: rotate(0deg);
-        transition: .25s ease-in-out;
+        transition: .2s ease-in-out;
         width: 100%;
 
         &:nth-child(1) {
@@ -110,7 +116,6 @@
     &:hover {
       span span {
         background-color: siteColor(sockeye);
-        transition: background-color .2s;
 
         @include bpMaxExtraSmall() {
           background-color: siteColor(tgc-white);

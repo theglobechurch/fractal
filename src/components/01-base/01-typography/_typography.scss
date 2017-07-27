@@ -4,48 +4,14 @@ $font-family: (
   text: ('Josefin Sans', sans-serif)
 );
 
-$font-size: (
-  0: 12,
-  1: 13,
-  2: 14,
-  3: 16,
-  4: 18,
-  5: 24,
-  6: 32,
-  7: 38,
-  8: 46,
-  9: 58
-);
-
-$line-height: (
-  0: 16,
-  1: 20,
-  2: 24,
-  3: 32,
-  4: 44,
-  5: 48,
-  6: 56,
-  7: 60,
-  8: 72
-);
-
-$letter-spacing: (
-  0: normal,
-  1: 1,
-  2: 2.5,
-  3: 3,
-  4: 4,
-  5: 4.5
-);
-
 $font-weight: (
-  light: 300,
+  // light: 300,
   regular: 400,
-  semi-bold: 600,
+  // semi-bold: 600,
   bold: 700
 );
 
-$base-font-size: 3;
+$base-font-size: 18;
 $base-letter-spacing: 0;
 $base-font-weight: 'regular';
 
@@ -53,81 +19,104 @@ $base-font-weight: 'regular';
   @return map-get($font-family, $type);
 }
 
-@function fontSize($size: $base-font-size) {
-  @return map-get($font-size, $size);
+@function fontWeight($type: $base-font-weight) {
+  @return map-get($font-weight, $type);
 }
 
-@function fontWeight($w: $base-font-weight) {
-  @return map-get($font-weight, $w);
+@mixin fontSize($sizeValue: 18) {
+  font-size: $sizeValue + px; // Old browser fallback
+  font-size: ($sizeValue / 18) + rem; // Base fontsize is 16px
 }
 
-@function letterSpace($size: $base-font-size, $w: $base-font-weight) {
-  @if $w == 'bold' {
-
-    @if $size < 2 {
-      @return map-get($letter-spacing, 2);
-    } @else if $size < 4 {
-      @return map-get($letter-spacing, 3);
-    } @else {
-      @return map-get($letter-spacing, 5);
-    }
-
-  } @else if $w == 'semi-bold' {
-    @return map-get($letter-spacing, 3);
-  }
-  @return map-get($letter-spacing, 0);
+@mixin lineHeight($heightValue: 18, $t: 0) {
+  line-height: $heightValue + px; // Old browser fallback
+  line-height: ($heightValue / 18) + rem;
 }
 
-@function lineHeight($size: $base-font-size, $weight: $base-font-weight) {
+@mixin letterSpacing($size: $base-font-size) {
+  letter-spacing: $size + px;
+  letter-spacing: ($size / 18) + rem;
+}
 
-  @if $weight == "light" {
-    @if $size == 5 {
-      @return map-get($line-height, 4);
-    }
 
-    @if $size == 7 {
-      @return map-get($line-height, 6);
-    }
+@mixin type($variant: 'body') {
+  $size: 18;
+  $line: 24;
+  $char: 0;
+  $transform: none;
+  $weight: regular;
+
+  @if $variant == bold-6 or $variant == title {
+    $size: 48;
+    $line: 48;
+    $char: 5;
+    $transform: uppercase;
+    $weight: bold;
   }
 
-  @if $size < 2 {
-    @return map-get($line-height, 0);
-
-  } @else if $size < 5 {
-    @return map-get($line-height, 2);
-  } @else if $size < 6 {
-    @return map-get($line-height, 3);
-  } @else if $size < 8  {
-    @return map-get($line-height, 5);
-  } @else if $size < 9 {
-    @return map-get($line-height, 7);
-  } @else {
-    @return map-get($line-height, 8);
+  @if $variant == bold-5 {
+    $size: 36;
+    $line: 48;
+    $char: 4;
+    $transform: uppercase;
+    $weight: bold;
   }
+
+  @if $variant == bold-4 or $variant == smallTitle {
+    $size: 28;
+    $line: 36;
+    $char: 3;
+    $transform: uppercase;
+    $weight: bold;
+  }
+
+  @if $variant == subTitle {
+    $size: 32;
+    $line: 32;
+    $char: 2.5;
+  }
+
+  @if $variant == smallerTitle {
+    $size: 18;
+    $line: 24;
+    $char: 1.5;
+    $transform: uppercase;
+    $weight: bold;
+  }
+
+  @if $variant == preTitle {
+    $size: 24;
+    $line: 30;
+    $char: 2.5;
+  }
+
+  @if $variant == linkCaps {
+    $size: 18;
+    $line: 22;
+    $char: 2;
+    $transform: uppercase;
+  }
+
+  @if $variant == reg-2 {
+    $size: 16;
+    $line: 24;
+    $char: 0;
+  }
+
+  @if $variant == reg-1 {
+    $size: 12;
+    $line: 24;
+    $char: 0;
+  }
+
+  @include fontSize($size);
+  @include lineHeight($line);
+  @include letterSpacing($char);
+  font-weight: fontWeight($weight);
+  text-transform: $transform;
 }
 
-@mixin fontSize($sizeValue: $base-font-size) {
-  font-size: fontSize($sizeValue) + px; // Old browser fallback
-  font-size: (fontSize($sizeValue) / fontSize($base-font-size)) + rem; // Base fontsize is 16px
-}
-
-@mixin lineHeight($heightValue: $base-font-size, $weight: $base-font-weight) {
-  line-height: lineHeight($heightValue, $weight) + px; // Old browser fallback
-  line-height: (lineHeight($heightValue, $weight) / fontSize($base-font-size)) + rem;
-}
-
-@mixin letterSpacing($size: $base-font-size, $weight: $base-font-weight) {
-  letter-spacing: letterSpace($size, $weight) + px;
-  letter-spacing: (letterSpace($size, $weight) / fontSize($base-font-size)) + rem;
-}
 
 @mixin typeSetting($size: $base-font-size, $weight: $base-font-weight, $transform: none) {
-  @include fontSize($size);
-  @include lineHeight($size, $weight);
-  font-weight: fontWeight($weight);
-
-  @if $transform == 'uppercase' and $weight != 'regular' and $weight != 'semi-light' {
-    @include letterSpacing($size, $weight);
-    text-transform: uppercase;
-  }
+  @include type();
 }

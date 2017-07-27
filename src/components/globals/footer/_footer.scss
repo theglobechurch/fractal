@@ -38,7 +38,7 @@
     }
 
     span {
-      @include typeSetting(2);
+      @include type(reg-1);
       display: block;
       text-align: center;
 

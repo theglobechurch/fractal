@@ -22,14 +22,14 @@
 
   &__list {
     @include unstyledList();
-    @include typeSetting(3, bold, uppercase);
+    @include type(bold-4);
     display: flex;
     flex-direction: column;
     height: 75%;
     justify-content: space-around;
 
     @include bpMinMedium() {
-      @include typeSetting(5, bold, uppercase);
+      @include type(bold-6);
     }
   }
 
