@@ -1,0 +1,109 @@
+// sass-lint:disable border-zero
+.c-audio-player {
+  align-items: center;
+  background: siteColor(tgc-white);
+  color: siteColor(tgc-black);
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.c-audio-player__big-button {
+  align-items: center;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 150px;
+  justify-content: center;
+  margin: 0 40px;
+  width: 150px;
+}
+
+button {
+  @include unstyledInput;
+  background: siteColor(tgc-white);
+  border: 10px solid siteColor(petrel);
+  border-radius: 50%;
+  cursor: pointer;
+  height: 120px;
+  transition: all .2s ease-in-out;
+  white-space: nowrap;
+  width: 120px;
+
+  &:hover {
+    height: 130px;
+    width: 130px;
+  }
+
+  span {
+    display: inline-block;
+    transition: all .2s ease-in-out;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .left {
+    border-bottom: 25px solid transparent;
+    border-left: 50px;
+    border-right: 0 solid transparent;
+    border-top: 25px solid transparent;
+    display: inline-block;
+    height: 100px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  .right {
+    border-bottom: 25px solid transparent;
+    border-left: 40px solid siteColor(sockeye);
+    border-top: 25px solid transparent;
+    height: 0;
+    margin: 0;
+  }
+
+  .is-playing & {
+    height: 150px;
+    width: 150px;
+
+    .left {
+      border-bottom: 0 solid transparent;
+      border-left: 20px solid siteColor(sockeye);
+      border-right: 5px solid transparent;
+      border-top: 0 solid transparent;
+      height: 50px;
+      margin: 0;
+    }
+
+    .right {
+      border-bottom: 0 solid transparent;
+      border-left: 20px solid siteColor(sockeye);
+      border-top: 0 solid transparent;
+      height: 50px;
+      margin: 0;
+    }
+  }
+}
+
+input[type="range"] {
+  @include unstyledInput;
+  appearance: none;
+  background-color: siteColor(petrel);
+  border: none;
+  border-radius: 4px;
+  height: 4px;
+  width: 100%;
+}
+
+input::-webkit-slider-thumb {
+  appearance: none;
+  background-color: siteColor(sockeye);
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+}
+
+.c-audio-player__times {
+  margin: 0 40px;
+  text-align: center;
+}

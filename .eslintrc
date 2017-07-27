@@ -3,14 +3,14 @@
     "browser": true
   },
   "globals": {
-    "document": false,
-    "Modernizr": false
+    "document": false
   },
   "extends": "airbnb-base",
   "rules": {
     "strict": 0,
     "comma-dangle": [2, "never"],
     "no-param-reassign": [2, {"props": false}],
-    "space-before-function-paren": [2, "always"]
+    "space-before-function-paren": [2, "always"],
+    "no-use-before-define": 0
   }
 }
