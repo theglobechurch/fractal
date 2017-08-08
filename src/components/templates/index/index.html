@@ -2,6 +2,10 @@
 {% block main %}
 
   {%- render "@banner" -%}
-  {%- render "@vision-box" -%}
+
+  <div class="site-container">
+    {%- render "@content-box" -%}
+    {%- render "@vision-box" -%}
+  </div>
 
 {% endblock %}
