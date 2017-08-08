@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Typography',
   label: 'Typography',
-  status: 'wip',
+  status: 'prototype',
   default: 'regular',
   context: {
     heading: 'The quick brown fox jumps over the lazy dog.'

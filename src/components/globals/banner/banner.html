@@ -1,0 +1,9 @@
+<section class="{{ className }}">
+  <img src="{{ img[960] }}" srcset="{% for k,v in img %}{{ v }} {{ k }}w,{% endfor %}" alt="{{ title }}" class="{{ className }}__img" />
+  <div class="{{ className }}__text">
+    <div class="site-container">
+      <h1 class="{{ className }}__title">{{ title }}</h1>
+      <h2 class="{{ className }}__subtitle">{{ subtitle }}</h2>
+    </div>
+  </div>
+</section>

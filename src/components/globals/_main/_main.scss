@@ -3,3 +3,14 @@
     margin-top: 50px;
   }
 }
+
+.site-container {
+  margin: 0 auto;
+  max-width: bp(large);
+  padding: 0 20px;
+  transition: padding .2s;
+
+  @include bpMinLarge {
+    padding: 0;
+  }
+}

@@ -117,7 +117,8 @@ function svg() {
 //---
 // Images
 function images() {
-  return gulp.src([`${paths.src}/assets/img/**/*.{gif,jpg,jpeg,png}`,`${paths.src}/components/**/img/*.{gif,jpg,jpeg,png}`])
+  return gulp.src([`${paths.src}/assets/img/**/*.{gif,jpg,jpeg,png}`,
+                   `${paths.src}/components/**/img/*.{gif,jpg,jpeg,png}`])
     .pipe(responsive({
         '**/*': [{
             width: 400,
@@ -224,7 +225,7 @@ function watch() {
   gulp.watch([`${paths.src}/assets/**/*.scss`, `${paths.src}/components/**/*.scss`], styles);
   gulp.watch([`${paths.src}/assets/scripts/application.js`, `${paths.src}/components/**/*.js`], scripts);
   gulp.watch(`${paths.src}/assets/svg/*.svg`, svg);
-  gulp.watch(`${paths.src}/assets/img/**/*`, images);
+  gulp.watch([`${paths.src}/assets/img/**/*`, `${paths.src}/components/**/img/*.{gif,jpg,jpeg,png}`], images);
 }
 
 const compile = gulp.series(clean, gulp.parallel(svg, styles, scripts, images));

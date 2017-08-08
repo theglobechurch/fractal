@@ -1,0 +1,97 @@
+.c-banner {
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  transition: font-size .2s, letter-spacing .2s, line-height .2s, height .2s;
+
+  @include bpMinExtraSmall {
+    height: 275px;
+  }
+
+  @include bpMinSmall {
+    height: 450px;
+  }
+
+  @include bpMinLarge {
+    height: 650px;
+  }
+
+  &__img {
+    display: block;
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &__text {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5) 35%);
+    bottom: 0;
+    min-height: 50px;
+    position: absolute;
+    width: 100%;
+
+    @include bpMinExtraSmall {
+      height: 100px;
+      padding-top: 10px;
+    }
+
+    @include bpMinSmall {
+      height: 200px;
+    }
+
+    @include bpMinLarge {
+      height: 300px;
+      padding-top: 50px;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    text-transform: uppercase;
+
+    @include bpMinExtraSmall {
+      font-size: 25px;
+      letter-spacing: 1.5px;
+      line-height: 25px;
+    }
+
+    @include bpMinSmall {
+      font-size: 35px;
+      letter-spacing: 3.5px;
+      line-height: 35px;
+    }
+
+    @include bpMinLarge {
+      font-size: 55px;
+      letter-spacing: 5px;
+      line-height: 55px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    line-height: 16px;
+
+    @include bpMinExtraSmall {
+      font-size: 20px;
+      letter-spacing: .5px;
+      line-height: 20px;
+    }
+
+    @include bpMinSmall {
+      font-size: 24px;
+      letter-spacing: 2px;
+      line-height: 24px;
+    }
+
+    @include bpMinLarge {
+      font-size: 28px;
+      letter-spacing: 3px;
+    }
+  }
+}

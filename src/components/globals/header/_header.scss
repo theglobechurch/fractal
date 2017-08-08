@@ -22,6 +22,11 @@
     padding: siteSpacing(m);
   }
 
+  @include bpMinSmall() {
+    position: absolute;
+    top: 0;
+  }
+
   &__logo {
     max-height: 100px;
     transition: max-height .2s;
@@ -71,6 +76,8 @@
       @include bpMaxExtraSmall() {
         @include visuallyHidden();
       }
+      font-weight: bold;
+      text-transform: uppercase;
     }
 
     &__icon {
