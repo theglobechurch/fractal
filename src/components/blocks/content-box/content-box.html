@@ -1,23 +1,29 @@
 <section class="{{ className }}">
-  {% if title %}
-    <h1>{{ title }}</h1>
-  {% endif %}
+  <div>
+    {% if title %}
+      <h1>{{ title }}</h1>
+    {% endif %}
 
-  {% if subtitle %}
-    <h2>{{ subtitle }}</h2>
-  {% endif %}
+    {% if subtitle %}
+      <h2>{{ subtitle }}</h2>
+    {% endif %}
 
-  {% for para in body %}
-    <p>{{ para }}</p>
-  {% endfor %}
+    {% for para in body %}
+      <p>{{ para }}</p>
+    {% endfor %}
 
-  {% if link %}
-    <a href="{{ link.href }}" class="{{ className }}__link">
-      <!--<svg role="img" class="">
-        <use xlink:href="/assets/svg/svg-symbols.svg#{{ link.icon }}"></use>
-      </svg>-->
+    {% if link %}
+      <a href="{{ link.href }}" class="u-link u-link--arrowed u-link--black">
+        <!--<svg role="img" class="">
+          <use xlink:href="/assets/svg/svg-symbols.svg#{{ link.icon }}"></use>
+        </svg>-->
 
-      <span>{{ link.text }}</span>
-    </a>
+        <span>{{ link.text }}</span>
+      </a>
+    {% endif %}
+  </div>
+
+  {% if iconList %}
+    {%- render "@icon-list" -%}
   {% endif %}
 </section>

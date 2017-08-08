@@ -12,7 +12,12 @@ module.exports = {
       'tgc-logo-long-no-ring',
       'tgc-logo-long-no-ring-themed',
       'fiec-themed',
-      'comission-themed'
+      'comission-themed',
+      'download',
+      'listen',
+      'subscribe',
+      'map',
+      'bible'
     ]
   },
   variants: [

@@ -10,8 +10,14 @@
     margin-bottom: 35px;
   }
 
+  @include bpMinMedium {
+    align-items: center;
+    display: flex;
+  }
+
   @include bpMinLarge {
     margin-bottom: 50px;
+    padding: 40px;
   }
 
   h1 {
@@ -39,43 +45,19 @@
     }
   }
 
-  &__link {
-    display: inline-block;
-    font-size: 14px;
-    letter-spacing: 2px;
-    margin-top: 5px;
-    padding: 10px 25px 5px 0;
-    position: relative;
-    text-transform: uppercase;
+  .c-icon-list {
+    border-top: 1px solid siteColor(petrel);
+    margin-top: 10px;
+    padding-top: 10px;
 
-    @include bpMinLarge {
-      font-size: 18px;
-      margin-top: 10px;
-    }
-
-    span {
-      border-bottom: 1px solid siteColor(tgc-black);
-    }
-
-    &::after {
-      border: 4px solid transparent;
-      border-left-color: siteColor(tgc-black);
-      content: '';
-      display: inline-block;
-      margin-top: -5px;
-      position: absolute;
-      right: 7px;
-      top: 50%;
-      transition: right .2s;
-    }
-
-    &:hover {
-      &::after {
-        border-left-color: siteColor(sockeye);
-        right: 5px;
-      }
+    @include bpMinMedium {
+      border-left: 1px solid siteColor(sockeye);
+      border-top: none;
+      margin-left: 40px;
+      padding-left: 40px;
     }
   }
+
 }
 
 .c-banner+.site-container .c-content-box {
@@ -89,3 +71,4 @@
     margin-top: -75px;
   }
 }
+

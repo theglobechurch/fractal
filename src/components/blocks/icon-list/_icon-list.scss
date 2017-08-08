@@ -1,0 +1,34 @@
+.c-icon-list {
+  @include unstyledList;
+  font-size: 18px;
+  text-transform: uppercase;
+
+  @include bpMinExtraSmall {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  @include bpMinMedium {
+    flex-direction: column;
+    min-width: 250px;
+  }
+
+  &__item {
+    text-align: center;
+
+    @include bpMinMedium {
+      text-align: left;
+    }
+  }
+
+  a {
+    align-items: center;
+    display: inline-flex;
+  }
+
+  svg {
+    height: 35px;
+    margin-right: 10px;
+    width: 35px;
+  }
+}

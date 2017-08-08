@@ -1,0 +1,12 @@
+{% extends "@page" %}
+{% block main %}
+
+  {%- render "@banner", banner -%}
+
+  <div class="site-container">
+    {%- render "@content-box", contentbox -%}
+    {%- render "@audio-player" -%}
+    {%- render "@promo-box" -%}
+  </div>
+
+{% endblock %}

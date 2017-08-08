@@ -2,11 +2,21 @@
 .c-audio-player {
   align-items: center;
   background: siteColor(tgc-white);
+  border-radius: 4px;
   color: siteColor(tgc-black);
   display: flex;
   height: 100px;
-  justify-content: space-between;
-  margin: 10px 0;
+  justify-content: sp
+  ace-between;
+  margin: 10px 0 20px;
+
+  @include bpMinSmall {
+    margin-bottom: 35px;
+  }
+
+  @include bpMinLarge {
+    margin-bottom: 50px;
+  }
 }
 
 .c-audio-player__big-button {

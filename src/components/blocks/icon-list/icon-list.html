@@ -1,0 +1,16 @@
+<ul class="c-icon-list">
+  {% for item in list %}
+  <li class="c-icon-list__item">
+    {% if item.href %}<a href="{{ item.href }}" class="u-link u-link--arrowed u-link--black">{% endif %}
+
+      <svg role="img" class="c-icon-list__item__icon">
+        <use xlink:href="/assets/svg/svg-symbols.svg#{{ item.icon }}"></use>
+      </svg>
+
+      <span>
+        {{ item.text }}
+      </span>
+    {% if item.href %}</a>{% endif %}
+  </li>
+  {% endfor %}
+</ul>

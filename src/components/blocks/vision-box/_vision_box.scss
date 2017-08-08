@@ -1,11 +1,20 @@
+$maxHeight: 650px;
+
 .vision-box {
   border-radius: 4px;
   display: flex;
   flex-direction: row;
-  height: auto;
+  height: $maxHeight;
+  margin-bottom: 20px;
   overflow: hidden;
   transition: height 1s;
   width: 100%;
+
+  @include bpMinLarge {
+    margin-bottom: 50px;
+    margin-left: -5%;
+    width: 110%;
+  }
 
   &__img {
     display: block;
@@ -27,7 +36,7 @@
   &__item {
     color: white;
     cursor: pointer;
-    height: 100vh;
+    height: $maxHeight;
     overflow: hidden;
     position: relative;
     text-align: center;
@@ -102,7 +111,7 @@
       flex-direction: column;
       font-size: 1.5em;
       font-size: 2em;
-      height: 100vh;
+      height: $maxHeight;
       justify-content: center;
       letter-spacing: 3px;
       line-height: 150%;
