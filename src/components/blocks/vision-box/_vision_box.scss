@@ -1,4 +1,5 @@
 .vision-box {
+  border-radius: 4px;
   display: flex;
   flex-direction: row;
   height: auto;
@@ -41,7 +42,7 @@
         background: linear-gradient(to bottom, rgba(siteColor(petrel), .9) 0, rgba(siteColor(petrel), .9) 60%, rgba(0, 0, 0, .65) 100%);
         background-size: cover;
         opacity: .9;
-        
+
         strong {
           background-color: white;
           border-color: #404052;
