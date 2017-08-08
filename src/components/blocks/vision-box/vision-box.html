@@ -1,0 +1,12 @@
+  <div class="{{ className }}">
+    {% for box in boxes %}
+    <div class="{{className }}__boxouter">
+      <img src="{{ box.img[960] }}" srcset="{% for k,v in box.img %}{{ v }} {{ k }}w,{% endfor %}" alt="{{ title }}" class="{{ className }}__img" />
+      <div class="{{ className }}__item {{ className }}__item--{{ box.boxedTitle | lower }}">
+        <span class="{{ className }}__item__link">
+          <h1 class="{{ className }}__item__title">{{ box.title }} <strong>{{ box.boxedTitle }}</strong></h1>
+        </span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>

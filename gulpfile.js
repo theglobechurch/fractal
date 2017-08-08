@@ -117,7 +117,7 @@ function svg() {
 //---
 // Images
 function images() {
-  return gulp.src(`${paths.src}/assets/img/**/*.{gif,jpg,jpeg,png}`)
+  return gulp.src([`${paths.src}/assets/img/**/*.{gif,jpg,jpeg,png}`,`${paths.src}/components/**/img/*.{gif,jpg,jpeg,png}`])
     .pipe(responsive({
         '**/*': [{
             width: 400,
