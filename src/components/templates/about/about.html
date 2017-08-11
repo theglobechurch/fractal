@@ -1,0 +1,18 @@
+{% extends "@page" %}
+{% block main %}
+
+  {%- render "@banner", banner -%}
+
+  <div class="site-container">
+    {%- render "@content-box", intro -%}
+  </div>
+
+  {% for desc in descBox %}
+    {%- render "@description-box", desc -%}
+  {% endfor %}
+
+  <div class="site-container">
+    {%- render "@promo-box", promobox -%}
+  </div>
+
+{% endblock %}

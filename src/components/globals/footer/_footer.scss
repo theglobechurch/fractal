@@ -4,17 +4,20 @@
   padding: siteSpacing(sl);
 
   &__meganav {
+    display: grid;
+    grid-gap: 20px 10px;
+    grid-template-columns: repeat(1, 1fr);
+
     @include bpMinExtraSmall() {
-      display: grid;
-      grid-template-columns: repeat(2, 45%);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @include bpMinSmall() {
-      grid-template-columns: repeat(3, 33%);
+      grid-template-columns: repeat(3, 1fr);
     }
 
     @include bpMinMedium() {
-      grid-template-columns: repeat(5, 20%);
+      grid-template-columns: repeat(5, 1fr);
 
       & div:last-child {
         text-align: right;

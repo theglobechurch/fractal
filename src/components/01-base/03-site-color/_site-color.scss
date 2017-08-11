@@ -1,6 +1,9 @@
 $site-colors: (
   tgc-black: #12131a,
-  tgc-white: #fff,
+  tgc-white: #fff
+);
+
+$theme-colors: (
   sockeye: #d06348,
   petrel: #282938,
   gold-braid: #c6ae40,
@@ -8,5 +11,9 @@ $site-colors: (
 );
 
 @function siteColor($c) {
-  @return map-get($site-colors, $c);
+  @return map-get(map-merge($site-colors, $theme-colors), $c);
+}
+
+@function themeColor($c) {
+  @return map-get($theme-colors, $c);
 }

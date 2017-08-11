@@ -1,0 +1,89 @@
+.c-description-box {
+  color: siteColor(tgc-white);
+  margin-bottom: 20px;
+
+  @each $color in map-keys($theme-colors) {
+    &--#{$color} {
+      background-color: themeColor($color);
+
+      .c-description-box__inner {
+        background-color: desaturate(lighten(themeColor($color), 5), 15);
+        padding: 0;
+      }
+    }
+  }
+
+  @include bpMinSmall {
+    margin-bottom: 40px;
+  }
+}
+
+.c-description-box__inner {
+  display: flex;
+  flex-direction: column;
+
+  @include bpMinSmall {
+    flex-direction: row;
+
+    .c-description-box--flipped & {
+      flex-direction: row-reverse;
+    }
+  }
+}
+
+.c-description-box__image-box {
+  flex: 0 0 auto;
+  min-height: 175px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  @include bpMinExtraSmall {
+    min-height: 250px;
+  }
+
+  @include bpMinSmall {
+    min-height: 600px;
+    width: 33%;
+  }
+}
+
+.c-description-box__img {
+  display: block;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.c-description-box__content {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  justify-content: center;
+  line-height: 26px;
+  padding: 20px;
+
+  @include bpMinSmall {
+    font-size: 24px;
+    line-height: 44px;
+    padding: 40px;
+  }
+}
+
+.c-description-box__title {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 32px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+
+  @include bpMinSmall {
+    font-size: 32px;
+    line-height: 44px;
+    margin-bottom: 20px;
+  }
+}

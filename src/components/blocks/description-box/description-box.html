@@ -1,0 +1,21 @@
+<section class="c-description-box{% if theme %} c-description-box--{{ theme }}{% endif %}{% if flip %} c-description-box--flipped{% endif %}">
+
+  <div class="site-container c-description-box__inner">
+
+    <div class="c-description-box__image-box">
+      <img src="{{ img[960] }}" srcset="{% for k,v in img %}{{ v }} {{ k }}w,{% endfor %}" alt="{{ title }}" class="c-description-box__img" />
+    </div>
+
+    <div class="c-description-box__content">
+      <h1 class="c-description-box__title">
+        {{title}}
+      </h1>
+
+      {% for p in body %}
+        <p>{{ p }}</p>
+      {% endfor %}
+    </div>
+
+  </div>
+
+</section>

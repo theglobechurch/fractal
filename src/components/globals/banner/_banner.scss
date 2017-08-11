@@ -1,4 +1,6 @@
 .c-banner {
+  align-items: flex-end;
+  display: flex;
   height: 150px;
   overflow: hidden;
   position: relative;
@@ -28,22 +30,24 @@
 
   &__text {
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5) 35%);
-    bottom: 0;
     min-height: 70px;
+    padding-bottom: 25px;
     position: absolute;
     width: 100%;
 
     @include bpMinExtraSmall {
-      height: 115px;
+      min-height: 115px;
+      padding-bottom: 55px;
       padding-top: 10px;
     }
 
     @include bpMinSmall {
-      height: 160px;
+      min-height: 160px;
+      padding-bottom: 85px;
     }
 
     @include bpMinLarge {
-      height: 230px;
+      min-height: 230px;
       padding-top: 50px;
     }
   }
@@ -67,6 +71,8 @@
     @include bpMinLarge {
       font-size: 28px;
       letter-spacing: 3px;
+      max-width: 1000px;
+      padding: 0 40px;
     }
   }
 
@@ -74,6 +80,8 @@
     font-size: 20px;
     letter-spacing: 1px;
     line-height: 20px;
+    margin-bottom: 5px;
+    max-width: 800px;
     text-transform: uppercase;
 
     @include bpMinExtraSmall {
@@ -92,12 +100,15 @@
       font-size: 55px;
       letter-spacing: 5px;
       line-height: 55px;
+      max-width: 1000px;
+      padding: 0 40px;
     }
   }
 
   &__subtitle {
     font-size: 16px;
-    line-height: 16px;
+    line-height: 24px;
+    max-width: 800px;
 
     @include bpMinExtraSmall {
       font-size: 20px;
@@ -108,12 +119,15 @@
     @include bpMinSmall {
       font-size: 24px;
       letter-spacing: 2px;
-      line-height: 24px;
+      line-height: 32px;
     }
 
     @include bpMinLarge {
       font-size: 28px;
       letter-spacing: 3px;
+      line-height: 38px;
+      max-width: 1000px;
+      padding: 0 40px;
     }
   }
 }
