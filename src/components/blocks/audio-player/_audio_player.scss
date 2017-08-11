@@ -6,8 +6,7 @@
   color: siteColor(tgc-black);
   display: flex;
   height: 100px;
-  justify-content: sp
-  ace-between;
+  justify-content: space-between;
   margin: 10px 0 20px;
 
   @include bpMinSmall {
@@ -15,7 +14,7 @@
   }
 
   @include bpMinLarge {
-    margin-bottom: 50px;
+    margin: 10px -5% 50px;
   }
 }
 
@@ -26,8 +25,12 @@
   flex-shrink: 0;
   height: 150px;
   justify-content: center;
-  margin: 0 40px;
+  margin: 0;
   width: 150px;
+
+  @include bpMinLarge {
+    margin: 0 40px;
+  }
 }
 
 button {
