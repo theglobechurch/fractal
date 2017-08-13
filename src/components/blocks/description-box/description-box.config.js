@@ -40,6 +40,30 @@ module.exports = {
         theme: 'lark-green',
         flip: true
       }
-    }
+    },
+    {
+      name: 'sermon-series',
+      label: 'Sermon series',
+      context: {
+        title: 'Philemon: For Love\'s Sake',
+        body: ['In the book of Philemon, Paul writes to a local church leader calling him to gospel love. In this series we’re going to see that gospel love will push us further and deeper than we could ever imagine.'],
+        img: {
+          2560: '/assets/img/phi-2560.jpg',
+          1920: '/assets/img/phi-1920.jpg',
+          1280: '/assets/img/phi-1280.jpg',
+          960: '/assets/img/phi-960.jpg',
+          640: '/assets/img/phi-640.jpg',
+          320: '/assets/img/phi-320.jpg'
+        },
+        theme: 'lark-green',
+        flip: false,
+        series: {
+          meta: [
+            "July – August 2017",
+            "5 recordings"
+          ]
+        }
+      }
+    },
   ]
 };

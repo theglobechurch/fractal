@@ -5,6 +5,7 @@ module.exports = {
   context: {
     className: 'c-main-nav',
     nav: [
+      { href: '#', title: 'Home' },
       { href: '#', title: 'About' },
       { href: '#', title: 'When & where' },
       { href: '#', title: 'Series & resources' },

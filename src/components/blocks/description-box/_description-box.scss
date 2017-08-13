@@ -6,11 +6,19 @@
     &--#{$color} {
       background-color: themeColor($color);
 
+      @if $color == sockeye {
+        a:hover {
+          color: siteColor(tgc-black);
+        }
+      }
+
       .c-description-box__inner {
         background-color: desaturate(lighten(themeColor($color), 5), 15);
         padding: 0;
       }
+
     }
+
   }
 
   @include bpMinSmall {
@@ -31,12 +39,20 @@
   }
 }
 
-.c-description-box__image-box {
+.c-description-box__side {
   flex: 0 0 auto;
   min-height: 175px;
   overflow: hidden;
   position: relative;
   width: 100%;
+
+  @include bpMaxSmall {
+    .img-square {
+      margin: 0 auto;
+      max-width: 250px;
+      padding-bottom: 250px;
+    }
+  }
 
   @include bpMinExtraSmall {
     min-height: 250px;
@@ -45,6 +61,15 @@
   @include bpMinSmall {
     min-height: 600px;
     width: 33%;
+  }
+}
+
+.c-description-box__side__meta {
+  margin: 10px 0;
+  text-align: center;
+
+  p:first-child {
+    font-weight: bold;
   }
 }
 

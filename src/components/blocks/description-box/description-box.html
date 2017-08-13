@@ -2,8 +2,23 @@
 
   <div class="site-container c-description-box__inner">
 
-    <div class="c-description-box__image-box">
+    <div class="c-description-box__side">
+      {% if series %}
+      <div class="img-square">
+        <img src="{{ img[960] }}"
+             srcset="{% for k,v in img %}{{ v }} {{ k }}w,{% endfor %}"
+             sizes="(min-width: 768px) 33.3vw, 100vw"
+             alt="{{ title }}" />
+      </div>
+
+      <div class="c-description-box__side__meta">
+        {% for m in series.meta %}
+          <p>{{ m }}</p>
+        {% endfor %}
+      </div>
+      {% else %}
       <img src="{{ img[960] }}" srcset="{% for k,v in img %}{{ v }} {{ k }}w,{% endfor %}" alt="{{ title }}" class="c-description-box__img" />
+      {% endif %}
     </div>
 
     <div class="c-description-box__content">
@@ -14,6 +29,10 @@
       {% for p in body %}
         <p>{{ p }}</p>
       {% endfor %}
+
+      {% if series %}
+        {%- render "@sermon-list" -%}
+      {% endif %}
     </div>
 
   </div>

@@ -1,0 +1,38 @@
+.c-sermon-list__item {
+  border-bottom: 1px solid siteColor(tgc-white);
+  display: block;
+  padding: 10px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @include bpMinExtraSmall {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.c-sermon-list__details {
+  &__date {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 30px;
+    margin: 0;
+  }
+
+  &__passage {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  @include bpMinExtraSmall {
+    margin-right: 10px;
+  }
+}

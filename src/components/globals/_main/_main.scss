@@ -1,6 +1,11 @@
 .c-main {
   .nav-open & {
-    margin-top: 50px;
+    @include bpMaxSmall {
+      margin-top: 75px;
+    }
+    @include bpMaxExtraSmall {
+      margin-top: 50px;
+    }
   }
 }
 
