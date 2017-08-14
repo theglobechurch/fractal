@@ -187,19 +187,25 @@ function scripts() {
 
 //---
 // Prepare for release
+function cleanReleaseFolder() {
+  return del([paths.dist]);
+}
+
 function releaseSVG() {
   return gulp.src(`${paths.dest}/assets/svg/*.svg`)
-    .pipe(rename('icons.svg'))
+    .pipe(rename('tgc-fractal.svg'))
     .pipe(gulp.dest(`${paths.dist}/svg`));
 }
 
 function releaseCSS() {
-  return gulp.src(`${paths.dest}/assets/styles/style.css`)
+  return gulp.src(`${paths.dest}/assets/styles/globe_styles.css`)
+    .pipe(rename('tgc-fractal.css'))
     .pipe(gulp.dest(`${paths.dist}/css`));
 }
 
 function releaseJS() {
-  return gulp.src(`${paths.dest}/assets/styles/bundle.js`)
+  return gulp.src(`${paths.dest}/assets/js/bundle.js`)
+    .pipe(rename('tgc-fractal.js'))
     .pipe(gulp.dest(`${paths.dist}/js`));
 }
 
@@ -229,10 +235,11 @@ function watch() {
 }
 
 const compile = gulp.series(clean, gulp.parallel(svg, styles, scripts, images));
-const buildDistAssets = gulp.parallel(releaseSVG, releaseCSS, releaseJS);
+const buildDistAssets = gulp.series(cleanReleaseFolder, gulp.parallel(releaseSVG, releaseCSS, releaseJS));
 const linter = gulp.series(sassLinter, jsLinter);
 
 gulp.task('dev', gulp.series(compile, watch));
 gulp.task('deploy', gulp.series(linter, compile, staticBuild, deploy));
 gulp.task('dist', gulp.series(linter, compile, buildDistAssets, staticBuild, deploy, clean));
 gulp.task('lint', gulp.series(linter));
+gulp.task('build-dist-assets', gulp.series(compile, buildDistAssets));

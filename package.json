@@ -21,6 +21,7 @@
     "dev": "node_modules/.bin/gulp dev",
     "lint": "node_modules/.bin/gulp lint",
     "dist": "node_modules/.bin/gulp dist",
+    "build-dist-assets": "node_modules/.bin/gulp build-dist-assets",
     "version": "npm run dist && git add -A dist",
     "postversion": "git push && git push --tags"
   },
