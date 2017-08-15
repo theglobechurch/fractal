@@ -12,7 +12,7 @@ module.exports = {
         items: [
           { href: '#', name: 'Church leadership' },
           { href: '#', name: 'Doctrinal basis' },
-          { href: '#', name: 'Affilications' },
+          { href: '#', name: 'Affiliations' },
           { href: '#', name: 'Mission' }
         ]
       },

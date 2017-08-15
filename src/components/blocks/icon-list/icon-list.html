@@ -1,7 +1,7 @@
 <ul class="c-icon-list">
   {% for item in list %}
   <li class="c-icon-list__item">
-    {% if item.href %}<a href="{{ item.href }}" class="u-link u-link--arrowed u-link--black">{% endif %}
+    {% if item.href %}<a href="{{ item.href }}" class="u-link u-link--arrowed u-link--black js-audio-start-link">{% endif %}
 
       <svg role="img" class="c-icon-list__item__icon">
         <use xlink:href="/assets/svg/svg-symbols.svg#{{ item.icon }}"></use>

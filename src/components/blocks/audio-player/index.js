@@ -9,6 +9,22 @@ export default function () {
     const btnPlayPause = el.querySelector('button');
     const totalPlayed = el.querySelector('.js-audio-player--played');
     const totalLength = el.querySelector('.js-audio-player--length');
+    const playLink = document.querySelector('.js-audio-start-link');
+
+    if (playLink) {
+      playLink.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        if (document.createEvent) {
+            var evt = document.createEvent('MouseEvents');
+            evt.initEvent('click', true, false);
+            btnPlayPause.dispatchEvent(evt);
+        } else if (document.createEventObject) {
+          btnPlayPause.fireEvent('onclick') ;
+        } else if (typeof node.onclick == 'function') {
+          btnPlayPause.onclick();
+        }
+      });
+    }
 
     btnPlayPause.addEventListener('click', (ev) => {
       ev.preventDefault();

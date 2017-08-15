@@ -16,7 +16,7 @@ module.exports = {
       },
       {
         href: '#',
-        name: 'Affilications'
+        name: 'Affiliations'
       },
       {
         href: '#',
