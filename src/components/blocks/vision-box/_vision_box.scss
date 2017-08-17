@@ -1,14 +1,19 @@
+$smallHeight: 250px;
 $maxHeight: 650px;
 
 .vision-box {
   border-radius: 4px;
   display: flex;
-  flex-direction: row;
-  height: $maxHeight;
+  flex-direction: column;
   margin-bottom: 20px;
   overflow: hidden;
   transition: height 1s;
   width: 100%;
+
+  @include bpMinSmall {
+    flex-direction: row;
+    height: $maxHeight;
+  }
 
   @include bpMinLarge {
     margin-bottom: 50px;
@@ -29,19 +34,29 @@ $maxHeight: 650px;
   &__boxouter {
     background-position: center center;
     background-size: cover;
+    height: $smallHeight;
     position: relative;
-    width: 33.33%;
+    width: 100%;
+
+    @include bpMinSmall {
+      width: 33.33%;
+      height: auto;
+    }
   }
 
   &__item {
     color: white;
     cursor: pointer;
-    height: $maxHeight;
+    height: $smallHeight;
     overflow: hidden;
     position: relative;
     text-align: center;
     transition: width 1s, height 1s, opacity .3s, padding-top 1s;
     z-index: 0;
+
+    @include bpMinSmall {
+      height: $maxHeight;
+    }
 
     &--jesus {
       background: linear-gradient(to bottom, rgba(siteColor(petrel), .7) 0, rgba(siteColor(petrel), .7) 60%, rgba(0, 0, 0, .65) 100%);
@@ -111,7 +126,7 @@ $maxHeight: 650px;
       flex-direction: column;
       font-size: 1.5em;
       font-size: 2em;
-      height: $maxHeight;
+      height: 230px;
       justify-content: center;
       letter-spacing: 3px;
       line-height: 150%;
@@ -121,6 +136,10 @@ $maxHeight: 650px;
       position: relative;
       text-transform: uppercase;
       transition: height 1s;
+
+      @include bpMinSmall {
+        height: $maxHeight;
+      }
 
       strong {
         border: 2px solid white;
