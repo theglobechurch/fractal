@@ -17,7 +17,8 @@ module.exports = {
       'listen',
       'subscribe',
       'map',
-      'bible'
+      'bible',
+      'email'
     ]
   },
   variants: [
