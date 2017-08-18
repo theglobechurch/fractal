@@ -1,6 +1,7 @@
 .c-icon-list {
   @include unstyledList;
   font-size: 18px;
+  text-align: center;
   text-transform: uppercase;
 
   @include bpMinExtraSmall {
@@ -11,14 +12,12 @@
   @include bpMinMedium {
     flex-direction: column;
     min-width: 250px;
+    text-align: left;
   }
 
-  &__item {
-    text-align: center;
-
-    @include bpMinMedium {
-      text-align: left;
-    }
+  &--block {
+    display: block;
+    text-align: left;
   }
 
   a {
