@@ -12,7 +12,7 @@ module.exports = {
         640: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-640.jpg',
         320: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-320.jpg'
       },
-      title: 'Sermon Recordings',
+      title: 'Sermon Recordings'
     },
     intro: {
       className: 'c-content-box',
@@ -35,8 +35,8 @@ module.exports = {
         flip: false,
         series: {
           meta: [
-            "July – August 2017",
-            "5 recordings"
+            'July – August 2017',
+            '5 recordings'
           ]
         }
       }

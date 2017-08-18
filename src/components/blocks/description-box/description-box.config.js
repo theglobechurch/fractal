@@ -59,11 +59,11 @@ module.exports = {
         flip: false,
         series: {
           meta: [
-            "July – August 2017",
-            "5 recordings"
+            'July – August 2017',
+            '5 recordings'
           ]
         }
       }
-    },
+    }
   ]
 };

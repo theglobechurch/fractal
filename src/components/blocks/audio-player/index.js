@@ -15,13 +15,11 @@ export default function () {
       playLink.addEventListener('click', (ev) => {
         ev.preventDefault();
         if (document.createEvent) {
-            var evt = document.createEvent('MouseEvents');
-            evt.initEvent('click', true, false);
-            btnPlayPause.dispatchEvent(evt);
+          const evt = document.createEvent('MouseEvents');
+          evt.initEvent('click', true, false);
+          btnPlayPause.dispatchEvent(evt);
         } else if (document.createEventObject) {
-          btnPlayPause.fireEvent('onclick') ;
-        } else if (typeof node.onclick == 'function') {
-          btnPlayPause.onclick();
+          btnPlayPause.fireEvent('onclick');
         }
       });
     }

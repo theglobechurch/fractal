@@ -27,6 +27,10 @@
     top: 0;
   }
 
+  &__logo-link {
+    display: inherit;
+  }
+
   &__logo {
     max-height: 100px;
     transition: max-height .2s;

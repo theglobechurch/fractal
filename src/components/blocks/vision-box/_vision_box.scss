@@ -39,8 +39,8 @@ $maxHeight: 650px;
     width: 100%;
 
     @include bpMinSmall {
-      width: 33.33%;
       height: auto;
+      width: 33.33%;
     }
   }
 
