@@ -47,6 +47,7 @@ $maxHeight: 650px;
   &__item {
     color: white;
     cursor: pointer;
+    display: block;
     height: $smallHeight;
     overflow: hidden;
     position: relative;
