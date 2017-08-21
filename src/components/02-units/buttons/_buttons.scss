@@ -13,7 +13,7 @@
   text-align: center;
   text-decoration: none;
   text-shadow: none;
-  transition: border .2s, color .2s;
+  transition: border .2s, color .2s, background-color .2s;
 
   &:hover {
     border-color: lighten(siteColor(sockeye), 30);
@@ -39,6 +39,15 @@
       &::after {
         right: 5px;
       }
+    }
+  }
+
+  &--block {
+    display: block;
+
+    &:hover {
+      background-color: siteColor(tgc-white);
+      border-color: siteColor(sockeye);
     }
   }
 }
