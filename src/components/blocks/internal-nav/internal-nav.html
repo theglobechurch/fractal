@@ -1,0 +1,9 @@
+<div class="c-internal-nav">
+  <ul class="c-internal-nav__list">
+    {% for item in navList %}
+      <li class="c-internal-nav__item">
+        <a href="#" class="c-internal-nav__link{% if loop.first %} c-internal-nav__link--active{% endif %}">{{ item }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

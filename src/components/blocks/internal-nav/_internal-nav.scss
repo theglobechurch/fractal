@@ -1,0 +1,46 @@
+.c-internal-nav {
+  border: 2px solid siteColor(tgc-white);
+  border-radius: 2px;
+  margin: 0 auto;
+  max-width: 1300px;
+
+  &__list {
+    @include unstyledList;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 10px;
+
+    @include bpMinExtraSmall {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__item {
+    text-align: center;
+    width: 100%;
+
+    @include bpMaxExtraSmall {
+      padding: 10px 0;
+    }
+  }
+
+  &__link {
+    display: block;
+    font-size: 16px;
+    font-weight: regular;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    text-transform: uppercase;
+
+    @include bpMaxExtraSmall {
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+
+    &--active {
+      color: siteColor(sockeye);
+    }
+  }
+}
+
