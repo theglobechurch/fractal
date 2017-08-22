@@ -1,9 +1,60 @@
-.c-content-box {
+.c-content-box__header {
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  min-height: 350px;
+  overflow: hidden;
+  position: relative;
+  transition: font-size .2s, letter-spacing .2s, line-height .2s, height .2s;
+
+  @include bpMinLarge {
+    min-height: 450px;
+  }
+
+  &__container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5) 25%);
+    margin: 0 auto;
+    max-width: 1300px;
+    min-height: 70px;
+    padding: 50px 20px 110px 20px;
+    position: absolute;
+    width: 100%;
+  }
+
+  &__img {
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1300px;
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    line-height: 36px;
+    margin: 0 auto;
+    max-width: 1200px;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    font-size: 24px;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+}
+
+.c-content-box__main {
   background-color: siteColor(tgc-white);
   border-radius: 2px;
   box-shadow: 4px 4px 3px 1px siteColor(tgc-black);
   color: siteColor(tgc-black);
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
+  max-width: 1200px;
   padding: 20px;
 
   @include bpMinSmall {
@@ -13,6 +64,7 @@
   @include bpMinMedium {
     align-items: center;
     display: flex;
+    justify-content: space-between;
   }
 
   @include bpMinLarge {
@@ -45,19 +97,25 @@
     }
   }
 
-  .c-icon-list {
-    border-top: 1px solid siteColor(petrel);
-    margin-top: 10px;
-    padding-top: 10px;
 
-    @include bpMinMedium {
-      border-left: 1px solid siteColor(sockeye);
-      border-top: none;
-      margin: 10px 0 10px 40px;
-      padding: 10px 0 10px 40px;
-    }
+}
+
+.c-content-box__aside {
+  border-top: 1px solid siteColor(petrel);
+  margin-top: 10px;
+  padding-top: 10px;
+
+  @include bpMinSmall {
+    text-align: center;
   }
 
+  @include bpMinMedium {
+    border-left: 1px solid siteColor(sockeye);
+    border-top: none;
+    margin: 10px 0 10px 40px;
+    padding: 10px 0 10px 40px;
+    text-align: left;
+  }
 }
 
 .c-banner+.site-container .c-content-box {
@@ -72,3 +130,7 @@
   }
 }
 
+.c-content-box__header+.c-content-box__main {
+  position: relative;
+  top: -100px;
+}

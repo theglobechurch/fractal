@@ -1,29 +1,50 @@
-<section class="{{ className }}">
-  <div>
-    {% if title %}
-      <h1>{{ title }}</h1>
-    {% endif %}
 
-    {% if subtitle %}
-      <h2>{{ subtitle }}</h2>
-    {% endif %}
+<section class="c-content-box">
 
-    {% for para in body %}
-      <p>{{ para }}</p>
-    {% endfor %}
+  {% if header %}
+    <header class="c-content-box__header">
+      <img src="{{ header.img[960] }}" srcset="{% for k,v in header.img %}{{ v }} {{ k }}w,{% endfor %}" alt="{{ header.title }}" class="c-content-box__header__img" />
 
-    {% if link %}
-      <a href="{{ link.href }}" class="u-link u-link--arrowed u-link--black">
-        <svg role="img" class="">
-          <use xlink:href="/assets/svg/svg-symbols.svg#{{ link.icon }}"></use>
-        </svg>
-
-        <span>{{ link.text }}</span>
-      </a>
-    {% endif %}
-  </div>
-
-  {% if iconList %}
-    {%- render "@icon-list" -%}
+      <div class="c-content-box__header__container">
+        <h1 class="c-content-box__header__title">{{ header.title }}</h1>
+        <h2 class="c-content-box__header__subtitle">{{ header.subtitle }}</h2>
+      </div>
+    </header>
   {% endif %}
+
+  <main class="c-content-box__main">
+
+    <div class="c-content-box__main__container">
+      {% if title %}
+        <h1>{{ title }}</h1>
+      {% endif %}
+
+      {% if subtitle %}
+        <h2>{{ subtitle }}</h2>
+      {% endif %}
+
+      {% for para in body %}
+        <p>{{ para }}</p>
+      {% endfor %}
+
+      {% if link %}
+        <a href="{{ link.href }}" class="u-link u-link--arrowed u-link--black">
+          <svg role="img" class="">
+            <use xlink:href="/assets/svg/svg-symbols.svg#{{ link.icon }}"></use>
+          </svg>
+
+          <span>{{ link.text }}</span>
+        </a>
+      {% endif %}
+    </div>
+
+    {% if list %}
+      <aside class="c-content-box__aside">
+        {%- render "@icon-list" -%}
+        {% if actionBtn %}
+          <a href="#" class="u-btn u-btn--dark">{{ actionBtn }}</a>
+        {% endif %}
+      </aside>
+    {% endif %}
+  </main>
 </section>

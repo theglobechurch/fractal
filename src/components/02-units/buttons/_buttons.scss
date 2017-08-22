@@ -2,11 +2,11 @@
   @include type(linkCaps);
   appearance: none;
   background: transparent;
-  border: 2px solid white;
+  border: 2px solid siteColor(tgc-white);;
   border-radius: 2px;
   color: siteColor(tgc-white);
   cursor: pointer;
-  display: inline-block;
+  display: block;
   margin: 10px 0;
   outline: 0;
   padding: 10px 10px 5px;
@@ -15,8 +15,21 @@
   text-shadow: none;
   transition: border .2s, color .2s, background-color .2s;
 
+  @include bpMinSmall {
+    display: inline-block;
+  }
+
   &:hover {
     border-color: lighten(siteColor(sockeye), 30);
+  }
+
+  &--dark {
+    border-color: siteColor(tgc-black);
+    color: siteColor(tgc-black);
+
+    &:hover {
+      border-color: siteColor(sockeye);
+    }
   }
 
   &--arrowed {
