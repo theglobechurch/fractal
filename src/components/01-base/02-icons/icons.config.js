@@ -18,7 +18,9 @@ module.exports = {
       'subscribe',
       'map',
       'bible',
-      'email'
+      'email',
+      'clock',
+      'calendar'
     ]
   },
   variants: [

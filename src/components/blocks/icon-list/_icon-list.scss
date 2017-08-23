@@ -1,12 +1,11 @@
 .c-icon-list {
   @include unstyledList;
   font-size: 18px;
-  text-align: center;
   text-transform: uppercase;
 
-  @include bpMinExtraSmall {
+  @include bpMinSmall {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   @include bpMinMedium {
@@ -20,10 +19,31 @@
     text-align: left;
   }
 
-  a {
-    align-items: center;
-    display: inline-flex;
+  &__item {
+    margin: 10px 0;
+
+    @include bpMinSmall {
+      margin: 10px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    @include bpMinMedium {
+      margin: 10px 0;
+    }
   }
+
+  a {
+    display: inline-flex;
+    text-align: left;
+  }
+
 
   svg {
     height: 35px;
