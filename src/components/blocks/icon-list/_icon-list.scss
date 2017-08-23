@@ -24,6 +24,7 @@
 
     @include bpMinSmall {
       margin: 10px;
+      max-width: 33%;
 
       &:first-child {
         margin-left: 0;
@@ -36,6 +37,7 @@
 
     @include bpMinMedium {
       margin: 10px 0;
+      max-width: inherit;
     }
   }
 
