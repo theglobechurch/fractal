@@ -1,0 +1,51 @@
+.c-series-list {
+  display: grid;
+  grid-gap: 20px 10px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 20px;
+
+  @include bpMinSmall {
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 35px;
+  }
+
+  @include bpMinMedium {
+    grid-gap: 20px 30px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &__item {
+    display: block;
+    text-align: center;
+
+    &:hover {
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__img {
+    border-radius: 2px;
+    margin-bottom: 10px;
+    overflow: hidden;
+
+    img {
+      transition: all .2s;
+      transition-timing-function: cubic-bezier(0.42, 0, 1, 1);
+      width: 100%;
+    }
+  }
+
+  &__title {
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  &__daterange {
+    font-size: 14px;
+  }
+}

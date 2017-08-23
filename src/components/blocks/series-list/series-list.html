@@ -1,0 +1,11 @@
+<div class="c-series-list">
+{% for s in series %}
+  <a href="#" class="c-series-list__item">
+    <div class="c-series-list__img">
+      <img src="{{ s.img }}" alt="{{ s.title }}" />
+    </div>
+    <h1 class="c-series-list__title">{{ s.title }}</h1>
+    <p class="c-series-list__daterange">{{ s.dateRange }}</p>
+  </a>
+{% endfor %}
+</div>

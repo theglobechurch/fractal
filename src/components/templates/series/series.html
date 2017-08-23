@@ -5,9 +5,11 @@
 
   <div class="site-container">
     {%- render "@content-box", intro -%}
-    {%- render "@series-list" -%}
   </div>
 
+  {% for desc in descBox %}
+    {%- render "@description-box", desc -%}
+  {% endfor %}
 
   <div class="site-container">
     {%- render "@promo-box", promobox -%}
