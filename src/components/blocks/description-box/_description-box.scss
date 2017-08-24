@@ -16,9 +16,7 @@
         background-color: desaturate(lighten(themeColor($color), 5), 15);
         padding: 0;
       }
-
     }
-
   }
 
   @include bpMinSmall {
@@ -90,6 +88,7 @@
   justify-content: center;
   line-height: 26px;
   padding: 20px;
+  width: 100%;
 
   @include bpMinSmall {
     font-size: 24px;

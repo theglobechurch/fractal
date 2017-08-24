@@ -12,6 +12,7 @@ const del           = require('del');
 const esLint        = require('gulp-eslint');
 const glob          = require('glob');
 const gulp          = require('gulp');
+const gulpif        = require('gulp-if');
 const gutil         = require('gulp-util');
 const rename        = require('gulp-rename');
 const responsive    = require('gulp-responsive-images');
@@ -33,9 +34,11 @@ const paths = {
   dist: `${__dirname}/dist/`
 };
 
+// Production var changed at deploy
+let production = false;
+
 // Deploy location:
 const surgeURL = 'https://tgc-fractal.surge.sh';
-
 
 //---
 // Empty temp folders
@@ -92,12 +95,12 @@ function styles() {
   // Look at replacing a lot of this with postCSS
   return gulp.src(`${paths.src}/assets/styles/*.scss`)
     .pipe(sassGlob())
-    .pipe(sourcemaps.init())
+    .pipe(gulpif(!production, sourcemaps.init()))
     .pipe(sass({
       outputStyle: 'compressed'
     }).on('error', swallowError))
     .pipe(autoprefixer())
-    .pipe(sourcemaps.write('./'))
+    .pipe(gulpif(!production, sourcemaps.write('./')))
     .pipe(gulp.dest(`${paths.dest}/assets/styles`));
 }
 
@@ -224,6 +227,13 @@ function jsLinter() {
     .pipe(esLint.format())
 }
 
+function goProduction() {
+  return new Promise(function(resolve, reject) {
+    production = true;
+    resolve();
+  })
+}
+
 //---
 // Watch
 function watch() {
@@ -242,4 +252,4 @@ gulp.task('dev', gulp.series(compile, watch));
 gulp.task('deploy', gulp.series(linter, compile, staticBuild, deploy));
 gulp.task('dist', gulp.series(linter, compile, buildDistAssets, staticBuild, deploy, clean));
 gulp.task('lint', gulp.series(linter));
-gulp.task('build-dist-assets', gulp.series(compile, buildDistAssets));
+gulp.task('build-dist-assets', gulp.series(goProduction, compile, buildDistAssets));
