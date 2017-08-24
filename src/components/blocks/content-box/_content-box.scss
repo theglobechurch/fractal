@@ -1,3 +1,11 @@
+.c-content-box {
+  margin-bottom: 20px;
+
+  @include bpMinSmall {
+    margin-bottom: 35px;
+  }
+}
+
 .c-content-box__header {
   align-items: flex-end;
   display: flex;
@@ -53,13 +61,9 @@
   border-radius: 2px;
   box-shadow: 4px 4px 3px 1px siteColor(tgc-black);
   color: siteColor(tgc-black);
-  margin: 0 auto 20px;
+  margin: 0 auto;
   max-width: 1200px;
   padding: 20px;
-
-  @include bpMinSmall {
-    margin-bottom: 35px;
-  }
 
   @include bpMinMedium {
     align-items: center;
