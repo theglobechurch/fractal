@@ -101,6 +101,47 @@
     }
   }
 
+  &--text-focus {
+
+    .c-content-box__main__container {
+      margin: 0 auto;
+
+      @include bpMinMedium {
+        padding: 40px 40px 80px;
+      }
+    }
+
+    p, li {
+      font-size: 18px;
+      margin: 0 auto 10px;
+      max-width: 620px;
+    }
+
+    p:first-child {
+      font-size: 20px;
+      font-weight: bold;
+      max-width: 780px;
+      margin: 0 auto 20px;
+
+      @include bpMinMedium {
+        font-size: 24px;
+        margin: 40px auto;
+        text-align: justify;
+      }
+    }
+
+    p:last-child {
+      margin: 0 auto 10px;
+    }
+
+    ol {
+      margin-left: 25px;
+      @include bpMinSmall {
+        padding-left: 75px;
+      }
+    }
+  }
+
 
 }
 
