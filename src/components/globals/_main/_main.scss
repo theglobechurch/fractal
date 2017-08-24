@@ -20,4 +20,12 @@
   @include bpMinLarge {
     padding: 0;
   }
+
+  &--first {
+    margin-top: 20px;
+
+    @include bpMinSmall {
+      margin-top: 35px;
+    }
+  }
 }
