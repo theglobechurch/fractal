@@ -7,5 +7,6 @@ cache:
 script:
   - node_modules/.bin/gulp lint
 deploy:
+  skip_cleanup: true
   provider: script
   script: node_modules/.bin/gulp deploy
