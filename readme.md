@@ -1,5 +1,7 @@
 # Globe Fractal
 
+[![Build Status](https://travis-ci.org/theglobechurch/fractal.svg?branch=master)](https://travis-ci.org/theglobechurch/fractal)
+
 ## View it
 
 [tgc-fractal.surge.sh](https://tgc-fractal.surge.sh/)

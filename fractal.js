@@ -46,8 +46,8 @@ fractal.components.set('default.preview', '@template');
 fractal.components.set('ext', '.html');
 
 // Docs config
-// fractal.docs.set('ext', '.md');
-// fractal.docs.set('path', `${paths.src}/docs`);
+fractal.docs.set('ext', '.md');
+fractal.docs.set('path', `${paths.src}/docs`);
 
 // Web UI config
 fractal.web.theme(mandelbrot);
