@@ -10,3 +10,5 @@ deploy:
   skip_cleanup: true
   provider: script
   script: node_modules/.bin/gulp deploy
+notifications:
+  email: false

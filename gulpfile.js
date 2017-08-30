@@ -8,6 +8,7 @@ const babelify      = require('babelify');
 const browserify    = require('browserify');
 const buffer        = require('vinyl-buffer');
 const concat        = require('gulp-concat');
+const debug         = require('gulp-debug');
 const del           = require('del');
 const esLint        = require('gulp-eslint');
 const glob          = require('glob');
@@ -122,6 +123,7 @@ function svg() {
 function images() {
   return gulp.src([`${paths.src}/assets/img/**/*.{gif,jpg,jpeg,png}`,
                    `${paths.src}/components/**/img/*.{gif,jpg,jpeg,png}`])
+    .pipe(debug({title: 'Image:'}))
     .pipe(responsive({
         '**/*': [{
             width: 400,
@@ -163,7 +165,7 @@ function images() {
         quality: 70,
         progressive: true,
         withMetadata: false,
-        overwrite: false,
+        overwrite: true,
         skipOnEnlargement: false,
         errorOnUnusedConfig: false,
         errorOnUnusedImage: false,
@@ -253,3 +255,4 @@ gulp.task('deploy', gulp.series(compile, staticBuild, deploy));
 gulp.task('dist', gulp.series(linter, compile, buildDistAssets, staticBuild, deploy, clean));
 gulp.task('lint', gulp.series(linter));
 gulp.task('build-dist-assets', gulp.series(goProduction, compile, buildDistAssets));
+gulp.task('images', gulp.series(clean, images));

@@ -1,0 +1,68 @@
+.alert-banner {
+  background-color: themeColor(petrel);
+  border-bottom: 5px solid themeColor(sockeye);
+  border-top: 5px solid themeColor(sockeye);
+  display: block;
+  padding: 7px 0;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  @include bpMinSmall {
+    background-color: rgba(siteColor(tgc-black), .4);
+    border-bottom: none;
+    position: absolute;
+    top: 75px;
+  }
+
+  &__tag {
+    background-color: themeColor(sockeye);
+    color: siteColor(tgc-white);
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 0 8px 0 0;
+    padding: 3px 5px 0;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 20px;
+    text-transform: none;
+
+    a {
+      text-decoration: underline;
+    }
+
+    @include bpMinExtraSmall {
+      display: inline;
+    }
+  }
+
+  &--warn {
+    border-bottom-color: themeColor(gold-braid);
+
+    .alert-banner__tag {
+      background-color: themeColor(gold-braid);
+    }
+  }
+
+  &--danger {
+    border-bottom-color: siteColor(danger-red);
+
+    .alert-banner__tag {
+      background-color: siteColor(danger-red);
+    }
+  }
+
+  &--success {
+    border-bottom-color: themeColor(lark-green);
+
+    .alert-banner__tag {
+      background-color: themeColor(lark-green);
+    }
+  }
+}
