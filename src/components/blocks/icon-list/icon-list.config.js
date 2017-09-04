@@ -17,5 +17,23 @@ module.exports = {
         icon: 'subscribe'
       }
     ]
-  }
+  },
+  variants: [
+    {
+      name: 'small',
+      context: {
+        modifiers: ['small'],
+        list: [
+          {
+            text: 'Jonty Allcock',
+            icon: 'person'
+          },
+          {
+            text: '14 August 2017',
+            icon: 'calendar'
+          }
+        ]
+      }
+    }
+  ]
 };

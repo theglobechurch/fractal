@@ -20,6 +20,8 @@
   }
 
   &__item {
+    font-size: 14px;
+    letter-spacing: 2px;
     margin: 10px 0;
 
     @include bpMinSmall {
@@ -51,5 +53,19 @@
     height: 35px;
     margin-right: 10px;
     width: 35px;
+  }
+
+  &--small {
+    display: inherit;
+
+    li {
+      margin: 0;
+    }
+
+    svg {
+      height: 15px;
+      margin-right: 5px;
+      width: 15px;
+    }
   }
 }

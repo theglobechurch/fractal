@@ -1,4 +1,4 @@
-<ul class="c-icon-list">
+<ul class="c-icon-list{% if modifiers %}{% for m in modifiers %} c-icon-list--{{ m }}{% endfor %}{% endif %}">
   {% for item in list %}
   <li class="c-icon-list__item">
     {% if item.href %}<a href="{{ item.href }}" class="u-link u-link--arrowed u-link--black js-audio-start-link">{% endif %}
