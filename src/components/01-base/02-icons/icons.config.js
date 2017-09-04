@@ -20,7 +20,8 @@ module.exports = {
       'bible',
       'email',
       'clock',
-      'calendar'
+      'calendar',
+      'person'
     ]
   },
   variants: [
