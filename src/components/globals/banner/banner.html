@@ -14,6 +14,17 @@
       {% if subtitle %}
         <h2 class="{{ className }}__subtitle">{{ subtitle }}</h2>
       {% endif %}
+
+      {% if scriptureReference %}
+        <p class="{{ className }}__reference">
+          <svg role="img" class="{{ className }}__reference__icon">
+            <use xlink:href="/assets/svg/svg-symbols.svg#bible"></use>
+          </svg>
+          <a href="https://www.biblegateway.com/passage/?search={{ scriptureReference }}&amp;version=NIVUK" class="u-link">
+            <span>{{ scriptureReference }}</span>
+          </a>
+        </p>
+      {% endif %}
     </div>
   </div>
 </section>

@@ -14,5 +14,14 @@ module.exports = {
     },
     title: 'The Globe Church',
     subtitle: 'A church for the Southbank'
-  }
+  },
+  variants: [
+    {
+      name: 'scripture-reference',
+      label: 'With scripture reference',
+      context: {
+        scriptureReference: 'Philemon 1:1-4'
+      }
+    }
+  ]
 };
