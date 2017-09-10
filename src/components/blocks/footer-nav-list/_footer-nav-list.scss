@@ -1,4 +1,10 @@
 .c-footer-nav-list {
+  display: inline;
+  margin: 0 10px 10px 0;
+
+  @include bpMinSmall() {
+    display: table-cell;
+  }
 
   &:last-child {
     margin-right: 0;
