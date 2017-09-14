@@ -3,7 +3,7 @@ export default function () {
 
   if (audioPlayers === []) { return; }
 
-  audioPlayers.forEach((el) => {
+  Array.prototype.forEach.call(audioPlayers, (el) => {
     const noise = el.querySelector('audio');
     const seeker = el.querySelector('.js-audio-player--progress');
     const btnPlayPause = el.querySelector('button');
@@ -64,7 +64,7 @@ export default function () {
 }
 
 function pauseAll (els) {
-  els.forEach((el) => {
+  Array.prototype.forEach.call(els, (el) => {
     el.querySelector('audio').pause();
   });
 }
