@@ -1,23 +1,26 @@
 .c-series-list {
-  display: grid;
-  grid-gap: 20px 10px;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-bottom: 20px;
 
   @include bpMinSmall {
-    grid-gap: 20px;
-    grid-template-columns: repeat(3, 1fr);
     margin-bottom: 35px;
   }
 
-  @include bpMinMedium {
-    grid-gap: 20px 30px;
-    grid-template-columns: repeat(4, 1fr);
-  }
-
   &__item {
-    display: block;
+    display: inline-block;
+    max-width: 48%;
+    padding-bottom: 20px;
     text-align: center;
+
+    @include bpMinSmall {
+      width: 31%;
+    }
+
+    @include bpMinMedium {
+      width: 24%;
+    }
 
     &:hover {
       img {
@@ -42,7 +45,10 @@
     font-weight: bold;
     letter-spacing: 2px;
     line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-transform: uppercase;
+    width: 100%;
   }
 
   &__daterange {
