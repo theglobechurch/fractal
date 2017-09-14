@@ -1,6 +1,6 @@
   <div class="{{ className }}">
     {% for box in boxes %}
-    <div class="{{className }}__boxouter">
+    <div class="{{className }}__boxouter js-object-fit-container">
       <img src="{{ box.img[960] }}" srcset="{% for k,v in box.img %}{{ v }} {{ k }}w,{% endfor %}" alt="{{ title }}" class="{{ className }}__img" />
       <div class="{{ className }}__item {{ className }}__item--{{ box.boxedTitle | lower }}">
         <span class="{{ className }}__item__link">

@@ -2,7 +2,7 @@
 <section class="c-content-box">
 
   {% if header %}
-    <header class="c-content-box__header">
+    <header class="c-content-box__header js-object-fit-container">
       <img src="{{ header.img[960] }}" srcset="{% for k,v in header.img %}{{ v }} {{ k }}w,{% endfor %}" alt="{{ header.title }}" class="c-content-box__header__img" />
 
       <div class="c-content-box__header__container">
