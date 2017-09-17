@@ -6,8 +6,8 @@ module.exports = {
     className: 'c-promo-box',
     href: '#',
     pretitle: 'This recording is a part of',
-    title: 'For Love\'s Sake',
-    cta: 'Go to series content',
+    title: 'Philemon: For Love\'s Sake / People to watch',
+    cta: 'Go to full sermon series',
     img: {
       2560: '/assets/img/phi-2560.jpg',
       1920: '/assets/img/phi-1920.jpg',

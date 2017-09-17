@@ -40,11 +40,20 @@
   }
 
   &__pretitle {
-    @include type(preTitle);
+    font-size: 14px;
+    font-weight: normal;
     margin: 0;
+    @include bpMinExtraSmall {
+      @include type(preTitle);
+    }
   }
   &__title {
-    @include type(smallTitle);
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    @include bpMinExtraSmall {
+      @include type(smallTitle);
+    }
   }
 
   &__btn {
