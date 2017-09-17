@@ -58,11 +58,10 @@
   }
 
   &__affiliation {
-    text-align: right;
+
     & svg {
       display: block;
       height: 36px;
-      margin: siteSpacing(m) 0;
       width: 210px;
 
       &:first-child {
@@ -73,5 +72,10 @@
         margin-bottom: 0;
       }
     }
+  }
+
+  &__affiliation_link {
+    display: block;
+    margin: siteSpacing(m) 0;
   }
 }
