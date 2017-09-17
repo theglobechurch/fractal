@@ -9,7 +9,6 @@
 .c-content-box__header {
   align-items: flex-end;
   display: flex;
-  justify-content: center;
   min-height: 350px;
   overflow: hidden;
   position: relative;
@@ -25,7 +24,7 @@
     max-width: 1300px;
     min-height: 70px;
     padding: 50px 20px 110px 20px;
-    position: absolute;
+    position: relative;
     width: 100%;
   }
 
