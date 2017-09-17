@@ -100,6 +100,20 @@ button {
   }
 }
 
+.c-audio-player__meta {
+  align-self: flex-end;
+  font-size: 12px;
+  margin: 0 20px 0 10px;
+  padding-bottom: 20px;
+  width: 100%;
+
+  @include bpMinExtraSmall {
+    font-size: 16px;
+    margin: 0 40px 0 20px;
+    padding-bottom: 10px;
+  }
+}
+
 input[type="range"] {
   @include unstyledInput;
   appearance: none;
@@ -119,6 +133,6 @@ input::-webkit-slider-thumb {
 }
 
 .c-audio-player__times {
-  margin: 0 40px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
 }

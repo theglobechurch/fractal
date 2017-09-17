@@ -9,10 +9,12 @@
     </button>
   </div>
 
-  <input type="range" id="seek" value="0" max="" class="{{ className }}__progress-bar js-audio-player--progress"/>
+  <div class="{{ className }}__meta">
+    <input type="range" id="seek" value="0" max="" class="{{ className }}__progress-bar js-audio-player--progress"/>
 
-  <div class="{{ className }}__times">
-    <span class="{{ className }}__times__played js-audio-player--played">00:00</span>
-    <span class="{{ className }}__times__total js-audio-player--length">##:##</span>
+    <div class="{{ className }}__times">
+      <span class="{{ className }}__times__played js-audio-player--played">00:00</span>
+      <span class="{{ className }}__times__total js-audio-player--length">##:##</span>
+    </div>
   </div>
 </section>
