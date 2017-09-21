@@ -22,6 +22,13 @@ module.exports = {
       context: {
         scriptureReference: 'Philemon 1:1-4'
       }
+    },
+    {
+      name: 'small',
+      label: 'Small',
+      context: {
+        variant: ['small']
+      }
     }
   ]
 };

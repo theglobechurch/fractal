@@ -1,14 +1,9 @@
 .c-footer-nav-list {
-  display: inline;
-  margin: 0 10px 10px 0;
-
-  @include bpMinSmall() {
-    display: table-cell;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
+  display: inline-block;
+  margin: 1em .5em;
+  min-width: 100px;
+  text-align: left;
+  vertical-align: top;
 
   &__title {
     @include type(smallerTitle);

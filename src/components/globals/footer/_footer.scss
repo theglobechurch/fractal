@@ -4,6 +4,8 @@
   padding: siteSpacing(sl);
 
   &__meganav {
+    display: inline-block;
+
     display: flex;
     justify-content: space-between;
 

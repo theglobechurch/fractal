@@ -18,6 +18,10 @@
     height: 650px;
   }
 
+  &--small {
+    max-height: 300px;
+  }
+
   &__img {
     display: block;
     height: 100%;
