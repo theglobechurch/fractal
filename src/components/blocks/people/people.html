@@ -1,0 +1,19 @@
+<ul class="c-people">
+
+  {% for i in [1,2] %}
+    {% for p in people %}
+      <li class="c-person">
+        <a href="#" class="c-person__link">
+          <div class="c-person__img">
+            <img src="{{ p.img }}" alt="{{ p.name }}" />
+          </div>
+          <div class="c-person__info">
+            <h2 href="#" class="c-person__name">{{ p.name }}</h2>
+            <span class="c-person__title">{{ p.title }}</span>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  {% endfor %}
+
+</ul>
