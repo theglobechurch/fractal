@@ -8,8 +8,9 @@
   </div>
 
   {% for desc in descBox %}
-    {%- render "@description-box", desc -%}
+    {%- render "@content-box", desc -%}
   {% endfor %}
+
 
   <div class="site-container">
     {%- render "@promo-box", promobox -%}
