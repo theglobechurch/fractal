@@ -1,7 +1,6 @@
 {%- render "@header" -%}
-{%- render "@alert-banner" -%}
 
-<main class="c-main" role="main">
+<main class="c-main{% for m in mainClasses %} c-main--{{ mainClasses }}{% endfor %}" role="main">
   {% block main %}
   {% endblock %}
 </main>

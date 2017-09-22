@@ -1,4 +1,11 @@
 .c-main {
+
+  @include bpMinSmall {
+    &--no-banner {
+      margin-top: 75px;
+    }
+  }
+
   .nav-open & {
     @include bpMaxSmall {
       margin-top: 75px;
