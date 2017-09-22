@@ -4,7 +4,7 @@
 
     <div class="c-description-box__side">
       {% if series %}
-      <div class="img-square js-object-fit-container">
+      <div class="img-container img-container--{{ series.imgVariant }} js-object-fit-container">
         <img src="{{ img[960] }}"
              srcset="{% for k,v in img %}{{ v }} {{ k }}w,{% endfor %}"
              sizes="(min-width: 768px) 33.3vw, 100vw"
@@ -30,7 +30,7 @@
         <p>{{ p }}</p>
       {% endfor %}
 
-      {% if series %}
+      {% if series.list %}
         {%- render "@sermon-list" -%}
       {% endif %}
     </div>

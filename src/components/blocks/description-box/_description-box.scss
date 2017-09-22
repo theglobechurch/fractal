@@ -19,7 +19,7 @@
     }
   }
 
-  @include bpMinSmall {
+  @include bpMinExtraSmall {
     margin-bottom: 40px;
   }
 }
@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
 
-  @include bpMinSmall {
+  @include bpMinExtraSmall {
     flex-direction: row;
 
     .c-description-box--flipped & {
@@ -44,20 +44,12 @@
   position: relative;
   width: 100%;
 
-  @include bpMaxSmall {
-    .img-square {
-      margin: 0 auto;
-      max-width: 250px;
-      padding-bottom: 250px;
-    }
-  }
-
   @include bpMinExtraSmall {
     min-height: 250px;
   }
 
-  @include bpMinSmall {
-    min-height: 600px;
+  @include bpMinExtraSmall {
+    min-height: 400px;
     width: 33%;
   }
 }
@@ -84,16 +76,27 @@
 .c-description-box__content {
   display: flex;
   flex-direction: column;
-  font-size: 18px;
   justify-content: center;
-  line-height: 26px;
   padding: 20px;
   width: 100%;
 
-  @include bpMinSmall {
-    font-size: 24px;
-    line-height: 44px;
+  @include bpMinExtraSmall {
     padding: 40px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 26px;
+
+    @include bpMinSmall {
+      font-size: 24px;
+      line-height: 44px;
+
+      &+p {
+        font-size: 18px;
+        line-height: 32px;
+      }
+    }
   }
 }
 
