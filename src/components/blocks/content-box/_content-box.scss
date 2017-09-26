@@ -102,6 +102,8 @@
 
   &--text-focus {
 
+    display: block;
+
     .c-content-box__main__container {
       margin: 0 auto;
 
@@ -112,7 +114,7 @@
 
     p, li {
       font-size: 18px;
-      margin: 0 auto 10px;
+      margin: 5px auto 5px;
       max-width: 620px;
     }
 
@@ -140,8 +142,18 @@
       }
     }
   }
+}
 
+.c-content-box__main__subsection {
+  margin: 0 auto;
+  max-width: 620px;
 
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
 }
 
 .c-content-box__aside {

@@ -1,4 +1,4 @@
-<div class="c-internal-nav">
+<div class="c-internal-nav{% for c in cls %} c-internal-nav--{{ c }}{% endfor %}">
   <ul class="c-internal-nav__list">
     {% for item in navList %}
       <li class="c-internal-nav__item">

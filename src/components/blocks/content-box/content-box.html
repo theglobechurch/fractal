@@ -36,7 +36,40 @@
           <span>{{ link.text }}</span>
         </a>
       {% endif %}
+
     </div>
+
+    {% if hidden %}
+
+      <div class="c-content-box__expandable js-content-box-expandable" data-label="More about people">
+
+        {% for section in hidden.section %}
+
+          {% if hidden.nav %}
+            <div class="c-internal-nav c-internal-nav--content-box">
+              <ul class="c-internal-nav__list">
+                {% for item in hidden.section %}
+                  <li class="c-internal-nav__item">
+                    <a href="#" class="c-internal-nav__link{% if loop.first %} c-internal-nav__link--active{% endif %}">{{ item.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          <section class="c-content-box__main__subsection">
+            <h2>{{ section.title }}</h2>
+
+            {% for line in section.body %}
+              <p>{{ line }}</p>
+            {% endfor %}
+          </section>
+
+        {% endfor %}
+
+      </div>
+
+    {% endif %}
 
     {% if list %}
       <aside class="c-content-box__aside">

@@ -8,6 +8,21 @@
     margin-bottom: 35px;
   }
 
+  &--content-box {
+    background-color: rgba(siteColor(petrel), .6);
+    border: none;
+    border-radius: 0;
+    margin: 20px -20px;
+
+    @include bpMinSmall {
+      margin: 35px -20px;
+    }
+
+    @include bpMinLarge {
+      margin: 35px -40px;
+    }
+  }
+
   &__list {
     @include unstyledList;
     margin: 0 auto;
@@ -17,6 +32,10 @@
     @include bpMinExtraSmall {
       display: flex;
       justify-content: space-between;
+    }
+
+    .c-internal-nav--content-box & {
+      max-width: 620px;
     }
   }
 
@@ -44,6 +63,14 @@
 
     &--active {
       color: siteColor(sockeye);
+    }
+
+    .c-internal-nav--content-box & {
+      color: siteColor(tgc-white);
+
+      &--active {
+        color: siteColor(lark-green);
+      }
     }
   }
 }

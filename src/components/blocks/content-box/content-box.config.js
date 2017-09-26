@@ -80,6 +80,49 @@ module.exports = {
         },
         textFocus: true
       }
+    },
+    {
+      name: 'with expander section',
+      context: {
+        body: [
+          'Following Jesus is not an individual thing. Part of the genius of God’s plan is that he is creating a new humanity. He is saving a community of people.',
+          'The scope of God’s plan is seen in this vision of the future:',
+          'After this I looked, and there before me was a great multitude that no one could count, from every nation, tribe, people and language, standing before the throne and before the Lamb. (Revelation 7:9, NIVUK).',
+          'God\'s plan is to save a great diversity of people.'
+        ],
+        className: 'c-content-box',
+        header: {
+          img: {
+            2560: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-2560.jpg',
+            1920: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-1920.jpg',
+            1280: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-1280.jpg',
+            960: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-960.jpg',
+            640: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-640.jpg',
+            320: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-320.jpg'
+          },
+          title: 'Made up of all sorts of people'
+        },
+        hidden: {
+          nav: true,
+          section: [
+            {
+              title: 'Staff',
+              body: [
+                'The Globe Church is about the whole church family living as disciples of Christ, but a few people have especially committed to serve the church and work to see its vision flourish. We call them our Staff Team.'
+              ]
+            },
+            {
+              title: 'Eldership',
+              body: [
+                'The elders have the joy and responsibility, under God, for prayerfully leading The Globe Church, setting the vision and direction, and ensuring that we remain firmly true to the Bible in all that we do. Through the preaching and teaching, we seek to clearly point to Jesus, applying his Word for people in all stages of life and faith.',
+                'The elders have overall pastoral concern for the spiritual and practical needs of the church family. We are also passionate about training and equipping others both to serve Jesus in the church, and to live for him through all of life.  We long to see God use us all at Globe Church to show Jesus to those we meet day by day.',
+                'We would love to welcome you into our church family and for you to be ‘at home’ here.  We always want to be approachable. Please come and find one (or more!) of us for a friendly conversation so we can get to know you better.'
+              ]
+            }
+          ]
+        },
+        textFocus: true
+      }
     }
   ]
 };
