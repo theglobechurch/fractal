@@ -118,7 +118,8 @@
       max-width: 620px;
     }
 
-    p:first-child {
+    p:first-child,
+    .sir-trevor-text:first-child p {
       font-size: 20px;
       font-weight: bold;
       margin: 0 auto 20px;
