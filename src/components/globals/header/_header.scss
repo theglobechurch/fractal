@@ -46,6 +46,7 @@
 
   &__btn-menu {
     color: siteColor(tgc-black);
+    text-decoration: none;
 
     @include bpMaxExtraSmall() {
       background: siteColor(lark-green);

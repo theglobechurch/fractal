@@ -18,6 +18,7 @@
 
   &__item a {
     display: inline-block;
+    text-decoration: none;
     transition: padding .2s;
 
     &:hover {
