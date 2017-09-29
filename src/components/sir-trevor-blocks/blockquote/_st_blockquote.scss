@@ -1,0 +1,55 @@
+.st-blockquote {
+  margin-bottom: 10px;
+
+  p {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: normal;
+    line-height: 24px;
+
+    @include bpMinSmall {
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    @include bpMinLarge {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+
+  cite {
+    font-size: 14px;
+  }
+}
+
+.st-blockquote__body,
+.st-blockquote__footer {
+  margin: 0 auto;
+  max-width: 750px;
+  width: 100%;
+}
+
+.st-blockquote__body {
+  margin-bottom: 10px;
+  position: relative;
+
+  @include bpMinMedium {
+    &:before {
+      content: "“";
+      font-size: 200px;
+      left: -80px;
+      position: absolute;
+      top: -80px;
+    }
+
+    &:after {
+      bottom: -250px;
+      content: "”";
+      float: right;
+      font-size: 200px;
+      position: absolute;
+      right: -80px;
+    }
+  }
+}

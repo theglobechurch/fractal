@@ -1,0 +1,73 @@
+.st-image {
+  clear: both;
+  margin: 0 auto 10px;
+  max-width: 650px;
+  outline: 0;
+  width: 100%;
+
+  &--full-width {
+    margin: 0 -20px 10px;
+    max-width: inherit;
+    width: calc(100% + 40px);
+
+    @include bpMinMedium {
+      margin: 0 -60px 10px;
+      width: calc(100% + 120px);
+    }
+
+    @include bpMinLarge {
+      margin: 0 -80px 10px;
+      width: calc(100% + 160px);
+    }
+  }
+
+  &--float-right {
+    @include bpMinSmall {
+      float: right;
+      margin-left: 15px;
+      width: 50%;
+    }
+
+    @include bpMinMedium {
+      margin-left: 25px;
+      margin-right: -60px;
+      width: calc(50% + 60px);
+    }
+
+    @include bpMinLarge {
+      margin-left: 40px;
+      margin-right: -80px;
+      width: calc(50% + 80px);
+    }
+  }
+
+  &--float-left {
+    @include bpMinSmall {
+      float: left;
+      margin-right: 15px;
+      width: 50%;
+    }
+
+    @include bpMinMedium {
+      margin-left: -60px;
+      margin-right: 25px;
+      width: calc(50% + 60px);
+    }
+
+    @include bpMinLarge {
+      margin-left: -80px;
+      margin-right: 40px;
+      width: calc(50% + 80px);
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.st-image__caption {
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+}

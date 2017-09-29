@@ -1,0 +1,29 @@
+.blog-footer {
+  border-top: 1px solid #ccc;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+}
+
+.blog-footer__date {
+  display: block;
+}
+
+.blog-footer__author__img {
+  margin: 0 auto;
+  padding-bottom: 100px;
+  width: 100px;
+
+  @include bpMinMedium {
+    padding-bottom: 150px;
+    width: 150px;
+  }
+}
+
+.blog-footer__author__name {
+  margin: 0;
+}
+
+.blog-footer__author__description {
+  font-size: 14px;
+}

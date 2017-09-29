@@ -1,0 +1,13 @@
+<blockquote class="st-blockquote">
+  <div class="st-blockquote__body">
+    {% for line in quote %}
+      <p>{{ line }}</p>
+    {% endfor %}
+  </div>
+
+  {% if citation %}
+  <footer class="st-blockquote__footer">
+    - <cite>{{ citation }}</cite>
+  </footer>
+  {% endif %}
+</blockquote>

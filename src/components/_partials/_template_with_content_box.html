@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en-gb" dir="ltr" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>The Globe Church</title>
+
+    <link rel="stylesheet" href="{{ '/assets/styles/globe_styles.css' | path }}" />
+    <link rel="stylesheet" href="{{ '/assets/styles/preview.css' | path }}" />
+
+    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=Element.prototype.classList,es6,Element.prototype.dataset,Array.prototype.forEach"></script>
+  </head>
+
+  <body style="padding-top: 10px;">
+
+    <section class="c-content-box">
+      <main class="c-content-box__main c-content-box__main--text-focus">
+        <div class="c-content-box__main__container">
+
+          {{ yield }}
+
+        </div>
+      </main>
+    </section>
+
+    <script src="{{ '/assets/js/bundle.js' | path }}" async></script>
+  </body>
+</html>

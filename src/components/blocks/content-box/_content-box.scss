@@ -64,6 +64,16 @@
   max-width: 1200px;
   padding: 20px;
 
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
   @include bpMinMedium {
     align-items: center;
     display: flex;
@@ -110,36 +120,35 @@
       @include bpMinMedium {
         padding: 40px 40px 80px;
       }
-    }
 
-    p, li {
-      font-size: 18px;
-      margin: 5px auto 5px;
-      max-width: 620px;
-    }
+      & > p:first-child {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 auto 20px;
+        max-width: 780px;
 
-    p:first-child,
-    .sir-trevor-text:first-child p {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 0 auto 20px;
-      max-width: 780px;
-
-      @include bpMinMedium {
-        font-size: 24px;
-        margin: 40px auto;
-        text-align: justify;
+        @include bpMinMedium {
+          font-size: 24px;
+          margin: 40px auto;
+          text-align: justify;
+        }
       }
-    }
 
-    p:last-child {
-      margin: 0 auto 10px;
-    }
+      & > p, li {
+        font-size: 18px;
+        margin: 5px auto 5px;
+        max-width: 620px;
+      }
 
-    ol {
-      margin-left: 25px;
-      @include bpMinSmall {
-        padding-left: 75px;
+      & > p:last-child {
+        margin: 0 auto 10px;
+      }
+
+      & > ol {
+        margin-left: 25px;
+        @include bpMinSmall {
+          padding-left: 75px;
+        }
       }
     }
   }

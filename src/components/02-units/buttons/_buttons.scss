@@ -63,4 +63,11 @@
       border-color: siteColor(sockeye);
     }
   }
+
+  &--centred {
+    display: table;
+    margin: 0 auto;
+    max-width: 350px;
+    text-align: center;
+  }
 }
