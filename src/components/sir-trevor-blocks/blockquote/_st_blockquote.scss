@@ -1,11 +1,19 @@
 .st-blockquote {
-  margin-bottom: 10px;
+  margin: 20px 30px;
+
+  @include bpMinSmall {
+    margin: 20px 40px;
+  }
+
+  @include bpMinMedium {
+    margin: 40px 0;
+  }
 
   p {
     font-size: 20px;
     font-style: italic;
     font-weight: normal;
-    line-height: 24px;
+    line-height: 30px;
 
     @include bpMinSmall {
       font-size: 24px;
@@ -31,6 +39,7 @@
 }
 
 .st-blockquote__body {
+  color: #525252;
   margin-bottom: 10px;
   position: relative;
 
