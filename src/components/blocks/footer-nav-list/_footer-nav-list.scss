@@ -1,9 +1,24 @@
 .c-footer-nav-list {
-  display: inline-block;
+  display: block;
   margin: 1em .5em;
-  min-width: 100px;
-  text-align: left;
+  text-align: center;
   vertical-align: top;
+
+  @include bpMinExtraSmall {
+    display: inline-block;
+    min-width: 25%;
+    text-align: left;
+    width: calc(50% - 1.5em);
+  }
+
+  @include bpMinSmall {
+    margin: 1em 1.5em 1em .5em;
+    width: auto;
+  }
+
+  @include bpMinMedium {
+    min-width: 100px;
+  }
 
   &__title {
     @include type(smallerTitle);
@@ -12,8 +27,9 @@
   &__items {
     @include type(reg-2);
     @include unstyledList;
-    margin-left: siteSpacing(s);
-
+    @include bpMinExtraSmall {
+      margin-left: siteSpacing(s);
+    }
   }
 
   &__item a {
