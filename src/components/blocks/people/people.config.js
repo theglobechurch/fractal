@@ -4,7 +4,7 @@ module.exports = {
     people: [
       {
         name: 'Jonty Allcock',
-        title: 'Senior Pastor',
+        title: 'Pastor',
         img: '/assets/img/blocks/people/img/jonty-square.jpg'
       },
       {

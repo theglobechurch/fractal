@@ -2,20 +2,7 @@
   display: block;
   margin: 10px auto;
   max-width: 620px;
-
-  @supports (display: grid) {
-    display: grid;
-    grid-gap: 20px 10px;
-    grid-template-columns: repeat(2, 1fr);
-
-    @include bpMinExtraSmall() {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @include bpMinSmall() {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
+  text-align: center;
 }
 
 .c-person {
@@ -23,6 +10,15 @@
   font-size: 18px;
   line-height: 20px;
   text-align: center;
+  width: 45%;
+
+  @include bpMinExtraSmall() {
+    width: 30%;
+  }
+
+  @include bpMinSmall() {
+    width: 24%;
+  }
 
   &__img {
     border-radius: 50%;
