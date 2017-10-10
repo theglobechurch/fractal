@@ -18,8 +18,17 @@
   background-color: siteColor(lark-green);
   border-left: 15px solid #64927c;
   display: flex;
+  justify-content: space-between;
   margin-bottom: 20px;
+  text-decoration: none;
   width: 100%;
+
+  &:hover {
+    color: white;
+    .c-blog-list__item__image {
+      width: 33%;
+    }
+  }
 }
 
 .c-blog-list__item__body {
