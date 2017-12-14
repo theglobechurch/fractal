@@ -14,7 +14,7 @@ module.exports = {
       },
       {
         name: 'Phil Tinker',
-        title: 'Assistant Pastor',
+        title: 'Assistant Pastor with a long job title',
         img: '/assets/img/blocks/people/img/phil-square.jpg'
       }
     ]

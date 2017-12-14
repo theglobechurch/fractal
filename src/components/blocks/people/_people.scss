@@ -1,5 +1,7 @@
 .c-people {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 10px auto;
   max-width: 620px;
   text-align: center;
@@ -10,6 +12,7 @@
   font-size: 18px;
   line-height: 20px;
   text-align: center;
+  padding: 0 10px;
   width: 45%;
 
   @include bpMinExtraSmall() {
