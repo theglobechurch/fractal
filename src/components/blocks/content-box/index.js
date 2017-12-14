@@ -9,7 +9,7 @@ export default function () {
 
     const showLnk = document.createElement('p');
     showLnk.innerHTML = `
-      <a class="u-btn u-btn--dark u-btn--arrowed">
+      <a class="u-btn u-btn--dark u-btn--arrowed u-btn--centred">
         ${l}
       </a>
     `;
