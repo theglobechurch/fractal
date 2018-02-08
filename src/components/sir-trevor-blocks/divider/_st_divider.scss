@@ -1,0 +1,10 @@
+.st-divider {
+  background-image: linear-gradient(to right, rgba(siteColor(petrel), 0), rgba(siteColor(petrel), .75), rgba(siteColor(petrel), 0));
+  border: none;
+  height: 1px;
+  margin: 25px 0;
+
+  @include bpMinMedium {
+    margin: 50px 0;
+  }
+}
