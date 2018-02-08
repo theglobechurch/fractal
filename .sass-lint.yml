@@ -60,7 +60,7 @@ rules:
   mixins-before-declarations:
     - true
     -
-      exclude: ['bpMinXSmall','bpMinSmall','bpMinMedium','bpMinLarge']
+      exclude: ['bpMinExtraSmall','bpMinSmall','bpMinMedium','bpMinLarge']
   nesting-depth:
     - 2
     -

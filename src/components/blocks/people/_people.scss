@@ -11,8 +11,8 @@
   display: inline-block;
   font-size: 18px;
   line-height: 20px;
-  text-align: center;
   padding: 0 10px;
+  text-align: center;
   width: 45%;
 
   @include bpMinExtraSmall() {
