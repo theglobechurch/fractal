@@ -41,8 +41,12 @@
       @include bpMinSmall {
         display: inline;
 
-        &:first-child:after {
+        &:after {
           content: ' | ';
+        }
+
+        &:last-child:after {
+          content: none;
         }
       }
     }
