@@ -1,13 +1,13 @@
 .c-header {
   align-items: center;
-  background-color: rgba(siteColor(tgc-white), 0.9);
+  background-color: rgba(siteColor(tgc-white), .9);
   box-shadow: 0 0 20px 5px siteColor(petrel);
   display: flex;
   height: 50px;
   justify-content: center;
   padding: siteSpacing(xs);
   position: relative;
-  transition: height 0.2s;
+  transition: height .2s;
   width: 100%;
   z-index: 3;
 
@@ -33,7 +33,7 @@
 
   &__logo {
     max-height: 100px;
-    transition: max-height 0.2s;
+    transition: max-height .2s;
 
     @include bpMinSmall() {
       max-height: 160px;
@@ -46,10 +46,10 @@
 
   &__btn-menu {
     color: siteColor(tgc-black);
-    text-decoration: none;
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
 
     @include bpMaxExtraSmall() {
       background: siteColor(lark-green);
@@ -60,7 +60,7 @@
       height: 44px;
       position: fixed;
       right: 15px;
-      transition: box-shadow 0.2s;
+      transition: box-shadow .2s;
       width: 44px;
 
       .nav-open & {
@@ -85,8 +85,8 @@
         @include visuallyHidden();
       }
       font-weight: bold;
-      text-transform: uppercase;
       line-height: 24px;
+      text-transform: uppercase;
     }
 
     &__icon {
@@ -101,7 +101,7 @@
       margin-left: 4px;
       position: relative;
       transform: rotate(0deg);
-      transition: 0.3s ease-in-out;
+      transition: .3s ease-in-out;
       width: 16px;
 
       span {
@@ -112,7 +112,7 @@
         opacity: 1;
         position: absolute;
         transform: rotate(0deg);
-        transition: 0.2s ease-in-out;
+        transition: .2s ease-in-out;
         width: 100%;
 
         &:nth-child(1) {

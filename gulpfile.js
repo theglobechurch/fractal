@@ -179,7 +179,7 @@ function images() {
 function scripts() {
   var appBundler = browserify({
     entries: `${paths.src}/assets/scripts/application.js`,
-    debug: true
+    debug: false
   });
 
   return appBundler
