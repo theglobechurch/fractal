@@ -1,0 +1,15 @@
+{% extends "@page" %}
+{% block main %}
+
+  {%- render "@banner", banner -%}
+  <div class="site-container">
+    {%- render "@content-box", contentbox -%}
+  </div>
+
+  {%- render "@value-block--default" -%}
+  {%- render "@value-block--discipling" -%}
+  {%- render "@value-block--missional" -%}
+  {%- render "@value-block--generous" -%}
+
+
+{% endblock %}

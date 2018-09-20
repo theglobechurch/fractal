@@ -1,0 +1,15 @@
+<section class="c-churchValue c-churchValue--{{ modifier }}">
+
+  <div class="c-churchValue__background">
+    <img src="{{ img[320] }}" alt="" class="c-churchValue__background__blur"/>
+    <div>
+      <img src="{{ img[960] }}" srcset="{% for k,v in img %}{{ v }} {{ k }}w,{% endfor %}" alt="" class="c-churchValue__background__img" />
+    </div>
+  </div>
+
+  <div class="c-churchValue__body">
+    <div><h1 class="c-churchValue__body__title c-churchValue__huggedText"><span>{{ title }}</span></h1></div>
+    <div><p class="c-churchValue__body__tag c-churchValue__huggedText">{{ tag }}</p></div>
+    <div><p class="c-churchValue__body__detail c-churchValue__huggedText">{{ detail }}</p></div>
+  </div>
+</section>

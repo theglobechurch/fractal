@@ -1,0 +1,227 @@
+// Ref: https://css-tricks.com/multi-line-padded-text/
+
+$relational: #bf8a7f;
+$discipling: #434343;
+$missional: #7A7345;
+$generous: #588D74;
+
+.c-churchValue {
+  clear: both;
+  padding: 25px 0;
+  position: relative;
+  width: 100%;
+
+  @include bpMinExtraSmall {
+    margin-top: 50px;
+  }
+}
+
+.c-churchValue__background {
+
+  div {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include bpMinExtraSmall {
+      margin: 0 75px;
+    }
+
+    @include bpMinLarge {
+      margin: 0 auto;
+    }
+  }
+
+  &__blur {
+    display: none;
+
+    @include bpMinExtraSmall {
+      display: block;
+      filter: blur(10px);
+      position: absolute;
+      width: 100%;
+      top: 0;
+      z-index: -2;
+    }
+  }
+
+  &__img {
+    width: 100%;
+
+    @include bpMinExtraSmall {
+      filter: grayscale(85%);
+      float: right;
+      width: 66%;
+    }
+  }
+
+  @include bpMinExtraSmall {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    padding: 75px 0;
+    overflow: hidden;
+
+    &:before {
+      content:"";
+      width:100%;
+      height:100%;
+      display:block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+}
+
+.c-churchValue__body {
+  padding: 0 20px;
+  position: relative;
+  max-width: 1200px;
+  margin: -100px auto 0;
+
+  div {
+    padding: 10px;
+  }
+
+  @include bpMinExtraSmall {
+    padding: 0 75px 0;
+    margin: -30% auto 0;
+
+    div {
+      padding: 15px 0;
+      max-width: 60%;
+    }
+  }
+
+  @include bpMinLarge {
+    margin-top: -15%;
+  }
+}
+
+.c-churchValue__body__img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+
+  @include bpMinExtraSmall {
+    width: 75%;
+  }
+}
+
+.c-churchValue__body__title {
+  font-size: 32px;
+  letter-spacing: 1px;
+  line-height: 36px;
+
+  @include bpMinExtraSmall {}
+
+  @include bpMinSmall {
+    font-size: 48px;
+    letter-spacing: 2.56px;
+    line-height: 58px;
+  }
+}
+
+.c-churchValue__body__tag {
+  font-size: 24px;
+  letter-spacing: 1.3px;
+  line-height: 34px;
+
+  @include bpMinSmall {
+    font-size: 30px;
+    letter-spacing: 2.59px;
+    line-height: 42px;
+  }
+}
+
+.c-churchValue__body__detail {
+  font-size: 20px;
+  letter-spacing: 1.2px;
+  line-height: 28px;
+  font-style: italic;
+
+  @include bpMinSmall {
+    font-size: 26px;
+    letter-spacing: 1.4px;
+    line-height: 38px;
+  }
+}
+
+.c-churchValue__huggedText {
+  display: inline;
+  box-decoration-break: clone;
+
+  span {
+    padding: 10px;
+  }
+}
+
+.c-churchValue--discipling,
+.c-churchValue--generous {
+
+  @include bpMinExtraSmall {
+    .c-churchValue__background__img {
+      float: left;
+    }
+
+    .c-churchValue__body {
+      text-align: right;
+
+      div {
+        float: right;
+        clear: both;
+      }
+    }
+  }
+
+}
+
+.c-churchValue--relational {
+  .c-churchValue__background:before {
+    background-image: linear-gradient(-225deg, rgba(165,88,70,0.59) 39%, rgba(108,53,41,0.89) 97%);
+  }
+
+  .c-churchValue__huggedText {
+    background-color: $relational;
+    box-shadow: -5px 9px 0 $relational, -5px -10px 0 $relational, 5px 9px 0 $relational, 5px -10px 0 $relational;
+  }
+}
+
+.c-churchValue--discipling {
+  .c-churchValue__background:before {
+    background-image: linear-gradient(-226deg, rgba(67,67,67,0.70) 37%, rgba(35,29,29,0.80) 74%);
+  }
+
+  .c-churchValue__huggedText {
+    background-color: $discipling;
+    box-shadow: -5px 9px 0 $discipling, -5px -10px 0 $discipling, 5px 9px 0 $discipling, 5px -10px 0 $discipling;
+  }
+}
+
+.c-churchValue--missional {
+
+  .c-churchValue__background:before {
+    background-image: linear-gradient(-225deg, rgba(122,115,69,0.59) 39%, rgba(122,115,69,0.89) 97%);
+  }
+
+  .c-churchValue__huggedText {
+    background-color: $missional;
+    box-shadow: -5px 9px 0 $missional, -5px -10px 0 $missional, 5px 9px 0 $missional, 5px -10px 0 $missional;
+  }
+}
+
+.c-churchValue--generous {
+
+  .c-churchValue__background:before {
+    background-image: linear-gradient(-225deg, rgba(88,141,116,0.59) 39%, rgba(54,92,74,0.57) 96%);
+  }
+
+  .c-churchValue__huggedText {
+    background-color: $generous;
+    box-shadow: -5px 9px 0 $generous, -5px -10px 0 $generous, 5px 9px 0 $generous, 5px -10px 0 $generous;
+  }
+}
