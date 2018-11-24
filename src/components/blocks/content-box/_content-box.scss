@@ -120,16 +120,17 @@
 
     .c-content-box__main__container {
       margin: 0 auto;
+      max-width: 780px;
 
       @include bpMinMedium {
-        padding: 40px 40px 80px;
+        padding: 40px 0 80px;
       }
 
       & > p:first-child {
         font-size: 20px;
         font-weight: bold;
         margin: 0 auto 20px;
-        max-width: 780px;
+        max-width: 100%;
 
         @include bpMinMedium {
           font-size: 24px;
@@ -138,10 +139,13 @@
         }
       }
 
-      & > p, li {
-        font-size: 18px;
+      & > p, h1, h2, h3, h4, h5, ul, li, form {
         margin: 5px auto 5px;
         max-width: 620px;
+      }
+
+      & > p, li {
+        font-size: 18px;
       }
 
       & > p:last-child {
