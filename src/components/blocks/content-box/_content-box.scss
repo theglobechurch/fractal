@@ -75,7 +75,6 @@
   }
 
   @include bpMinMedium {
-    align-items: center;
     display: flex;
     justify-content: space-between;
   }
@@ -87,6 +86,7 @@
 
   &__container {
     width: 100%;
+    align-self: center;
   }
 
   h1 {
