@@ -1,0 +1,28 @@
+.u-tag {
+  color: siteColor(tgc-white);
+  background-color: themeColor(sockeye);
+  border-radius: 2px;
+  font-size: 10px;
+  line-height: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 4px 4px 2px;
+  margin: 0 2px;
+  letter-spacing: 1px;
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+
+
+  &__success {
+    background-color: themeColor(lark-green)
+  }
+
+  &__alert {
+    background-color: themeColor(gold-braid)
+  }
+
+  &__danger {
+    background-color: siteColor(danger-red)
+  }
+}
