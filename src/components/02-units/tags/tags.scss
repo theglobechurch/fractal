@@ -13,16 +13,19 @@
   justify-content: center;
   align-content: center;
 
+  &--nudged {
+    margin-left: 8px;
+  }
 
-  &__success {
+  &--success {
     background-color: themeColor(lark-green)
   }
 
-  &__alert {
+  &--alert {
     background-color: themeColor(gold-braid)
   }
 
-  &__danger {
+  &--danger {
     background-color: siteColor(danger-red)
   }
 }
