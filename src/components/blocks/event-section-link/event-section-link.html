@@ -1,0 +1,26 @@
+<section class="m-event-section-link">
+
+  {% for block in blocks %}
+    <a href="#" class="m-event-section-link__block">
+      <img src="{{ block.img[960] }}"
+           srcset="{% for k,v in block.img %}{{ v }} {{ k }}w,{% endfor %}"
+           sizes="(min-width: 500px) 33vw, 100vw"
+           alt=""
+           class="c-churchValue__background__img" />
+
+      <h1 class="m-event-section-link__block__title">{{ block.title }}</h1>
+      <h2 class="m-event-section-link__block__subtitle">{{ block.subtitle }}</h2>
+    </a>
+  {% endfor %}
+
+  {% if additionalNav %}
+  <ul class="m-event-section-link__additional-nav">
+    {% for nav in additionalNav %}
+    <li>
+      <a href="#">{{ nav }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+</section>
