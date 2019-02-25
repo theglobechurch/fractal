@@ -1,5 +1,12 @@
 <section="c-content-box">
 
+  <header class="c-content-box__header c-content-box__header--empty">
+    <div class="c-content-box__header__container">
+          <h1 class="c-content-box__header__title">{{ title }}</h1>
+          <h2 class="c-content-box__header__subtitle">{{ subtitle }}</h2>
+      </div>
+  </header>
+
   <div class="c-event-list c-content-box__main">
     {% for event in events %}
 
@@ -35,7 +42,7 @@
         </p>
 
         {% if event.moreInfo %}
-          <a href="#">More information</a>
+          <a class="c-event-list__event__infoLink" href="#">More information</a>
         {% endif %}
       </div>
     {% endfor %}

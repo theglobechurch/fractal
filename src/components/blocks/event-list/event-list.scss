@@ -1,5 +1,5 @@
 .c-event-list {
-  flex-direction: column;
+  display: block;
 
   &__heading {
     border-bottom: 3px solid black;
@@ -12,6 +12,11 @@
   &__event {
     margin-bottom: 2em;
 
+    @include bpMinSmall {
+      float: left;
+      width: 49%;
+    }
+
     h3 {
       align-items: center;
       display: flex;
@@ -19,7 +24,7 @@
       line-height: 1em;
     }
 
-    a {
+    &__infoLink {
       color: themeColor(sockeye);
       font-size: 0.825em;
       letter-spacing: 1px;

@@ -1,5 +1,7 @@
 module.exports = {
   context: {
+    title: 'Next seven days',
+    subtitle: 'Tuesday 9th – Tuesday 16 October 2018',
     events: [
       {
         dt: '2018-10-10T19:00:00',
@@ -28,7 +30,7 @@ module.exports = {
       },
       {
         dt: '2018-10-14T10:30:00',
-        title: 'Globe Extra',
+        title: 'Globe Equip',
         location: 'Willcox House, 140–148 Borough High Street',
         moreInfo: true,
         tag: 'Monthly event'
@@ -37,6 +39,12 @@ module.exports = {
         dt: '2018-10-14T16:30:00',
         title: 'Church Service',
         location: 'New Hunt\'s House, Guy\'s Campus',
+        moreInfo: true
+      },
+      {
+        dt: '2018-10-14T19:00:00',
+        title: 'Small Group Leaders Prayer',
+        location: 'Willcox House, 140–148 Borough High Street',
         moreInfo: true
       }
     ]
