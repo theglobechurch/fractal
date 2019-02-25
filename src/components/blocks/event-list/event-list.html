@@ -1,0 +1,44 @@
+<section="c-content-box">
+
+  <div class="c-event-list c-content-box__main">
+    {% for event in events %}
+
+      {% if d != event.dt|moment('L') %}
+      <h2 class="c-event-list__heading">
+        {{ event.dt|moment('dddd Do MMMM') }}
+      </h2>
+      {% endif %}
+
+      {% set d = event.dt|moment('L') %}
+
+      <div class="c-event-list__event" itemscope itemtype="http://schema.org/Event">
+        <h3>
+          <span itemprop="name">
+            {{ event.title }}
+          </span>
+
+          {% if event.tag %}
+            <span class="u-tag u-tag--nudged">{{ event.tag }}</span>
+          {% endif %}
+        </h3>
+
+        <p class="c-event-list__event__time-location">
+          <span itemprop="startDate" content="{{ event.dt }}">
+            {{ event.dt|moment('h:mma') }}
+          </span>
+
+          at
+
+          <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            {{ event.location }}
+          </span>
+        </p>
+
+        {% if event.moreInfo %}
+          <a href="#">More information</a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+</section>

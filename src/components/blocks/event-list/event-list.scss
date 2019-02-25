@@ -1,0 +1,40 @@
+.c-event-list {
+  flex-direction: column;
+
+  &__heading {
+    border-bottom: 3px solid black;
+    clear: both;
+    font-weight: bold;
+    margin-bottom: 1em;
+    padding: 0;
+  }
+
+  &__event {
+    margin-bottom: 2em;
+
+    h3 {
+      align-items: center;
+      display: flex;
+      font-size: 1.25em;
+      line-height: 1em;
+    }
+
+    a {
+      color: themeColor(sockeye);
+      font-size: 0.825em;
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+
+      &:hover {
+        color: siteColor(tgc-black);
+        text-decoration: underline;
+      }
+    }
+
+    &__time-location {
+      margin: 0;
+    }
+  }
+}
