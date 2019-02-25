@@ -18,6 +18,7 @@ const mandelbrot = require('@frctl/mandelbrot')({
 });
 
 // Nunjucks setup (Templating like Jinja2)
+const moment = require('moment');
 const nunjucks = require('@frctl/nunjucks')({
   filters: {
     markdown(str) {
@@ -31,6 +32,10 @@ const nunjucks = require('@frctl/nunjucks')({
     },
     stringify() {
       return JSON.stringify(this, null, '\t');
+    },
+    moment(dateStr, format) {
+      const date = moment(dateStr);
+      return format === undefined ? date : date.format(format);
     }
   }
 });
