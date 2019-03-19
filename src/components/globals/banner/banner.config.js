@@ -1,7 +1,7 @@
 module.exports = {
   title: 'banner',
   label: 'Page banner',
-  status: 'wip',
+  status: 'ready',
   context: {
     className: 'c-banner',
     img: {
@@ -28,6 +28,13 @@ module.exports = {
       label: 'Small',
       context: {
         variant: ['small']
+      }
+    },
+    {
+      name: 'blurred',
+      label: 'Blurred',
+      context: {
+        variant: ['blurred']
       }
     }
   ]

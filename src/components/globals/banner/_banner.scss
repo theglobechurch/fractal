@@ -30,6 +30,11 @@
     position: absolute;
     top: 0;
     width: 100%;
+
+    .c-banner--blurred & {
+      filter: blur(10px);
+      transform: scale(1.1);
+    }
   }
 
   &__text {
