@@ -2587,18 +2587,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-
   var mapEl = document.querySelector('.js-map');
-
-  if (!mapEl) {
-    return;
-  }
-
   var mapBoxCSS = 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css';
   var address = mapEl.dataset.address;
   var zoom = mapEl.dataset.zoom || 15;
   var key = 'pk.eyJ1IjoidGhlZ2xvYmVjaHVyY2giLCJhIjoiY2p0aDEybTV0MDh2bjQzbzZxM2VjeGx6aCJ9.0vbmWQqc94eTPTIVeUj_jA';
   var mapStyle = 'mapbox://styles/theglobechurch/cjtg1xmxk0wwq1fmm3wwtl9vt';
+
+  if (!mapEl) {
+    return;
+  }
 
   injectCSS(mapBoxCSS);
 
@@ -2613,24 +2611,24 @@ exports.default = function () {
     if (response && response.body && response.body.features && response.body.features.length) {
       var feature = response.body.features[0];
       var pinSetup = {
-        "id": "points",
-        "type": "symbol",
-        "source": {
-          "type": "geojson",
-          "data": {
-            "type": "FeatureCollection",
-            "features": [{
-              "type": "Feature",
-              "geometry": {
-                "type": "Point",
-                "coordinates": feature.center
+        id: 'points',
+        type: 'symbol',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: [{
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: feature.center
               }
             }]
           }
         },
-        "layout": {
-          "icon-image": "pin",
-          "icon-size": 0.25
+        layout: {
+          'icon-image': 'pin',
+          'icon-size': 0.25
         }
       };
 
@@ -2658,13 +2656,13 @@ var mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 
 function injectCSS(url) {
   if (document.createStyleSheet) {
-    document.createStyleSheet(mapBoxCSS);
+    document.createStyleSheet(url);
   } else {
-    var styles = "@import url(mapBoxCSS);";
+    var styles = '@import url(' + url + ');';
     var newSS = document.createElement('link');
     newSS.rel = 'stylesheet';
     newSS.href = 'data:text/css,' + escape(styles);
-    document.getElementsByTagName("head")[0].appendChild(newSS);
+    document.getElementsByTagName('head')[0].appendChild(newSS);
   }
 }
 

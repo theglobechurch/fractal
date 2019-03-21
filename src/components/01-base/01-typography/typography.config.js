@@ -4,7 +4,7 @@ module.exports = {
   status: 'prototype',
   default: 'regular',
   context: {
-    heading: 'The quick brown fox jumps over the lazy dog.'
+    heading: 'The quick brown fox jumps over the lazy dog.',
   },
   variants: [
     {
@@ -12,16 +12,16 @@ module.exports = {
       label: 'Regular',
       context: {
         name: 'regular',
-        sizes: ['0', '1', '2', '3', '4', '5']
-      }
+        sizes: ['0', '1', '2', '3', '4', '5'],
+      },
     },
     {
       name: 'bold',
       label: 'Bold',
       context: {
         name: 'bold',
-        sizes: ['0', '1', '2', '3', '4', '5', '6']
-      }
+        sizes: ['0', '1', '2', '3', '4', '5', '6'],
+      },
     },
     {
       name: 'uppercase',
@@ -29,8 +29,8 @@ module.exports = {
       context: {
         name: 'uppercase',
         weights: ['bold', 'semi-bold'],
-        sizes: ['0', '1', '2', '3', '4', '5']
-      }
-    }
-  ]
+        sizes: ['0', '1', '2', '3', '4', '5'],
+      },
+    },
+  ],
 };

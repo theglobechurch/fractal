@@ -13,8 +13,8 @@ module.exports = {
           { href: '#', name: 'Church leadership' },
           { href: '#', name: 'Doctrinal basis' },
           { href: '#', name: 'Affiliations' },
-          { href: '#', name: 'Mission' }
-        ]
+          { href: '#', name: 'Mission' },
+        ],
       },
       {
         title: 'When & where',
@@ -22,8 +22,8 @@ module.exports = {
         items: [
           { href: '#', name: 'Sundays' },
           { href: '#', name: 'Midweek' },
-          { href: '#', name: 'Calendar' }
-        ]
+          { href: '#', name: 'Calendar' },
+        ],
       },
       {
         title: 'Series & resources',
@@ -32,8 +32,8 @@ module.exports = {
           { href: '#', name: 'All series' },
           { href: '#', name: 'All resources' },
           { href: '#', name: 'Latest sermon' },
-          { href: '#', name: 'Blog' }
-        ]
+          { href: '#', name: 'Blog' },
+        ],
       },
       {
         title: 'Get involved',
@@ -43,17 +43,17 @@ module.exports = {
           { href: '#', name: 'Give' },
           { href: '#', name: 'Membership' },
           { href: '#', name: 'Focus' },
-          { href: '#', name: 'Trainee scheme' }
-        ]
+          { href: '#', name: 'Trainee scheme' },
+        ],
       },
       {
         title: 'Stay in touch',
         href: '#',
         items: [
           { href: 'mailto:info@globe.church', name: 'info@globe.church' },
-          { href: '#', name: 'Church news' }
-        ]
-      }
-    ]
-  }
+          { href: '#', name: 'Church news' },
+        ],
+      },
+    ],
+  },
 };

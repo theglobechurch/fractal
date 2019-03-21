@@ -6,16 +6,16 @@ module.exports = {
     navList: [
       'Sundays',
       'Bible study',
-      'Prayer meeting'
-    ]
+      'Prayer meeting',
+    ],
   },
   variants: [
     {
       name: 'internal-nav-in-content-box',
       label: 'in content box',
       context: {
-        cls: ['content-box']
-      }
-    }
-  ]
+        cls: ['content-box'],
+      },
+    },
+  ],
 };

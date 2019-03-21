@@ -4,7 +4,7 @@ $discipling: #434343;
 $missional: #7a7345;
 $generous: #588d74;
 
-.c-churchValue {
+.c-church-value {
   clear: both;
   padding: 25px 0;
   position: relative;
@@ -15,7 +15,7 @@ $generous: #588d74;
   }
 }
 
-.c-churchValue__background {
+.c-church-value__background {
 
   div {
     margin: 0 auto;
@@ -74,7 +74,7 @@ $generous: #588d74;
   }
 }
 
-.c-churchValue__body {
+.c-church-value__body {
   margin: -100px auto 0;
   max-width: 1200px;
   padding: 0 20px;
@@ -99,7 +99,7 @@ $generous: #588d74;
   }
 }
 
-.c-churchValue__body__img {
+.c-church-value__body__img {
   position: absolute;
   right: 0;
   top: 0;
@@ -111,7 +111,7 @@ $generous: #588d74;
   }
 }
 
-.c-churchValue__body__title {
+.c-church-value__body__title {
   font-size: 32px;
   letter-spacing: 1px;
   line-height: 36px;
@@ -125,7 +125,7 @@ $generous: #588d74;
   }
 }
 
-.c-churchValue__body__tag {
+.c-church-value__body__tag {
   font-size: 24px;
   letter-spacing: 1.3px;
   line-height: 34px;
@@ -137,7 +137,7 @@ $generous: #588d74;
   }
 }
 
-.c-churchValue__body__detail {
+.c-church-value__body__detail {
   font-size: 20px;
   font-style: italic;
   letter-spacing: 1.2px;
@@ -150,7 +150,7 @@ $generous: #588d74;
   }
 }
 
-.c-churchValue__huggedText {
+.c-church-value__hugged-text {
   box-decoration-break: clone;
   display: inline;
 
@@ -159,15 +159,15 @@ $generous: #588d74;
   }
 }
 
-.c-churchValue--discipling,
-.c-churchValue--generous {
+.c-church-value--discipling,
+.c-church-value--generous {
 
   @include bpMinExtraSmall {
-    .c-churchValue__background__img {
+    .c-church-value__background__img {
       float: left;
     }
 
-    .c-churchValue__body {
+    .c-church-value__body {
       text-align: right;
 
       div {
@@ -179,45 +179,45 @@ $generous: #588d74;
 
 }
 
-.c-churchValue--relational {
-  .c-churchValue__background:before {
+.c-church-value--relational {
+  .c-church-value__background:before {
     background-image: linear-gradient(-225deg, rgba(165, 88, 70, .59) 39%, rgba(108, 53, 41, .89) 97%);
   }
 
-  .c-churchValue__huggedText {
+  .c-church-value__hugged-text {
     background-color: $relational;
     box-shadow: -5px 9px 0 $relational, -5px -10px 0 $relational, 5px 9px 0 $relational, 5px -10px 0 $relational;
   }
 }
 
-.c-churchValue--discipling {
-  .c-churchValue__background:before {
+.c-church-value--discipling {
+  .c-church-value__background:before {
     background-image: linear-gradient(-226deg, rgba(67, 67, 67, .70) 37%, rgba(35, 29, 29, .80) 74%);
   }
 
-  .c-churchValue__huggedText {
+  .c-church-value__hugged-text {
     background-color: $discipling;
     box-shadow: -5px 9px 0 $discipling, -5px -10px 0 $discipling, 5px 9px 0 $discipling, 5px -10px 0 $discipling;
   }
 }
 
-.c-churchValue--missional {
-  .c-churchValue__background:before {
+.c-church-value--missional {
+  .c-church-value__background:before {
     background-image: linear-gradient(-225deg, rgba(122, 115, 69, .59) 39%, rgba(122, 115, 69, .89) 97%);
   }
 
-  .c-churchValue__huggedText {
+  .c-church-value__hugged-text {
     background-color: $missional;
     box-shadow: -5px 9px 0 $missional, -5px -10px 0 $missional, 5px 9px 0 $missional, 5px -10px 0 $missional;
   }
 }
 
-.c-churchValue--generous {
-  .c-churchValue__background:before {
+.c-church-value--generous {
+  .c-church-value__background:before {
     background-image: linear-gradient(-225deg, rgba(88, 141, 116, .59) 39%, rgba(54, 92, 74, .57) 96%);
   }
 
-  .c-churchValue__huggedText {
+  .c-church-value__hugged-text {
     background-color: $generous;
     box-shadow: -5px 9px 0 $generous, -5px -10px 0 $generous, 5px 9px 0 $generous, 5px -10px 0 $generous;
   }

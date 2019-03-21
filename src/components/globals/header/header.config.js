@@ -1,8 +1,8 @@
 module.exports = {
   title: 'Header',
   label: 'Header',
-  status: 'wip',
+  status: 'ready',
   context: {
-    className: 'c-header'
-  }
+    className: 'c-header',
+  },
 };

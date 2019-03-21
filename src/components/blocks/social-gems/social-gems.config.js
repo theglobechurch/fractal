@@ -1,21 +1,21 @@
 module.exports = {
   title: 'Social gems',
   label: 'Social gems',
-  status: 'wip',
+  status: 'ready',
   context: {
     services: [
       {
         href: 'https://twitter.com/theglobechurch',
-        service: 'twitter'
+        service: 'twitter',
       },
       {
         href: 'https://facebook.com/theglobechurch',
-        service: 'facebook'
+        service: 'facebook',
       },
       {
         href: 'https://instagram.com/theglobechurch',
-        service: 'instagram'
-      }
-    ]
-  }
+        service: 'instagram',
+      },
+    ],
+  },
 };

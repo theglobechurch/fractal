@@ -1,5 +1,5 @@
 module.exports = {
   title: 'Units',
   label: 'Unit Styles',
-  order: 2
+  order: 2,
 };

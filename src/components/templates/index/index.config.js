@@ -13,8 +13,8 @@ module.exports = {
         1280: '/assets/img/phi-1280.jpg',
         960: '/assets/img/phi-960.jpg',
         640: '/assets/img/phi-640.jpg',
-        320: '/assets/img/phi-320.jpg'
-      }
-    }
-  }
+        320: '/assets/img/phi-320.jpg',
+      },
+    },
+  },
 };

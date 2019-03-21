@@ -10,8 +10,8 @@ module.exports = {
           1280: '/assets/img/blocks/value-block/img/relational-1280.jpg',
           960: '/assets/img/blocks/value-block/img/relational-960.jpg',
           640: '/assets/img/blocks/value-block/img/relational-640.jpg',
-          320: '/assets/img/blocks/value-block/img/relational-320.jpg'
-        }
+          320: '/assets/img/blocks/value-block/img/relational-320.jpg',
+        },
       },
       {
         title: 'Globe Focus',
@@ -22,8 +22,8 @@ module.exports = {
           1280: '/assets/img/blocks/value-block/img/discipling-1280.jpg',
           960: '/assets/img/blocks/value-block/img/discipling-960.jpg',
           640: '/assets/img/blocks/value-block/img/discipling-640.jpg',
-          320: '/assets/img/blocks/value-block/img/discipling-320.jpg'
-        }
+          320: '/assets/img/blocks/value-block/img/discipling-320.jpg',
+        },
       },
       {
         title: 'Globe Central',
@@ -34,13 +34,13 @@ module.exports = {
           1280: '/assets/img/blocks/value-block/img/missional-1280.jpg',
           960: '/assets/img/blocks/value-block/img/missional-960.jpg',
           640: '/assets/img/blocks/value-block/img/missional-640.jpg',
-          320: '/assets/img/blocks/value-block/img/missional-320.jpg'
-        }
-      }
+          320: '/assets/img/blocks/value-block/img/missional-320.jpg',
+        },
+      },
     ],
     additionalNav: [
       'Next Seven Days',
-      'Further Ahead'
-    ]
-  }
-}
+      'Further Ahead',
+    ],
+  },
+};

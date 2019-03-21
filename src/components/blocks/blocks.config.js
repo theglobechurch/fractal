@@ -1,5 +1,5 @@
 module.exports = {
   name: 'Site blocks',
-  order: 3
+  order: 3,
 };
 

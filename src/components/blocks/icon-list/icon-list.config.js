@@ -4,19 +4,19 @@ module.exports = {
       {
         text: 'Listen now',
         href: '#',
-        icon: 'listen'
+        icon: 'listen',
       },
       {
         text: 'Download',
         href: '#',
-        icon: 'download'
+        icon: 'download',
       },
       {
         text: 'Subscribe',
         href: '#',
-        icon: 'subscribe'
-      }
-    ]
+        icon: 'subscribe',
+      },
+    ],
   },
   variants: [
     {
@@ -26,14 +26,14 @@ module.exports = {
         list: [
           {
             text: 'Jonty Allcock',
-            icon: 'person'
+            icon: 'person',
           },
           {
             text: '14 August 2017',
-            icon: 'calendar'
-          }
-        ]
-      }
-    }
-  ]
+            icon: 'calendar',
+          },
+        ],
+      },
+    },
+  ],
 };

@@ -5,6 +5,6 @@ module.exports = {
   context: {
     className: 'c-map',
     address: 'New Hunt\'s House, Guy\'s Campus. Newcomen Street, SE1 1UL',
-    cta: 'Get directions'
-  }
-}
+    cta: 'Get directions',
+  },
+};

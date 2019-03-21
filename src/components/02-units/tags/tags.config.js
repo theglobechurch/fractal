@@ -3,20 +3,20 @@ module.exports = {
     tags: [
       {
         title: 'Danger',
-        type: 'danger'
+        type: 'danger',
       },
       {
         title: 'Alert',
-        type: 'alert'
+        type: 'alert',
       },
       {
         title: 'Success',
-        type: 'success'
+        type: 'success',
       },
       {
         title: 'Normal',
-        type: 'normal'
+        type: 'normal',
       },
-    ]
-  }
-}
+    ],
+  },
+};

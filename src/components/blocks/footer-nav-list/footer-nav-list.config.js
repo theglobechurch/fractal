@@ -8,20 +8,20 @@ module.exports = {
     items: [
       {
         href: '#',
-        name: 'Church leadership'
+        name: 'Church leadership',
       },
       {
         href: '#',
-        name: 'Doctrinal basis'
+        name: 'Doctrinal basis',
       },
       {
         href: '#',
-        name: 'Affiliations'
+        name: 'Affiliations',
       },
       {
         href: '#',
-        name: 'Mission'
-      }
-    ]
-  }
+        name: 'Mission',
+      },
+    ],
+  },
 };

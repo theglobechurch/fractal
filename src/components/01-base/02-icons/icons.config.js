@@ -21,13 +21,13 @@ module.exports = {
       'email',
       'clock',
       'calendar',
-      'person'
-    ]
+      'person',
+    ],
   },
   variants: [
     {
       name: 'all',
-      label: 'All'
-    }
-  ]
+      label: 'All',
+    },
+  ],
 };

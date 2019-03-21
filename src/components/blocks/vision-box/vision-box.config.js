@@ -13,8 +13,8 @@ module.exports = {
           1280: '/assets/img/blocks/vision-box/img/jonty-1280.jpg',
           960: '/assets/img/blocks/vision-box/img/jonty-960.jpg',
           640: '/assets/img/blocks/vision-box/img/jonty-640.jpg',
-          320: '/assets/img/blocks/vision-box/img/jonty-320.jpg'
-        }
+          320: '/assets/img/blocks/vision-box/img/jonty-320.jpg',
+        },
       },
       {
         title: 'Made up of all sorts of',
@@ -25,8 +25,8 @@ module.exports = {
           1280: '/assets/img/blocks/vision-box/img/people-1280.jpg',
           960: '/assets/img/blocks/vision-box/img/people-960.jpg',
           640: '/assets/img/blocks/vision-box/img/people-640.jpg',
-          320: '/assets/img/blocks/vision-box/img/people-320.jpg'
-        }
+          320: '/assets/img/blocks/vision-box/img/people-320.jpg',
+        },
       },
       {
         title: 'Involved in the greatest',
@@ -37,9 +37,9 @@ module.exports = {
           1280: '/assets/img/blocks/vision-box/img/mission-1280.jpg',
           960: '/assets/img/blocks/vision-box/img/mission-960.jpg',
           640: '/assets/img/blocks/vision-box/img/mission-640.jpg',
-          320: '/assets/img/blocks/vision-box/img/mission-320.jpg'
-        }
-      }
-    ]
-  }
+          320: '/assets/img/blocks/vision-box/img/mission-320.jpg',
+        },
+      },
+    ],
+  },
 };

@@ -10,7 +10,7 @@ module.exports = {
       { href: '#', title: 'When & where' },
       { href: '#', title: 'Series & resources' },
       { href: '#', title: 'Get involved' },
-      { href: '#', title: 'Contact' }
-    ]
-  }
+      { href: '#', title: 'Contact' },
+    ],
+  },
 };

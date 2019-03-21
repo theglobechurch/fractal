@@ -10,14 +10,14 @@ module.exports = {
         1280: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-1280.jpg',
         960: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-960.jpg',
         640: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-640.jpg',
-        320: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-320.jpg'
+        320: '/assets/img/templates/series-and-resources/img/series-and-resources-banner-320.jpg',
       },
-      title: 'Sermon Recordings'
+      title: 'Sermon Recordings',
     },
     intro: {
       className: 'c-content-box',
       title: 'Preaching at The Globe Church',
-      body: ['Each week we gather to hear from God\'s word…']
+      body: ['Each week we gather to hear from God\'s word…'],
     },
     descBox: [
       {
@@ -29,17 +29,17 @@ module.exports = {
           1280: '/assets/img/phi-1280.jpg',
           960: '/assets/img/phi-960.jpg',
           640: '/assets/img/phi-640.jpg',
-          320: '/assets/img/phi-320.jpg'
+          320: '/assets/img/phi-320.jpg',
         },
         theme: 'sockeye',
         flip: false,
         series: {
           meta: [
             'July – August 2017',
-            '5 recordings'
-          ]
-        }
-      }
+            '5 recordings',
+          ],
+        },
+      },
     ],
     promobox: {
       className: 'c-promo-box',
@@ -52,8 +52,8 @@ module.exports = {
         1280: '/assets/img/phi-1280.jpg',
         960: '/assets/img/phi-960.jpg',
         640: '/assets/img/phi-640.jpg',
-        320: '/assets/img/phi-320.jpg'
-      }
-    }
-  }
+        320: '/assets/img/phi-320.jpg',
+      },
+    },
+  },
 };
