@@ -95,8 +95,34 @@
   }
 
   &__container {
-    width: 100%;
     align-self: center;
+    padding: 10px 0;
+    width: 100%;
+
+    p {
+      @include fontSize(20);
+    }
+
+    &__imgContainer {
+      background-position: center center;
+      background-size: cover;
+      height: 0;
+      margin-bottom: 30px;
+      padding-bottom: 40%;
+      position: relative;
+      width: 100%;
+
+      img {
+        display: block;
+        height: 100%;
+        left: 0;
+        max-width: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
   }
 
   h1 {
@@ -196,9 +222,40 @@
   @include bpMinMedium {
     border-left: 1px solid siteColor(sockeye);
     border-top: none;
-    margin: 10px 0 10px 40px;
+    margin: 0 20px 0 40px;
     padding: 10px 0 10px 40px;
     text-align: left;
+  }
+
+  @include bpMinLarge {
+    margin: 0 0 0 40px;
+  }
+
+  &__meta {
+    margin-bottom: 18px;
+
+    p {
+      margin: 0;
+    }
+
+    &__title {
+      @include fontSize(24);
+      @include lineHeight(28);
+      @include letterSpacing(2);
+      font-weight: bold;
+    }
+
+    &__subtitle {
+      @include fontSize(24);
+      @include lineHeight(28);
+      @include letterSpacing(2);
+    }
+
+    &__small {
+      @include fontSize(18);
+      @include lineHeight(22);
+      @include letterSpacing(1);
+    }
   }
 }
 
@@ -213,6 +270,24 @@
     margin-top: -75px;
   }
 }
+
+.c-banner--blurred+.site-container .c-content-box {
+  margin-top: -90px;
+
+  @include bpMinExtraSmall {
+    margin-top: -150px;
+  }
+
+  @include bpMinSmall {
+    margin-top: -250px;
+  }
+
+  @include bpMinLarge {
+    margin-top: -400px;
+  }
+}
+
+
 
 .c-content-box__header+.c-content-box__main {
   position: relative;

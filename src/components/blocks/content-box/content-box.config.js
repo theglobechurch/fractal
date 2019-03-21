@@ -25,7 +25,35 @@ module.exports = {
       context: {
         className: 'c-content-box',
         body: ['Do you want to have a deeper experience of what it means to know Christ? Do you want to have a deeper experience of life? We want to experience and understand more. We’ve been working our way through this letter, today we’re focusing on verses 4 through 7. In these verses Paul says something really important; he talks about what gospel love looks like in the church… and it’s not about standing still– it’s about know Jesus more.'],
-        list: true
+        aside: true,
+        icons: true
+      }
+    },
+    {
+      name: 'event details',
+      label: 'Event Details',
+      context: {
+        className: 'c-content-box',
+        bodyImg: '/assets/img/blocks/content-box/img/sunday-service',
+        body: [
+          'Getting together on a Sunday is the high point of our week. We gather because we want to worship God, help one another, and be challenged and encouraged by God’s Word.',
+          'Our gathering has two parts. Firstly, there is the church service, which lasts about eighty minutes. During that time, we sing God’s praise, pray to him together as a church, and hear the Word of God preached. Secondly, we spend time as a church family talking and eating together. The hour after the service has become a brilliant time for us to build our family life as a church.',
+          'Globe Kids and Globe Minis are our Sunday children\'s groups. Globe Minis is our group for babies to Year 4, and Globe Kids is for children and young people in Year 5 to Year 9. Our Kids group meets every other Sunday during the service, whilst Minis meet every week. This is a time crafted especially for children, with a focus on teaching them more about who Jesus is and what that means for them. A typical session involves Bible teaching, games, craft, sport, and play - all designed to help them get to grips with the person of Jesus in the Bible.'
+        ],
+        aside: [
+          {
+            title: 'Every Sunday',
+            subtitle: '4.30–6.00pm',
+            small: 'You\'re invited to a meal after the service'
+          },
+          {
+            title: 'New Hunt\'s House',
+            subtitle: 'Guy\'s Campus,<br />Newccomen Street,<br />SE1 1UL',
+            small: 'London Bridge / Borough'
+          }
+        ],
+        icons: false,
+        map: true
       }
     },
     {
@@ -49,7 +77,7 @@ module.exports = {
           title: 'Sunday services',
           subtitle: 'Every week at 4.30pm'
         },
-        list: true,
+        aside: true,
         actionBtn: 'Get directions'
       }
     },

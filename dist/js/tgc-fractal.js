@@ -2630,7 +2630,7 @@ exports.default = function () {
         },
         "layout": {
           "icon-image": "pin",
-          "icon-size": 0.5
+          "icon-size": 0.25
         }
       };
 

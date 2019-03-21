@@ -23,6 +23,12 @@
         <h2>{{ subtitle }}</h2>
       {% endif %}
 
+      {% if bodyImg %}
+        <div class="c-content-box__main__container__imgContainer js-object-fit-container">
+          <img src="{{ bodyImg }}-960.jpg" alt="" />
+        </div>
+      {% endif %}
+
       {% for para in body %}
         <p>{{ para }}</p>
       {% endfor %}
@@ -70,9 +76,26 @@
 
     {% endif %}
 
-    {% if list %}
+    {% if aside %}
       <aside class="c-content-box__aside">
-        {%- render "@icon-list" -%}
+        {% if icons %}
+          {%- render "@icon-list" -%}
+        {% endif %}
+
+        {% if aside !== 1 %}
+          {% for content in aside %}
+            <div class="c-content-box__aside__meta">
+              <p class="c-content-box__aside__meta__title">{{ content.title }}</p>
+              <p class="c-content-box__aside__meta__subtitle">{{ content.subtitle }}</p>
+              <p class="c-content-box__aside__meta__small">{{ content.small }}</p>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        {% if map %}
+          {%- render "@map" -%}
+        {% endif %}
+
         {% if actionBtn %}
           <a href="#" class="u-btn u-btn--dark">{{ actionBtn }}</a>
         {% endif %}

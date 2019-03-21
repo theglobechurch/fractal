@@ -62,6 +62,22 @@
       min-height: 230px;
       padding-top: 50px;
     }
+
+    .c-banner--blurred & {
+      padding-bottom: 90px;
+
+      @include bpMinExtraSmall {
+        padding-bottom: 150px;
+      }
+
+      @include bpMinSmall {
+        padding-bottom: 250px;
+      }
+
+      @include bpMinLarge {
+        padding-bottom: 400px;
+      }
+    }
   }
 
   &__pretitle {

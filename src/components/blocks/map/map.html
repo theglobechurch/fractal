@@ -1,9 +1,14 @@
 <div class="{{ className }}">
   <div class="{{ className }}__map js-map"
        data-address="{{ address }}"
-       data-zoom="14">
+       data-zoom="13">
   </div>
 
-  <a class="{{ className }}__link" href="#">{{ cta }}</a>
+  <a class="{{ className }}__link"
+     href="https://www.google.com/maps?hl=en&q={{ address | urlencode }}"
+     target="_blank"
+     rel="noopener">
+    {{ cta }}
+  </a>
 </div>
 
