@@ -1,0 +1,21 @@
+.c-map {
+  position: relative;
+
+  &__map {
+    width: 1200px;
+    height: 800px;
+  }
+
+  &__link {
+    @include type(linkCaps);
+    color: siteColor(sockeye);
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    transition: color .5s;
+
+    &:hover {
+      color: white;
+    }
+  }
+}

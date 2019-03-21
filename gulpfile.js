@@ -175,6 +175,12 @@ function images() {
 }
 
 //---
+// Block Assets
+function blockAssets() {
+  return gulp.src(`${paths.src}/components/**/assets/*`)
+    .pipe(gulp.dest(`${paths.dest}/assets`));
+}
+//---
 // Scripts
 function scripts() {
   var appBundler = browserify({
@@ -244,9 +250,10 @@ function watch() {
   gulp.watch([`${paths.src}/assets/scripts/application.js`, `${paths.src}/components/**/*.js`], scripts);
   gulp.watch(`${paths.src}/assets/svg/*.svg`, svg);
   gulp.watch([`${paths.src}/assets/img/**/*`, `${paths.src}/components/**/img/*.{gif,jpg,jpeg,png}`], images);
+  gulp.watch([`${paths.src}/components/**/assets/*`], blockAssets);
 }
 
-const compile = gulp.series(clean, gulp.parallel(svg, styles, scripts, images));
+const compile = gulp.series(clean, gulp.parallel(svg, styles, scripts, images, blockAssets));
 const buildDistAssets = gulp.series(cleanReleaseFolder, gulp.parallel(releaseSVG, releaseCSS, releaseJS));
 const linter = gulp.series(sassLinter, jsLinter);
 
