@@ -2595,20 +2595,12 @@ exports.default = function () {
   }
 
   var mapBoxCSS = 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css';
-
-  if (document.createStyleSheet) {
-    document.createStyleSheet(mapBoxCSS);
-  } else {
-    var styles = "@import url(mapBoxCSS);";
-    var newSS = document.createElement('link');
-    newSS.rel = 'stylesheet';
-    newSS.href = 'data:text/css,' + escape(styles);
-    document.getElementsByTagName("head")[0].appendChild(newSS);
-  }
-
   var address = mapEl.dataset.address;
+  var zoom = mapEl.dataset.zoom || 15;
   var key = 'pk.eyJ1IjoidGhlZ2xvYmVjaHVyY2giLCJhIjoiY2p0aDEybTV0MDh2bjQzbzZxM2VjeGx6aCJ9.0vbmWQqc94eTPTIVeUj_jA';
   var mapStyle = 'mapbox://styles/theglobechurch/cjtg1xmxk0wwq1fmm3wwtl9vt';
+
+  injectCSS(mapBoxCSS);
 
   mapboxgl.accessToken = key;
   var baseClient = mbxClient({ accessToken: mapboxgl.accessToken });
@@ -2620,38 +2612,40 @@ exports.default = function () {
   }).send().then(function (response) {
     if (response && response.body && response.body.features && response.body.features.length) {
       var feature = response.body.features[0];
+      var pinSetup = {
+        "id": "points",
+        "type": "symbol",
+        "source": {
+          "type": "geojson",
+          "data": {
+            "type": "FeatureCollection",
+            "features": [{
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": feature.center
+              }
+            }]
+          }
+        },
+        "layout": {
+          "icon-image": "pin",
+          "icon-size": 0.5
+        }
+      };
+
       var map = new mapboxgl.Map({
-        container: 'map',
+        container: mapEl,
         style: mapStyle,
         center: feature.center,
-        zoom: 15
+        zoom: zoom
       });
 
       map.on('load', function () {
         map.loadImage('/assets/blocks/map/assets/map_pin2.png', function (error, image) {
           if (error) throw error;
           map.addImage('pin', image);
-          map.addLayer({
-            "id": "points",
-            "type": "symbol",
-            "source": {
-              "type": "geojson",
-              "data": {
-                "type": "FeatureCollection",
-                "features": [{
-                  "type": "Feature",
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": feature.center
-                  }
-                }]
-              }
-            },
-            "layout": {
-              "icon-image": "pin",
-              "icon-size": 0.5
-            }
-          });
+          map.addLayer(pinSetup);
         });
       });
     }
@@ -2661,6 +2655,18 @@ exports.default = function () {
 var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
 var mbxClient = require('@mapbox/mapbox-sdk');
 var mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+
+function injectCSS(url) {
+  if (document.createStyleSheet) {
+    document.createStyleSheet(mapBoxCSS);
+  } else {
+    var styles = "@import url(mapBoxCSS);";
+    var newSS = document.createElement('link');
+    newSS.rel = 'stylesheet';
+    newSS.href = 'data:text/css,' + escape(styles);
+    document.getElementsByTagName("head")[0].appendChild(newSS);
+  }
+}
 
 },{"@mapbox/mapbox-sdk":2,"@mapbox/mapbox-sdk/services/geocoding":14,"mapbox-gl/dist/mapbox-gl.js":23}],31:[function(require,module,exports){
 'use strict';
