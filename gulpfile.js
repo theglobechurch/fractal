@@ -258,6 +258,7 @@ const buildDistAssets = gulp.series(cleanReleaseFolder, gulp.parallel(releaseSVG
 const linter = gulp.series(sassLinter, jsLinter);
 
 gulp.task('dev', gulp.series(compile, watch));
+gulp.task('build', gulp.series(compile, staticBuild));
 gulp.task('deploy', gulp.series(compile, staticBuild, deploy));
 gulp.task('dist', gulp.series(linter, compile, buildDistAssets, staticBuild, deploy, clean));
 gulp.task('lint', gulp.series(linter));

@@ -6,9 +6,11 @@ before_script:
   - npm install -g gulp-cli
 script:
   - gulp lint
+before_deploy: gulp build
 deploy:
   skip_cleanup: true
-  provider: script
-  script: gulp deploy
+  provider: surge
+  project: ./www/
+  domain: https://tgc-fractal.surge.sh
 notifications:
   email: false
