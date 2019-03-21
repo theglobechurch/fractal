@@ -1,31 +1,31 @@
 .u-tag {
-  color: siteColor(tgc-white);
+  align-content: center;
   background-color: themeColor(sockeye);
   border-radius: 2px;
-  font-size: 10px;
-  line-height: 10px;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 4px 4px 2px;
-  margin: 0 2px;
-  letter-spacing: 1px;
+  color: siteColor(tgc-white);
   display: inline-flex;
+  font-size: 10px;
+  font-weight: bold;
   justify-content: center;
-  align-content: center;
+  letter-spacing: 1px;
+  line-height: 10px;
+  margin: 0 2px;
+  padding: 4px 4px 2px;
+  text-transform: uppercase;
 
   &--nudged {
     margin-left: 8px;
   }
 
   &--success {
-    background-color: themeColor(lark-green)
+    background-color: themeColor(lark-green);
   }
 
   &--alert {
-    background-color: themeColor(gold-braid)
+    background-color: themeColor(gold-braid);
   }
 
   &--danger {
-    background-color: siteColor(danger-red)
+    background-color: siteColor(danger-red);
   }
 }

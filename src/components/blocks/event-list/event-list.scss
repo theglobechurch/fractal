@@ -26,11 +26,11 @@
 
     &__infoLink {
       color: themeColor(sockeye);
-      font-size: 0.825em;
+      font-size: .825em;
       letter-spacing: 1px;
       text-decoration: none;
       text-transform: uppercase;
-      transition: color 0.3s;
+      transition: color .3s;
 
       &:hover {
         color: siteColor(tgc-black);

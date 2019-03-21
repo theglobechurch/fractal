@@ -1,9 +1,8 @@
 // Ref: https://css-tricks.com/multi-line-padded-text/
-
 $relational: #bf8a7f;
 $discipling: #434343;
-$missional: #7A7345;
-$generous: #588D74;
+$missional: #7a7345;
+$generous: #588d74;
 
 .c-churchValue {
   clear: both;
@@ -19,9 +18,9 @@ $generous: #588D74;
 .c-churchValue__background {
 
   div {
-    position: relative;
-    max-width: 1200px;
     margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
 
     @include bpMinExtraSmall {
       margin: 0 75px;
@@ -39,8 +38,8 @@ $generous: #588D74;
       display: block;
       filter: blur(10px);
       position: absolute;
-      width: 100%;
       top: 0;
+      width: 100%;
       z-index: -2;
     }
   }
@@ -56,42 +55,42 @@ $generous: #588D74;
   }
 
   @include bpMinExtraSmall {
+    display: inline-block;
+    overflow: hidden;
+    padding: 75px 0;
     position: relative;
     width: 100%;
-    display: inline-block;
-    padding: 75px 0;
-    overflow: hidden;
 
     &:before {
-      content:"";
-      width:100%;
-      height:100%;
-      display:block;
+      content: "";
+      display: block;
+      height: 100%;
+      left: 0;
       position: absolute;
       top: 0;
-      left: 0;
+      width: 100%;
       z-index: -1;
     }
   }
 }
 
 .c-churchValue__body {
+  margin: -100px auto 0;
+  max-width: 1200px;
   padding: 0 20px;
   position: relative;
-  max-width: 1200px;
-  margin: -100px auto 0;
 
   div {
     padding: 10px;
   }
 
   @include bpMinExtraSmall {
-    padding: 0 75px 0;
     margin: -30% auto 0;
+    padding: 0 75px 0;
 
     div {
-      padding: 15px 0;
       max-width: 60%;
+      padding: 15px 0;
     }
   }
 
@@ -104,8 +103,8 @@ $generous: #588D74;
   position: absolute;
   right: 0;
   top: 0;
-  z-index: -1;
   width: 100%;
+  z-index: -1;
 
   @include bpMinExtraSmall {
     width: 75%;
@@ -140,9 +139,9 @@ $generous: #588D74;
 
 .c-churchValue__body__detail {
   font-size: 20px;
+  font-style: italic;
   letter-spacing: 1.2px;
   line-height: 28px;
-  font-style: italic;
 
   @include bpMinSmall {
     font-size: 26px;
@@ -152,8 +151,8 @@ $generous: #588D74;
 }
 
 .c-churchValue__huggedText {
-  display: inline;
   box-decoration-break: clone;
+  display: inline;
 
   span {
     padding: 10px;
@@ -172,8 +171,8 @@ $generous: #588D74;
       text-align: right;
 
       div {
-        float: right;
         clear: both;
+        float: right;
       }
     }
   }
@@ -182,7 +181,7 @@ $generous: #588D74;
 
 .c-churchValue--relational {
   .c-churchValue__background:before {
-    background-image: linear-gradient(-225deg, rgba(165,88,70,0.59) 39%, rgba(108,53,41,0.89) 97%);
+    background-image: linear-gradient(-225deg, rgba(165, 88, 70, .59) 39%, rgba(108, 53, 41, .89) 97%);
   }
 
   .c-churchValue__huggedText {
@@ -193,7 +192,7 @@ $generous: #588D74;
 
 .c-churchValue--discipling {
   .c-churchValue__background:before {
-    background-image: linear-gradient(-226deg, rgba(67,67,67,0.70) 37%, rgba(35,29,29,0.80) 74%);
+    background-image: linear-gradient(-226deg, rgba(67, 67, 67, .70) 37%, rgba(35, 29, 29, .80) 74%);
   }
 
   .c-churchValue__huggedText {
@@ -203,9 +202,8 @@ $generous: #588D74;
 }
 
 .c-churchValue--missional {
-
   .c-churchValue__background:before {
-    background-image: linear-gradient(-225deg, rgba(122,115,69,0.59) 39%, rgba(122,115,69,0.89) 97%);
+    background-image: linear-gradient(-225deg, rgba(122, 115, 69, .59) 39%, rgba(122, 115, 69, .89) 97%);
   }
 
   .c-churchValue__huggedText {
@@ -215,9 +213,8 @@ $generous: #588D74;
 }
 
 .c-churchValue--generous {
-
   .c-churchValue__background:before {
-    background-image: linear-gradient(-225deg, rgba(88,141,116,0.59) 39%, rgba(54,92,74,0.57) 96%);
+    background-image: linear-gradient(-225deg, rgba(88, 141, 116, .59) 39%, rgba(54, 92, 74, .57) 96%);
   }
 
   .c-churchValue__huggedText {
