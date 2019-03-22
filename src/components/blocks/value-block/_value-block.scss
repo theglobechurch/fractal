@@ -154,7 +154,7 @@ $generous: #588d74;
   box-decoration-break: clone;
   display: inline;
 
-  span {
+  &__padded {
     padding: 10px;
   }
 }
