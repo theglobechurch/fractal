@@ -4,6 +4,6 @@ module.exports = {
   status: 'wip',
   context: {
     className: 'c-audio-player',
-    href: 'https://static1.squarespace.com/static/554b9edce4b07263ba128461/t/5959ee07414fb54d0e8f163a/1499065956037/20170702.Philemon1.mp3/original/20170702.Philemon1.mp3',
+    href: 'https://archive.org/download/jfks19610525/jfk_1961_0525_moon_64kb.mp3',
   },
 };

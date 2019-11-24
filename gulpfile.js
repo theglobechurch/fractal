@@ -109,9 +109,16 @@ function styles() {
 // SVG Icons
 function svg() {
   return gulp.src(`${paths.src}/assets/svg/*.svg`)
-    .pipe(svgmin())
+    .pipe(svgmin({
+      plugins: [{
+        removeViewBox: false
+      }]
+    }))
     .pipe(svgsymbols({
-			svgClassname: 's-svg-icon',
+			svgAttrs: {
+        'class': 's-svg-icon',
+        'aria-hidden': `true`,
+      },
 			templates: ['default-svg'],
       title: false,
     }))
