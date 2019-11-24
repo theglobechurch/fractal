@@ -17,7 +17,7 @@
 
   <body>
 
-    {{ yield }}
+    {{ yield | safe }}
 
     <script src="{{ '/assets/js/bundle.js' | path }}" async></script>
   </body>
