@@ -2588,15 +2588,15 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function () {
   var mapEl = document.querySelector('.js-map');
+  if (!mapEl) {
+    return;
+  }
+
   var mapBoxCSS = 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css';
   var address = mapEl.dataset.address;
   var zoom = mapEl.dataset.zoom || 15;
   var key = 'pk.eyJ1IjoidGhlZ2xvYmVjaHVyY2giLCJhIjoiY2p0aDEybTV0MDh2bjQzbzZxM2VjeGx6aCJ9.0vbmWQqc94eTPTIVeUj_jA';
   var mapStyle = 'mapbox://styles/theglobechurch/cjtg1xmxk0wwq1fmm3wwtl9vt';
-
-  if (!mapEl) {
-    return;
-  }
 
   injectCSS(mapBoxCSS);
 
