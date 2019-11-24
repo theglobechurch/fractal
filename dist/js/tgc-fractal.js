@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 'use strict';
 /**
  * Validators are functions which assert certain type.
@@ -583,7 +583,7 @@ MapiClient.prototype.createRequest = function createRequest(requestOptions) {
 
 module.exports = MapiClient;
 
-},{"../constants":9,"./mapi-request":7,"@mapbox/parse-mapbox-token":20}],6:[function(require,module,exports){
+},{"../constants":9,"./mapi-request":7,"@mapbox/parse-mapbox-token":19}],6:[function(require,module,exports){
 'use strict';
 
 var constants = require('../constants');
@@ -905,7 +905,7 @@ MapiRequest.prototype._extend = function _extend(options) {
 
 module.exports = MapiRequest;
 
-},{"../constants":9,"../helpers/url-utils":12,"@mapbox/parse-mapbox-token":20,"eventemitter3":13,"xtend":25}],8:[function(require,module,exports){
+},{"../constants":9,"../helpers/url-utils":12,"@mapbox/parse-mapbox-token":19,"eventemitter3":21,"xtend":25}],8:[function(require,module,exports){
 'use strict';
 
 var parseLinkHeader = require('../helpers/parse-link-header');
@@ -1225,6 +1225,561 @@ module.exports = {
 };
 
 },{}],13:[function(require,module,exports){
+'use strict';
+
+var xtend = require('xtend');
+var v = require('./service-helpers/validator');
+var pick = require('./service-helpers/pick');
+var stringifyBooleans = require('./service-helpers/stringify-booleans');
+var createServiceFactory = require('./service-helpers/create-service-factory');
+
+/**
+ * Geocoding API service.
+ *
+ * Learn more about this service and its responses in
+ * [the HTTP service documentation](https://www.mapbox.com/api-documentation/search/#geocoding).
+ */
+var Geocoding = {};
+
+var featureTypes = [
+  'country',
+  'region',
+  'postcode',
+  'district',
+  'place',
+  'locality',
+  'neighborhood',
+  'address',
+  'poi',
+  'poi.landmark'
+];
+
+/**
+ * Search for a place.
+ *
+ * See the [public documentation](https://www.mapbox.com/api-documentation/search/#forward-geocoding).
+ *
+ * @param {Object} config
+ * @param {string} config.query - A place name.
+ * @param {'mapbox.places'|'mapbox.places-permanent'} [config.mode="mapbox.places"] - Either `mapbox.places` for ephemeral geocoding, or `mapbox.places-permanent` for storing results and batch geocoding.
+ * @param {Array<string>} [config.countries] - Limits results to the specified countries.
+ *   Each item in the array should be an [ISO 3166 alpha 2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+ * @param {Coordinates} [config.proximity] - Bias local results based on a provided location.
+ * @param {Array<'country'|'region'|'postcode'|'district'|'place'|'locality'|'neighborhood'|'address'|'poi'|'poi.landmark'>} [config.types] - Filter results by feature types.
+ * @param {boolean} [config.autocomplete=true] - Return autocomplete results or not.
+ * @param {BoundingBox} [config.bbox] - Limit results to a bounding box.
+ * @param {number} [config.limit=5] - Limit the number of results returned.
+ * @param {Array<string>} [config.language] - Specify the language to use for response text and, for forward geocoding, query result weighting.
+ *  Options are [IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag) comprised of a mandatory
+ *  [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) and optionally one or more IETF subtags for country or script.
+ * @return {MapiRequest}
+ *
+ * @example
+ * geocodingClient.forwardGeocode({
+ *   query: 'Paris, France',
+ *   limit: 2
+ * })
+ *   .send()
+ *   .then(response => {
+ *     const match = response.body;
+ *   });
+ *
+ * @example
+ * // geocoding with proximity
+ * geocodingClient.forwardGeocode({
+ *   query: 'Paris, France',
+ *   proximity: [-95.4431142, 33.6875431]
+ * })
+ *   .send()
+ *   .then(response => {
+ *     const match = response.body;
+ *   });
+ *
+ * // geocoding with countries
+ * geocodingClient.forwardGeocode({
+ *   query: 'Paris, France',
+ *   countries: ['fr']
+ * })
+ *   .send()
+ *   .then(response => {
+ *     const match = response.body;
+ *   });
+ *
+ * // geocoding with bounding box
+ * geocodingClient.forwardGeocode({
+ *   query: 'Paris, France',
+ *   bbox: [2.14, 48.72, 2.55, 48.96]
+ * })
+ *   .send()
+ *   .then(response => {
+ *     const match = response.body;
+ *   });
+ */
+Geocoding.forwardGeocode = function(config) {
+  v.assertShape({
+    query: v.required(v.string),
+    mode: v.oneOf('mapbox.places', 'mapbox.places-permanent'),
+    countries: v.arrayOf(v.string),
+    proximity: v.coordinates,
+    types: v.arrayOf(v.oneOf(featureTypes)),
+    autocomplete: v.boolean,
+    bbox: v.arrayOf(v.number),
+    limit: v.number,
+    language: v.arrayOf(v.string)
+  })(config);
+
+  config.mode = config.mode || 'mapbox.places';
+
+  var query = stringifyBooleans(
+    xtend(
+      { country: config.countries },
+      pick(config, [
+        'proximity',
+        'types',
+        'autocomplete',
+        'bbox',
+        'limit',
+        'language'
+      ])
+    )
+  );
+
+  return this.client.createRequest({
+    method: 'GET',
+    path: '/geocoding/v5/:mode/:query.json',
+    params: pick(config, ['mode', 'query']),
+    query: query
+  });
+};
+
+/**
+ * Search for places near coordinates.
+ *
+ * See the [public documentation](https://www.mapbox.com/api-documentation/search/#reverse-geocoding).
+ *
+ * @param {Object} config
+ * @param {Coordinates} config.query - Coordinates at which features will be searched.
+ * @param {'mapbox.places'|'mapbox.places-permanent'} [config.mode="mapbox.places"] - Either `mapbox.places` for ephemeral geocoding, or `mapbox.places-permanent` for storing results and batch geocoding.
+ * @param {Array<string>} [config.countries] - Limits results to the specified countries.
+ *   Each item in the array should be an [ISO 3166 alpha 2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+ * @param {Array<'country'|'region'|'postcode'|'district'|'place'|'locality'|'neighborhood'|'address'|'poi'|'poi.landmark'>} [config.types] - Filter results by feature types.
+ * @param {BoundingBox} [config.bbox] - Limit results to a bounding box.
+ * @param {number} [config.limit=1] - Limit the number of results returned. If using this option, you must provide a single item for `types`.
+ * @param {Array<string>} [config.language] - Specify the language to use for response text and, for forward geocoding, query result weighting.
+ *  Options are [IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag) comprised of a mandatory
+ *  [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) and optionally one or more IETF subtags for country or script.
+ * @param {'distance'|'score'} [config.reverseMode='distance'] - Set the factors that are used to sort nearby results.
+ * @return {MapiRequest}
+ *
+ * @example
+ * geocodingClient.reverseGeocode({
+ *   query: [-95.4431142, 33.6875431],
+ *   limit: 2
+ * })
+ *   .send()
+ *   .then(response => {
+ *     // GeoJSON document with geocoding matches
+ *     const match = response.body;
+ *   });
+ */
+Geocoding.reverseGeocode = function(config) {
+  v.assertShape({
+    query: v.required(v.coordinates),
+    mode: v.oneOf('mapbox.places', 'mapbox.places-permanent'),
+    countries: v.arrayOf(v.string),
+    types: v.arrayOf(v.oneOf(featureTypes)),
+    bbox: v.arrayOf(v.number),
+    limit: v.number,
+    language: v.arrayOf(v.string),
+    reverseMode: v.oneOf('distance', 'score')
+  })(config);
+
+  config.mode = config.mode || 'mapbox.places';
+
+  var query = stringifyBooleans(
+    xtend(
+      { country: config.countries },
+      pick(config, [
+        'country',
+        'types',
+        'bbox',
+        'limit',
+        'language',
+        'reverseMode'
+      ])
+    )
+  );
+
+  return this.client.createRequest({
+    method: 'GET',
+    path: '/geocoding/v5/:mode/:query.json',
+    params: pick(config, ['mode', 'query']),
+    query: query
+  });
+};
+
+module.exports = createServiceFactory(Geocoding);
+
+},{"./service-helpers/create-service-factory":14,"./service-helpers/pick":16,"./service-helpers/stringify-booleans":17,"./service-helpers/validator":18,"xtend":25}],14:[function(require,module,exports){
+'use strict';
+
+var MapiClient = require('../../lib/classes/mapi-client');
+// This will create the environment-appropriate client.
+var createClient = require('../../lib/client');
+
+function createServiceFactory(ServicePrototype) {
+  return function(clientOrConfig) {
+    var client;
+    if (MapiClient.prototype.isPrototypeOf(clientOrConfig)) {
+      client = clientOrConfig;
+    } else {
+      client = createClient(clientOrConfig);
+    }
+    var service = Object.create(ServicePrototype);
+    service.client = client;
+    return service;
+  };
+}
+
+module.exports = createServiceFactory;
+
+},{"../../lib/classes/mapi-client":5,"../../lib/client":3}],15:[function(require,module,exports){
+'use strict';
+
+function objectMap(obj, cb) {
+  return Object.keys(obj).reduce(function(result, key) {
+    result[key] = cb(key, obj[key]);
+    return result;
+  }, {});
+}
+
+module.exports = objectMap;
+
+},{}],16:[function(require,module,exports){
+'use strict';
+
+/**
+ * Create a new object by picking properties off an existing object.
+ * The second param can be overloaded as a callback for
+ * more fine grained picking of properties.
+ * @param {Object} source
+ * @param {Array<string>|function(string, Object):boolean} keys
+ * @returns {Object}
+ */
+function pick(source, keys) {
+  var filter = function(key, val) {
+    return keys.indexOf(key) !== -1 && val !== undefined;
+  };
+
+  if (typeof keys === 'function') {
+    filter = keys;
+  }
+
+  return Object.keys(source)
+    .filter(function(key) {
+      return filter(key, source[key]);
+    })
+    .reduce(function(result, key) {
+      result[key] = source[key];
+      return result;
+    }, {});
+}
+
+module.exports = pick;
+
+},{}],17:[function(require,module,exports){
+'use strict';
+
+var objectMap = require('./object-map');
+
+/**
+ * Stringify all the boolean values in an object, so true becomes "true".
+ *
+ * @param {Object} obj
+ * @returns {Object}
+ */
+function stringifyBoolean(obj) {
+  return objectMap(obj, function(_, value) {
+    return typeof value === 'boolean' ? JSON.stringify(value) : value;
+  });
+}
+
+module.exports = stringifyBoolean;
+
+},{"./object-map":15}],18:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var xtend = require('xtend');
+var v = require('@mapbox/fusspot');
+
+function file(value) {
+  // If we're in a browser so Blob is available, the file must be that.
+  // In Node, however, it could be a filepath or a pipeable (Readable) stream.
+  if (typeof window !== 'undefined') {
+    if (value instanceof global.Blob || value instanceof global.ArrayBuffer) {
+      return;
+    }
+    return 'Blob or ArrayBuffer';
+  }
+  if (typeof value === 'string' || value.pipe !== undefined) {
+    return;
+  }
+  return 'Filename or Readable stream';
+}
+
+function assertShape(validatorObj, apiName) {
+  return v.assert(v.strictShape(validatorObj), apiName);
+}
+
+function date(value) {
+  var msg = 'date';
+  if (typeof value === 'boolean') {
+    return msg;
+  }
+  try {
+    var date = new Date(value);
+    if (date.getTime && isNaN(date.getTime())) {
+      return msg;
+    }
+  } catch (e) {
+    return msg;
+  }
+}
+
+function coordinates(value) {
+  return v.tuple(v.number, v.number)(value);
+}
+
+module.exports = xtend(v, {
+  file: file,
+  date: date,
+  coordinates: coordinates,
+  assertShape: assertShape
+});
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"@mapbox/fusspot":1,"xtend":25}],19:[function(require,module,exports){
+'use strict';
+
+var base64 = require('base-64');
+
+var tokenCache = {};
+
+function parseToken(token) {
+  if (tokenCache[token]) {
+    return tokenCache[token];
+  }
+
+  var parts = token.split('.');
+  var usage = parts[0];
+  var rawPayload = parts[1];
+  if (!rawPayload) {
+    throw new Error('Invalid token');
+  }
+
+  var parsedPayload = parsePaylod(rawPayload);
+
+  var result = {
+    usage: usage,
+    user: parsedPayload.u
+  };
+  if (has(parsedPayload, 'a')) result.authorization = parsedPayload.a;
+  if (has(parsedPayload, 'exp')) result.expires = parsedPayload.exp * 1000;
+  if (has(parsedPayload, 'iat')) result.created = parsedPayload.iat * 1000;
+  if (has(parsedPayload, 'scopes')) result.scopes = parsedPayload.scopes;
+  if (has(parsedPayload, 'client')) result.client = parsedPayload.client;
+  if (has(parsedPayload, 'll')) result.lastLogin = parsedPayload.ll;
+  if (has(parsedPayload, 'iu')) result.impersonator = parsedPayload.iu;
+
+  tokenCache[token] = result;
+  return result;
+}
+
+function parsePaylod(rawPayload) {
+  try {
+    return JSON.parse(base64.decode(rawPayload));
+  } catch (parseError) {
+    throw new Error('Invalid token');
+  }
+}
+
+function has(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+module.exports = parseToken;
+
+},{"base-64":20}],20:[function(require,module,exports){
+(function (global){
+/*! http://mths.be/base64 v0.1.0 by @mathias | MIT license */
+;(function(root) {
+
+	// Detect free variables `exports`.
+	var freeExports = typeof exports == 'object' && exports;
+
+	// Detect free variable `module`.
+	var freeModule = typeof module == 'object' && module &&
+		module.exports == freeExports && module;
+
+	// Detect free variable `global`, from Node.js or Browserified code, and use
+	// it as `root`.
+	var freeGlobal = typeof global == 'object' && global;
+	if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
+		root = freeGlobal;
+	}
+
+	/*--------------------------------------------------------------------------*/
+
+	var InvalidCharacterError = function(message) {
+		this.message = message;
+	};
+	InvalidCharacterError.prototype = new Error;
+	InvalidCharacterError.prototype.name = 'InvalidCharacterError';
+
+	var error = function(message) {
+		// Note: the error messages used throughout this file match those used by
+		// the native `atob`/`btoa` implementation in Chromium.
+		throw new InvalidCharacterError(message);
+	};
+
+	var TABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+	// http://whatwg.org/html/common-microsyntaxes.html#space-character
+	var REGEX_SPACE_CHARACTERS = /[\t\n\f\r ]/g;
+
+	// `decode` is designed to be fully compatible with `atob` as described in the
+	// HTML Standard. http://whatwg.org/html/webappapis.html#dom-windowbase64-atob
+	// The optimized base64-decoding algorithm used is based on @atk’s excellent
+	// implementation. https://gist.github.com/atk/1020396
+	var decode = function(input) {
+		input = String(input)
+			.replace(REGEX_SPACE_CHARACTERS, '');
+		var length = input.length;
+		if (length % 4 == 0) {
+			input = input.replace(/==?$/, '');
+			length = input.length;
+		}
+		if (
+			length % 4 == 1 ||
+			// http://whatwg.org/C#alphanumeric-ascii-characters
+			/[^+a-zA-Z0-9/]/.test(input)
+		) {
+			error(
+				'Invalid character: the string to be decoded is not correctly encoded.'
+			);
+		}
+		var bitCounter = 0;
+		var bitStorage;
+		var buffer;
+		var output = '';
+		var position = -1;
+		while (++position < length) {
+			buffer = TABLE.indexOf(input.charAt(position));
+			bitStorage = bitCounter % 4 ? bitStorage * 64 + buffer : buffer;
+			// Unless this is the first of a group of 4 characters…
+			if (bitCounter++ % 4) {
+				// …convert the first 8 bits to a single ASCII character.
+				output += String.fromCharCode(
+					0xFF & bitStorage >> (-2 * bitCounter & 6)
+				);
+			}
+		}
+		return output;
+	};
+
+	// `encode` is designed to be fully compatible with `btoa` as described in the
+	// HTML Standard: http://whatwg.org/html/webappapis.html#dom-windowbase64-btoa
+	var encode = function(input) {
+		input = String(input);
+		if (/[^\0-\xFF]/.test(input)) {
+			// Note: no need to special-case astral symbols here, as surrogates are
+			// matched, and the input is supposed to only contain ASCII anyway.
+			error(
+				'The string to be encoded contains characters outside of the ' +
+				'Latin1 range.'
+			);
+		}
+		var padding = input.length % 3;
+		var output = '';
+		var position = -1;
+		var a;
+		var b;
+		var c;
+		var d;
+		var buffer;
+		// Make sure any padding is handled outside of the loop.
+		var length = input.length - padding;
+
+		while (++position < length) {
+			// Read three bytes, i.e. 24 bits.
+			a = input.charCodeAt(position) << 16;
+			b = input.charCodeAt(++position) << 8;
+			c = input.charCodeAt(++position);
+			buffer = a + b + c;
+			// Turn the 24 bits into four chunks of 6 bits each, and append the
+			// matching character for each of them to the output.
+			output += (
+				TABLE.charAt(buffer >> 18 & 0x3F) +
+				TABLE.charAt(buffer >> 12 & 0x3F) +
+				TABLE.charAt(buffer >> 6 & 0x3F) +
+				TABLE.charAt(buffer & 0x3F)
+			);
+		}
+
+		if (padding == 2) {
+			a = input.charCodeAt(position) << 8;
+			b = input.charCodeAt(++position);
+			buffer = a + b;
+			output += (
+				TABLE.charAt(buffer >> 10) +
+				TABLE.charAt((buffer >> 4) & 0x3F) +
+				TABLE.charAt((buffer << 2) & 0x3F) +
+				'='
+			);
+		} else if (padding == 1) {
+			buffer = input.charCodeAt(position);
+			output += (
+				TABLE.charAt(buffer >> 2) +
+				TABLE.charAt((buffer << 4) & 0x3F) +
+				'=='
+			);
+		}
+
+		return output;
+	};
+
+	var base64 = {
+		'encode': encode,
+		'decode': decode,
+		'version': '0.1.0'
+	};
+
+	// Some AMD build optimizers, like r.js, check for specific condition patterns
+	// like the following:
+	if (
+		typeof define == 'function' &&
+		typeof define.amd == 'object' &&
+		define.amd
+	) {
+		define(function() {
+			return base64;
+		});
+	}	else if (freeExports && !freeExports.nodeType) {
+		if (freeModule) { // in Node.js or RingoJS v0.8.0+
+			freeModule.exports = base64;
+		} else { // in Narwhal or RingoJS v0.7.0-
+			for (var key in base64) {
+				base64.hasOwnProperty(key) && (freeExports[key] = base64[key]);
+			}
+		}
+	} else { // in Rhino or a web browser
+		root.base64 = base64;
+	}
+
+}(this));
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],21:[function(require,module,exports){
 'use strict';
 
 var has = Object.prototype.hasOwnProperty
@@ -1562,561 +2117,6 @@ if ('undefined' !== typeof module) {
   module.exports = EventEmitter;
 }
 
-},{}],14:[function(require,module,exports){
-'use strict';
-
-var xtend = require('xtend');
-var v = require('./service-helpers/validator');
-var pick = require('./service-helpers/pick');
-var stringifyBooleans = require('./service-helpers/stringify-booleans');
-var createServiceFactory = require('./service-helpers/create-service-factory');
-
-/**
- * Geocoding API service.
- *
- * Learn more about this service and its responses in
- * [the HTTP service documentation](https://www.mapbox.com/api-documentation/search/#geocoding).
- */
-var Geocoding = {};
-
-var featureTypes = [
-  'country',
-  'region',
-  'postcode',
-  'district',
-  'place',
-  'locality',
-  'neighborhood',
-  'address',
-  'poi',
-  'poi.landmark'
-];
-
-/**
- * Search for a place.
- *
- * See the [public documentation](https://www.mapbox.com/api-documentation/search/#forward-geocoding).
- *
- * @param {Object} config
- * @param {string} config.query - A place name.
- * @param {'mapbox.places'|'mapbox.places-permanent'} [config.mode="mapbox.places"] - Either `mapbox.places` for ephemeral geocoding, or `mapbox.places-permanent` for storing results and batch geocoding.
- * @param {Array<string>} [config.countries] - Limits results to the specified countries.
- *   Each item in the array should be an [ISO 3166 alpha 2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
- * @param {Coordinates} [config.proximity] - Bias local results based on a provided location.
- * @param {Array<'country'|'region'|'postcode'|'district'|'place'|'locality'|'neighborhood'|'address'|'poi'|'poi.landmark'>} [config.types] - Filter results by feature types.
- * @param {boolean} [config.autocomplete=true] - Return autocomplete results or not.
- * @param {BoundingBox} [config.bbox] - Limit results to a bounding box.
- * @param {number} [config.limit=5] - Limit the number of results returned.
- * @param {Array<string>} [config.language] - Specify the language to use for response text and, for forward geocoding, query result weighting.
- *  Options are [IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag) comprised of a mandatory
- *  [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) and optionally one or more IETF subtags for country or script.
- * @return {MapiRequest}
- *
- * @example
- * geocodingClient.forwardGeocode({
- *   query: 'Paris, France',
- *   limit: 2
- * })
- *   .send()
- *   .then(response => {
- *     const match = response.body;
- *   });
- *
- * @example
- * // geocoding with proximity
- * geocodingClient.forwardGeocode({
- *   query: 'Paris, France',
- *   proximity: [-95.4431142, 33.6875431]
- * })
- *   .send()
- *   .then(response => {
- *     const match = response.body;
- *   });
- *
- * // geocoding with countries
- * geocodingClient.forwardGeocode({
- *   query: 'Paris, France',
- *   countries: ['fr']
- * })
- *   .send()
- *   .then(response => {
- *     const match = response.body;
- *   });
- *
- * // geocoding with bounding box
- * geocodingClient.forwardGeocode({
- *   query: 'Paris, France',
- *   bbox: [2.14, 48.72, 2.55, 48.96]
- * })
- *   .send()
- *   .then(response => {
- *     const match = response.body;
- *   });
- */
-Geocoding.forwardGeocode = function(config) {
-  v.assertShape({
-    query: v.required(v.string),
-    mode: v.oneOf('mapbox.places', 'mapbox.places-permanent'),
-    countries: v.arrayOf(v.string),
-    proximity: v.coordinates,
-    types: v.arrayOf(v.oneOf(featureTypes)),
-    autocomplete: v.boolean,
-    bbox: v.arrayOf(v.number),
-    limit: v.number,
-    language: v.arrayOf(v.string)
-  })(config);
-
-  config.mode = config.mode || 'mapbox.places';
-
-  var query = stringifyBooleans(
-    xtend(
-      { country: config.countries },
-      pick(config, [
-        'proximity',
-        'types',
-        'autocomplete',
-        'bbox',
-        'limit',
-        'language'
-      ])
-    )
-  );
-
-  return this.client.createRequest({
-    method: 'GET',
-    path: '/geocoding/v5/:mode/:query.json',
-    params: pick(config, ['mode', 'query']),
-    query: query
-  });
-};
-
-/**
- * Search for places near coordinates.
- *
- * See the [public documentation](https://www.mapbox.com/api-documentation/search/#reverse-geocoding).
- *
- * @param {Object} config
- * @param {Coordinates} config.query - Coordinates at which features will be searched.
- * @param {'mapbox.places'|'mapbox.places-permanent'} [config.mode="mapbox.places"] - Either `mapbox.places` for ephemeral geocoding, or `mapbox.places-permanent` for storing results and batch geocoding.
- * @param {Array<string>} [config.countries] - Limits results to the specified countries.
- *   Each item in the array should be an [ISO 3166 alpha 2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
- * @param {Array<'country'|'region'|'postcode'|'district'|'place'|'locality'|'neighborhood'|'address'|'poi'|'poi.landmark'>} [config.types] - Filter results by feature types.
- * @param {BoundingBox} [config.bbox] - Limit results to a bounding box.
- * @param {number} [config.limit=1] - Limit the number of results returned. If using this option, you must provide a single item for `types`.
- * @param {Array<string>} [config.language] - Specify the language to use for response text and, for forward geocoding, query result weighting.
- *  Options are [IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag) comprised of a mandatory
- *  [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) and optionally one or more IETF subtags for country or script.
- * @param {'distance'|'score'} [config.reverseMode='distance'] - Set the factors that are used to sort nearby results.
- * @return {MapiRequest}
- *
- * @example
- * geocodingClient.reverseGeocode({
- *   query: [-95.4431142, 33.6875431],
- *   limit: 2
- * })
- *   .send()
- *   .then(response => {
- *     // GeoJSON document with geocoding matches
- *     const match = response.body;
- *   });
- */
-Geocoding.reverseGeocode = function(config) {
-  v.assertShape({
-    query: v.required(v.coordinates),
-    mode: v.oneOf('mapbox.places', 'mapbox.places-permanent'),
-    countries: v.arrayOf(v.string),
-    types: v.arrayOf(v.oneOf(featureTypes)),
-    bbox: v.arrayOf(v.number),
-    limit: v.number,
-    language: v.arrayOf(v.string),
-    reverseMode: v.oneOf('distance', 'score')
-  })(config);
-
-  config.mode = config.mode || 'mapbox.places';
-
-  var query = stringifyBooleans(
-    xtend(
-      { country: config.countries },
-      pick(config, [
-        'country',
-        'types',
-        'bbox',
-        'limit',
-        'language',
-        'reverseMode'
-      ])
-    )
-  );
-
-  return this.client.createRequest({
-    method: 'GET',
-    path: '/geocoding/v5/:mode/:query.json',
-    params: pick(config, ['mode', 'query']),
-    query: query
-  });
-};
-
-module.exports = createServiceFactory(Geocoding);
-
-},{"./service-helpers/create-service-factory":15,"./service-helpers/pick":17,"./service-helpers/stringify-booleans":18,"./service-helpers/validator":19,"xtend":25}],15:[function(require,module,exports){
-'use strict';
-
-var MapiClient = require('../../lib/classes/mapi-client');
-// This will create the environment-appropriate client.
-var createClient = require('../../lib/client');
-
-function createServiceFactory(ServicePrototype) {
-  return function(clientOrConfig) {
-    var client;
-    if (MapiClient.prototype.isPrototypeOf(clientOrConfig)) {
-      client = clientOrConfig;
-    } else {
-      client = createClient(clientOrConfig);
-    }
-    var service = Object.create(ServicePrototype);
-    service.client = client;
-    return service;
-  };
-}
-
-module.exports = createServiceFactory;
-
-},{"../../lib/classes/mapi-client":5,"../../lib/client":3}],16:[function(require,module,exports){
-'use strict';
-
-function objectMap(obj, cb) {
-  return Object.keys(obj).reduce(function(result, key) {
-    result[key] = cb(key, obj[key]);
-    return result;
-  }, {});
-}
-
-module.exports = objectMap;
-
-},{}],17:[function(require,module,exports){
-'use strict';
-
-/**
- * Create a new object by picking properties off an existing object.
- * The second param can be overloaded as a callback for
- * more fine grained picking of properties.
- * @param {Object} source
- * @param {Array<string>|function(string, Object):boolean} keys
- * @returns {Object}
- */
-function pick(source, keys) {
-  var filter = function(key, val) {
-    return keys.indexOf(key) !== -1 && val !== undefined;
-  };
-
-  if (typeof keys === 'function') {
-    filter = keys;
-  }
-
-  return Object.keys(source)
-    .filter(function(key) {
-      return filter(key, source[key]);
-    })
-    .reduce(function(result, key) {
-      result[key] = source[key];
-      return result;
-    }, {});
-}
-
-module.exports = pick;
-
-},{}],18:[function(require,module,exports){
-'use strict';
-
-var objectMap = require('./object-map');
-
-/**
- * Stringify all the boolean values in an object, so true becomes "true".
- *
- * @param {Object} obj
- * @returns {Object}
- */
-function stringifyBoolean(obj) {
-  return objectMap(obj, function(_, value) {
-    return typeof value === 'boolean' ? JSON.stringify(value) : value;
-  });
-}
-
-module.exports = stringifyBoolean;
-
-},{"./object-map":16}],19:[function(require,module,exports){
-(function (global){
-'use strict';
-
-var xtend = require('xtend');
-var v = require('@mapbox/fusspot');
-
-function file(value) {
-  // If we're in a browser so Blob is available, the file must be that.
-  // In Node, however, it could be a filepath or a pipeable (Readable) stream.
-  if (typeof window !== 'undefined') {
-    if (value instanceof global.Blob || value instanceof global.ArrayBuffer) {
-      return;
-    }
-    return 'Blob or ArrayBuffer';
-  }
-  if (typeof value === 'string' || value.pipe !== undefined) {
-    return;
-  }
-  return 'Filename or Readable stream';
-}
-
-function assertShape(validatorObj, apiName) {
-  return v.assert(v.strictShape(validatorObj), apiName);
-}
-
-function date(value) {
-  var msg = 'date';
-  if (typeof value === 'boolean') {
-    return msg;
-  }
-  try {
-    var date = new Date(value);
-    if (date.getTime && isNaN(date.getTime())) {
-      return msg;
-    }
-  } catch (e) {
-    return msg;
-  }
-}
-
-function coordinates(value) {
-  return v.tuple(v.number, v.number)(value);
-}
-
-module.exports = xtend(v, {
-  file: file,
-  date: date,
-  coordinates: coordinates,
-  assertShape: assertShape
-});
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"@mapbox/fusspot":1,"xtend":25}],20:[function(require,module,exports){
-'use strict';
-
-var base64 = require('base-64');
-
-var tokenCache = {};
-
-function parseToken(token) {
-  if (tokenCache[token]) {
-    return tokenCache[token];
-  }
-
-  var parts = token.split('.');
-  var usage = parts[0];
-  var rawPayload = parts[1];
-  if (!rawPayload) {
-    throw new Error('Invalid token');
-  }
-
-  var parsedPayload = parsePaylod(rawPayload);
-
-  var result = {
-    usage: usage,
-    user: parsedPayload.u
-  };
-  if (has(parsedPayload, 'a')) result.authorization = parsedPayload.a;
-  if (has(parsedPayload, 'exp')) result.expires = parsedPayload.exp * 1000;
-  if (has(parsedPayload, 'iat')) result.created = parsedPayload.iat * 1000;
-  if (has(parsedPayload, 'scopes')) result.scopes = parsedPayload.scopes;
-  if (has(parsedPayload, 'client')) result.client = parsedPayload.client;
-  if (has(parsedPayload, 'll')) result.lastLogin = parsedPayload.ll;
-  if (has(parsedPayload, 'iu')) result.impersonator = parsedPayload.iu;
-
-  tokenCache[token] = result;
-  return result;
-}
-
-function parsePaylod(rawPayload) {
-  try {
-    return JSON.parse(base64.decode(rawPayload));
-  } catch (parseError) {
-    throw new Error('Invalid token');
-  }
-}
-
-function has(obj, key) {
-  return Object.prototype.hasOwnProperty.call(obj, key);
-}
-
-module.exports = parseToken;
-
-},{"base-64":21}],21:[function(require,module,exports){
-(function (global){
-/*! http://mths.be/base64 v0.1.0 by @mathias | MIT license */
-;(function(root) {
-
-	// Detect free variables `exports`.
-	var freeExports = typeof exports == 'object' && exports;
-
-	// Detect free variable `module`.
-	var freeModule = typeof module == 'object' && module &&
-		module.exports == freeExports && module;
-
-	// Detect free variable `global`, from Node.js or Browserified code, and use
-	// it as `root`.
-	var freeGlobal = typeof global == 'object' && global;
-	if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
-		root = freeGlobal;
-	}
-
-	/*--------------------------------------------------------------------------*/
-
-	var InvalidCharacterError = function(message) {
-		this.message = message;
-	};
-	InvalidCharacterError.prototype = new Error;
-	InvalidCharacterError.prototype.name = 'InvalidCharacterError';
-
-	var error = function(message) {
-		// Note: the error messages used throughout this file match those used by
-		// the native `atob`/`btoa` implementation in Chromium.
-		throw new InvalidCharacterError(message);
-	};
-
-	var TABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-	// http://whatwg.org/html/common-microsyntaxes.html#space-character
-	var REGEX_SPACE_CHARACTERS = /[\t\n\f\r ]/g;
-
-	// `decode` is designed to be fully compatible with `atob` as described in the
-	// HTML Standard. http://whatwg.org/html/webappapis.html#dom-windowbase64-atob
-	// The optimized base64-decoding algorithm used is based on @atk’s excellent
-	// implementation. https://gist.github.com/atk/1020396
-	var decode = function(input) {
-		input = String(input)
-			.replace(REGEX_SPACE_CHARACTERS, '');
-		var length = input.length;
-		if (length % 4 == 0) {
-			input = input.replace(/==?$/, '');
-			length = input.length;
-		}
-		if (
-			length % 4 == 1 ||
-			// http://whatwg.org/C#alphanumeric-ascii-characters
-			/[^+a-zA-Z0-9/]/.test(input)
-		) {
-			error(
-				'Invalid character: the string to be decoded is not correctly encoded.'
-			);
-		}
-		var bitCounter = 0;
-		var bitStorage;
-		var buffer;
-		var output = '';
-		var position = -1;
-		while (++position < length) {
-			buffer = TABLE.indexOf(input.charAt(position));
-			bitStorage = bitCounter % 4 ? bitStorage * 64 + buffer : buffer;
-			// Unless this is the first of a group of 4 characters…
-			if (bitCounter++ % 4) {
-				// …convert the first 8 bits to a single ASCII character.
-				output += String.fromCharCode(
-					0xFF & bitStorage >> (-2 * bitCounter & 6)
-				);
-			}
-		}
-		return output;
-	};
-
-	// `encode` is designed to be fully compatible with `btoa` as described in the
-	// HTML Standard: http://whatwg.org/html/webappapis.html#dom-windowbase64-btoa
-	var encode = function(input) {
-		input = String(input);
-		if (/[^\0-\xFF]/.test(input)) {
-			// Note: no need to special-case astral symbols here, as surrogates are
-			// matched, and the input is supposed to only contain ASCII anyway.
-			error(
-				'The string to be encoded contains characters outside of the ' +
-				'Latin1 range.'
-			);
-		}
-		var padding = input.length % 3;
-		var output = '';
-		var position = -1;
-		var a;
-		var b;
-		var c;
-		var d;
-		var buffer;
-		// Make sure any padding is handled outside of the loop.
-		var length = input.length - padding;
-
-		while (++position < length) {
-			// Read three bytes, i.e. 24 bits.
-			a = input.charCodeAt(position) << 16;
-			b = input.charCodeAt(++position) << 8;
-			c = input.charCodeAt(++position);
-			buffer = a + b + c;
-			// Turn the 24 bits into four chunks of 6 bits each, and append the
-			// matching character for each of them to the output.
-			output += (
-				TABLE.charAt(buffer >> 18 & 0x3F) +
-				TABLE.charAt(buffer >> 12 & 0x3F) +
-				TABLE.charAt(buffer >> 6 & 0x3F) +
-				TABLE.charAt(buffer & 0x3F)
-			);
-		}
-
-		if (padding == 2) {
-			a = input.charCodeAt(position) << 8;
-			b = input.charCodeAt(++position);
-			buffer = a + b;
-			output += (
-				TABLE.charAt(buffer >> 10) +
-				TABLE.charAt((buffer >> 4) & 0x3F) +
-				TABLE.charAt((buffer << 2) & 0x3F) +
-				'='
-			);
-		} else if (padding == 1) {
-			buffer = input.charCodeAt(position);
-			output += (
-				TABLE.charAt(buffer >> 2) +
-				TABLE.charAt((buffer << 4) & 0x3F) +
-				'=='
-			);
-		}
-
-		return output;
-	};
-
-	var base64 = {
-		'encode': encode,
-		'decode': decode,
-		'version': '0.1.0'
-	};
-
-	// Some AMD build optimizers, like r.js, check for specific condition patterns
-	// like the following:
-	if (
-		typeof define == 'function' &&
-		typeof define.amd == 'object' &&
-		define.amd
-	) {
-		define(function() {
-			return base64;
-		});
-	}	else if (freeExports && !freeExports.nodeType) {
-		if (freeModule) { // in Node.js or RingoJS v0.8.0+
-			freeModule.exports = base64;
-		} else { // in Narwhal or RingoJS v0.7.0-
-			for (var key in base64) {
-				base64.hasOwnProperty(key) && (freeExports[key] = base64[key]);
-			}
-		}
-	} else { // in Rhino or a web browser
-		root.base64 = base64;
-	}
-
-}(this));
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],22:[function(require,module,exports){
 'use strict';
 var toString = Object.prototype.toString;
@@ -2666,7 +2666,7 @@ function injectCSS(url) {
   }
 }
 
-},{"@mapbox/mapbox-sdk":2,"@mapbox/mapbox-sdk/services/geocoding":14,"mapbox-gl/dist/mapbox-gl.js":23}],31:[function(require,module,exports){
+},{"@mapbox/mapbox-sdk":2,"@mapbox/mapbox-sdk/services/geocoding":13,"mapbox-gl/dist/mapbox-gl.js":23}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
