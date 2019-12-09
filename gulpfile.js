@@ -29,7 +29,7 @@ const uglify        = require('gulp-uglify');
 
 // Paths
 const paths = {
-  src: `${__dirname}/src/`,
+  src: `./src/`,
   dest: `${__dirname}/tmp/`,
   build: `${__dirname}/www/`,
   dist: `${__dirname}/dist/`
@@ -253,11 +253,19 @@ function goProduction() {
 // Watch
 function watch() {
   serve();
-  gulp.watch([`${paths.src}/assets/**/*.scss`, `${paths.src}/components/**/*.scss`], styles);
-  gulp.watch([`${paths.src}/assets/scripts/application.js`, `${paths.src}/components/**/*.js`], scripts);
-  gulp.watch(`${paths.src}/assets/svg/*.svg`, svg);
-  gulp.watch([`${paths.src}/assets/img/**/*`, `${paths.src}/components/**/img/*.{gif,jpg,jpeg,png}`], images);
-  gulp.watch([`${paths.src}/components/**/assets/*`], blockAssets);
+  gulp.watch([
+    `./src/assets/**/*.scss`,
+    `./src/components/**/*.scss`
+  ], styles);
+
+  gulp.watch([
+    `./src/assets/scripts/application.js`,
+    `./src/components/**/*.js`
+  ], scripts);
+
+  gulp.watch(`./src/assets/svg/*.svg`, svg);
+  gulp.watch([`./src/assets/img/**/*`, `./src/components/**/img/*.{gif,jpg,jpeg,png}`], images);
+  gulp.watch([`./src/components/**/assets/*`], blockAssets);
 }
 
 const compile = gulp.series(clean, gulp.parallel(svg, styles, scripts, images, blockAssets));
