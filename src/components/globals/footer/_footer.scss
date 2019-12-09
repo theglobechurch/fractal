@@ -26,11 +26,20 @@
     display: flex;
     flex-direction: column;
     margin-top: siteSpacing(xl);
-
     @include bpMinSmall {
       align-items: flex-end;
       flex-direction: row;
       justify-content: space-between;
+    }
+
+    div {
+      @include type(reg-1);
+      display: block;
+      text-align: center;
+
+      @include bpMinSmall {
+        text-align: left;
+      }
     }
 
     span {
@@ -40,6 +49,7 @@
 
       @include bpMinSmall {
         display: inline;
+        text-align: left;
 
         &:after {
           content: ' | ';
@@ -53,7 +63,6 @@
   }
 
   &__affiliation {
-
     & svg {
       display: block;
       height: 36px;
