@@ -121,7 +121,7 @@
 
       @include bpMinExtraSmall {
         &:before {
-          background: siteColor(sockeye);;
+          background: siteColor(sockeye);
           border-radius: 50%;
           content: "";
           height: 5px;
