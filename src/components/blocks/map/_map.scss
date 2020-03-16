@@ -1,28 +1,28 @@
-.c-map {
-  clear: both;
-  position: relative;
-  width: 100%;
+// .c-map {
+//   clear: both;
+//   position: relative;
+//   width: 100%;
 
-  &__map {
-    display: flex;
-    height: 0;
-    padding-bottom: 50%;
-    width: 100%;
-  }
+//   &__map {
+//     display: flex;
+//     height: 0;
+//     padding-bottom: 50%;
+//     width: 100%;
+//   }
 
-  &__link {
-    @include type(linkCaps);
-    color: siteColor(sockeye);
-    display: block;
-    margin: 10px 0;
-    text-decoration: none;
+//   &__link {
+//     @include type(linkCaps);
+//     color: siteColor(sockeye);
+//     display: block;
+//     margin: 10px 0;
+//     text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
+//     &:hover {
+//       text-decoration: underline;
+//     }
+//   }
+// }
 
-.mapboxgl-control-container {
-  display: none;
-}
+// .mapboxgl-control-container {
+//   display: none;
+// }
