@@ -37,5 +37,13 @@ module.exports = {
         variant: ['blurred'],
       },
     },
+    {
+      name: 'video',
+      label: 'Video',
+      context: {
+        variant: ['video'],
+        video: 'https://www.youtube.com/embed/wIWt0kTtp3U'
+      }
+    }
   ],
 };

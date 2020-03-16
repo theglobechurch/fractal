@@ -1,5 +1,11 @@
 <section class="{{ className }} {% for v in variant %}{{ className }}--{{ v }}{% endfor %} js-object-fit-container">
+  {% if video %}
+  <iframe class="c-banner__img" src="{{ video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  {% else %}
   <img src="{{ img[960] }}" srcset="{% for k,v in img %}{{ v }} {{ k }}w,{% endfor %}" alt="{{ title }}" class="{{ className }}__img" />
+  {% endif %}
+
+  {% if video == undefined %}
   <div class="{{ className }}__text">
     <div class="site-container">
 
@@ -27,4 +33,5 @@
       {% endif %}
     </div>
   </div>
+  {% endif %}
 </section>
