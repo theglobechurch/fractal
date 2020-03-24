@@ -1,0 +1,75 @@
+.c-livestreamLinks {
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1.8px;
+    line-height: 30px;
+    margin: 20px 0 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    @include unstyledList;
+    column-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    margin-bottom: 20px;
+    row-gap: 20px;
+
+    @include bpMinExtraSmall {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include bpMinSmall {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}
+
+.c-videoPreview {
+  display: block;
+  text-decoration: none;
+
+  &__img {
+    background-color: transparent;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    transition: background-color 0.5;;
+    width: 100%;
+
+    img {
+      filter: none;
+      height: 100%;
+      left: 0;
+      mix-blend-mode: multiply;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      transition: transform 0.5s, filter 0.5s;
+      width: 100%;
+    }
+  }
+
+  &:hover {
+    .c-videoPreview__img {
+      background-color: siteColor(sockeye);
+    }
+
+    img {
+      filter: grayscale(1);
+      transform: scale(1.1);
+    }
+  }
+
+  &__caption {
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 1;
+    padding: 10px 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}

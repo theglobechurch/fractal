@@ -1,0 +1,17 @@
+<section class="c-livestreamLinks">
+  <h1 class="c-livestreamLinks__title">{{ title }}</h1>
+
+  <div class="c-livestreamLinks__list">
+  {% for stream in streams %}
+    <a href="https://www.youtube.com/watch?v={{ stream.id }}" target="_blank" rel="noopener" class="c-videoPreview">
+      <div class="c-videoPreview__img">
+        <img src="https://i3.ytimg.com/vi/{{ stream.id }}/hqdefault.jpg" alt="Livestream for {{ stream.date }}" />
+      </div>
+
+      <div class="c-videoPreview__caption">
+        {{ stream.date }}
+      </div>
+    </a>
+  {% endfor %}
+  </div>
+</section>
