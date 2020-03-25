@@ -1,6 +1,7 @@
 <ul class="c-icon-list{% if modifiers %}{% for m in modifiers %} c-icon-list--{{ m }}{% endfor %}{% endif %}">
   {% for item in list %}
   <li class="c-icon-list__item">
+
     {% if item.href %}<a href="{{ item.href }}" class="u-link u-link--arrowed u-link--black js-audio-start-link">{% endif %}
 
       <svg role="img" class="c-icon-list__item__icon">
@@ -10,6 +11,7 @@
       <span>
         {{ item.text }}
       </span>
+
     {% if item.href %}</a>{% endif %}
   </li>
   {% endfor %}
