@@ -30,8 +30,10 @@
 .c-videoPreview {
   display: block;
   text-decoration: none;
+  border-radius: 2px;
 
   &__img {
+    border-radius: 2px;
     background-color: white;
     height: 0;
     overflow: hidden;
@@ -54,6 +56,7 @@
   }
 
   &:hover {
+    text-decoration: none;
     .c-videoPreview__img {
       background-color: siteColor(sockeye);
     }
