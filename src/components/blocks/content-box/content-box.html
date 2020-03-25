@@ -79,7 +79,7 @@
     {% if aside %}
       <aside class="c-content-box__aside">
         {% if icons %}
-          {%- render "@icon-list" -%}
+          {%- render "@icon-list", iconList -%}
         {% endif %}
 
         {% if aside !== 1 %}

@@ -22,6 +22,8 @@ module.exports = {
       'clock',
       'calendar',
       'person',
+      'christianity-explored',
+      'one21',
     ],
   },
   variants: [

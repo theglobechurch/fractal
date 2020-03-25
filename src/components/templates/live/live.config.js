@@ -1,6 +1,7 @@
 module.exports = {
   status: 'wip',
   context: {
+
     banner: {
       className: 'c-banner',
       variant: ['video'],
@@ -8,11 +9,32 @@ module.exports = {
       title: 'About Globe Church',
       subtitle: 'The Globe Church is all about sharing the good news of Jesus Christ to those living and working on the Southbank of London.',
     },
+
     intro: {
       className: 'c-content-box',
-      title: 'We\'re a church made up of many stories…',
-      subtitle: 'But, if we were to pick three words to define us, they would be Jesus, people and mission. That’s what we are about.',
+      title: 'The Globe Church Livestream',
+      subtitle: 'For the next few weeks we are unable to meet as normal…',
+      body: ['Church is about gathering together as God’s people. We think that is a precious and wonderful thing. There are occasions when gathering is not possible and at those times a livestream can help us until we can gather again. We hope this livestream of our service can serve you in that way. This will never be able to replace the gathering, it is not as good as the gathering, but as a short term solution it can help us as a church family. We hope you will find it a blessing to join with us.'],
+      aside: true,
+      icons: true,
+
+      iconList: {
+        list: [
+          {
+            text: 'Exploring Christianity?',
+            href: 'https://www.christianityexplored.org/Groups/276316/Home/CE_ORG/What_is_Christianity/What_is_Christianity.aspx',
+            icon: 'christianity-explored',
+          },
+          {
+            text: 'Discuss Sunday\'s sermon',
+            href: 'https://one21.org',
+            icon: 'one21',
+          },
+        ]
+      }
     },
+
+
 
     promobox: {
       className: 'c-promo-box',
